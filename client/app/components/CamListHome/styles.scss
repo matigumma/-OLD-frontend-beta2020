@@ -1,0 +1,16 @@
+.dynamicContent {
+    position: relative;
+    width: 20px;
+    height: 20px; 
+    margin:50px auto;
+    -webkit-animation: fa-spin 2s infinite linear;
+    animation: fa-spin 2s infinite linear;
+  }
+  
+  .dynamicContent:before {
+    content: "\f110";
+    font-family: FontAwesome;
+    font-size:20px;
+    position: absolute;
+    top: 0; 
+  }
