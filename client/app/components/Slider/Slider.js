@@ -54,7 +54,7 @@ function Slider(props) {
             </div> */}
             
             <div className="carousel-item active">
-                <img src="/assets/img/slide3.jpg" className="d-block w-100" alt="..."/> 
+                <img src="/assets/img/slide1.jpg" className="d-block w-100" alt="..."/> 
                 <div className="carousel-caption d-none d-lg-block text-left">  
 {/*                 <h1>ANTICIPATE A</h1>
                 <h1>LAS OLAS</h1>
@@ -85,14 +85,14 @@ function Slider(props) {
                 </div>
             </div> */}
             </div>
-            <a className="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+{/*             <a className="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
             <span className="carousel-control-prev-icon" aria-hidden="true"></span>
             <span className="sr-only">Prev</span>
             </a>
             <a className="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
             <span className="carousel-control-next-icon" aria-hidden="true"></span>
             <span className="sr-only">Next</span>
-            </a>
+            </a> */}
             <div className="espuma"></div>
         </div>
         </header>

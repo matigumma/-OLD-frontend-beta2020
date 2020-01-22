@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 
-const SignupForm = (props) => {
+const SignupForm = () => {
 	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
  	const [confirmPassword, setConfirmPassword] = useState('')

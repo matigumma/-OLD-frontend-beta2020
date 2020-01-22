@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
-import Unsplash, { toJson } from 'unsplash-js'
+//import Unsplash, { toJson } from 'unsplash-js'
 // import googleButton from './google_signin_buttons/web/1x/btn_google_signin_dark_disabled_web.png'
 //import googleButton from './google_signin_buttons/web/1x/btn_google_signin_dark_normal_web.png'
-const unsplash = new Unsplash({ 
+/* const unsplash = new Unsplash({ 
 	accessKey: "087974b986846a742f7b79b785d09baafceaa494a1713e28aac8af3e6cba565e",
 	secret: "9c22b17a6076eac65bb4f54a9bef93d21d3a4aec4827e48e433fa8185879a51e"
-})
+}) */
 
 
 

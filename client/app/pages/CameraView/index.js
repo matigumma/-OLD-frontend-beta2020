@@ -3,10 +3,10 @@ import { Redirect } from 'react-router'
 import Iframe from 'react-iframe'
 import Loading from '../../components/Loading'
 import ReactPlayer from 'react-player'
-import axios from 'axios'
+//import axios from 'axios'
 import './styles.scss'
-import ReactTooltip from 'react-tooltip'
-import NotFound from '../NotFound'
+//import ReactTooltip from 'react-tooltip'
+//import NotFound from '../NotFound'
 
 import config from '../../../config'
 
