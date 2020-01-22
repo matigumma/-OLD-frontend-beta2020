@@ -13,6 +13,7 @@
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
     "bcryptjs": "^2.4.3",
     "connect-mongo": "^3.2.0",
     "cors": "^2.8.5",

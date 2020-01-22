@@ -13,7 +13,8 @@
         ]
     ],
     "plugins": [
-        "@babel/plugin-transform-runtime", 
+        "@babel/plugin-transform-runtime",
+        "@babel/plugin-proposal-class-properties", 
         "transform-class-properties", 
         "react-hot-loader/babel", 
         "syntax-dynamic-import"
