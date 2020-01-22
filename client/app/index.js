@@ -4,7 +4,7 @@ import * as serviceWorker from './serviceWorker';
 
 import loadable from '@loadable/component'
 
-const LoadableApp = loadable(() => import('./components/App'))
+const LoadableApp = loadable(() => import('./components/App/App.jsx'))
 
 ReactDOM.render((<LoadableApp />), document.getElementById('root'));
 
