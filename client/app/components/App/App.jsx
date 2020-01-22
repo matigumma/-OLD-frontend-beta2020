@@ -2,7 +2,9 @@ import React, { useState, useEffect, Suspense, lazy } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import axios from 'axios'
 import './App.scss'
-import Header from '../Header/Header'
+import Loading from '../Loading'
+//import Header from '../Header/Header'
+const Header = lazy(() => import('../Header/Header'))
 //import Home from '../../pages/Home/Home'
 const Home = lazy(() => import('../../pages/Home/Home'))
 //import LoginForm from '../Auth/LoginForm.jsx'
@@ -13,7 +15,6 @@ const SignupForm = lazy(() => import('../Auth/SignupForm.jsx'))
 const CameraView = lazy(() => import('../../pages/CameraView'))
 //import NotFound from '../../pages/NotFound'
 const NotFound = lazy(() => import('../../pages/NotFound'))
-import Loading from '../Loading'
 
 import config from '../../../config'
 
@@ -168,19 +169,19 @@ const App = () =>{
 	return (
 		<Router>
 		<div className="h-100">
-			<Header cameras={cameras} state={user} _logout={_logout} />
-			<main className="h-100">
-				<Suspense fallback={<Loading />}>
-					<Switch>
-						<Route exact path="/" render={() => <Home ads={ads} cameras={cameras} userState={user} />} />
-						<Route exact path="/login" render={() => <LoginForm _login={_login} />}/>
-						<Route exact path="/user/:id" render={(props) => <UserProfile {...props} userState={user} />}/>
-						<Route exact path="/cam/:any" render={(state) => <CameraView {...state} cameras={cameras} userState={user} />}/>
-						<Route exact path="/signup" component={() => <SignupForm />} />
-						<Route path="/404" render={(state) => <NotFound {...state}/>} />
-					</Switch>
-				</Suspense>
-			</main>
+			<Suspense fallback={<Loading />}>
+				<Header cameras={cameras} state={user} _logout={_logout} />
+				<main className="h-100">
+						<Switch>
+							<Route exact path="/" render={() => <Home ads={ads} cameras={cameras} userState={user} />} />
+							<Route exact path="/login" render={() => <LoginForm _login={_login} />}/>
+							<Route exact path="/user/:id" render={(props) => <UserProfile {...props} userState={user} />}/>
+							<Route exact path="/cam/:any" render={(state) => <CameraView {...state} cameras={cameras} userState={user} />}/>
+							<Route exact path="/signup" component={() => <SignupForm />} />
+							<Route path="/404" render={(state) => <NotFound {...state}/>} />
+						</Switch>
+				</main>
+			</Suspense>
 		</div>
 		</Router>
 	)
