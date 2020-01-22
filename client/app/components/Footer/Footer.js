@@ -23,7 +23,7 @@ FreeWaves es la forma más fácil de ver tu spot preferido en tiempo real estés
       <div className="col-md-12 col-lg-6">
         <div className="embed-responsive embed-responsive-16by9">
           <video className="embed-responsive-item" controls>
-            <source src="/assets/content/intro.mp4" type="video/mp4"/>
+            <source src={process.env.PUBLIC_URL + "/assets/content/intro.mp4"} type="video/mp4"/>
           </video>
         </div>
       </div>
