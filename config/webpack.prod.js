@@ -18,6 +18,9 @@ module.exports = merge(commonConfig, {
         warnings: false,
         screw_ie8: true
       },
+      cache: true,
+      parallel: true,
+      sourceMap: true,
       output: {
         comments: false
       }
