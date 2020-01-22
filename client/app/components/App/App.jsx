@@ -13,7 +13,7 @@ const SignupForm = lazy(() => import('../Auth/SignupForm.jsx'))
 const CameraView = lazy(() => import('../../pages/CameraView'))
 //import NotFound from '../../pages/NotFound'
 const NotFound = lazy(() => import('../../pages/NotFound'))
-//import Loading from '../Loading'
+import Loading from '../Loading'
 
 import config from '../../../config'
 
