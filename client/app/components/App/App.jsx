@@ -7,7 +7,7 @@ import config from '../../../config'
 //import axios from 'axios'
 const axios = lazy(() => import('axios'))
 //import Header from '../Header/Header'
-const Header = lazy(() => import('../Header/Header'))
+//const Header = lazy(() => import('../Header/Header'))
 //import Home from '../../pages/Home/Home'
 const Home = lazy(() => import('../../pages/Home/Home'))
 //import LoginForm from '../Auth/LoginForm.jsx'
@@ -170,7 +170,7 @@ const App = () =>{
 	return (
 		<Router>
 		<div className="h-100">
-			<Header cameras={cameras} state={user} _logout={_logout} />
+			{/* <Header cameras={cameras} state={user} _logout={_logout} /> */}
 			<main className="h-100">
 				<Switch>
 				<Suspense fallback={Loading}>
