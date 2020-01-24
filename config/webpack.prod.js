@@ -20,7 +20,7 @@ module.exports = merge(commonConfig, {
       },
       cache: true,
       parallel: true,
-      sourceMap: true,
+      sourceMap: false,
       output: {
         comments: false
       }

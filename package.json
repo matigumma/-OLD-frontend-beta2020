@@ -49,7 +49,8 @@
     "webpack": "webpack",
     "webpack-dev-server": "webpack-dev-server",
     "dev": "npm run webpack-dev-server -- --env.mode development",
-    "prod": "npm run webpack -- --env.NODE_ENV=production && node server"
+    "prod": "npm run webpack -- --env.NODE_ENV=production && node server",
+    "analyze": "source-map-explorer 'build/static/js/*.js'"
   },
   "eslintConfig": {
     "extends": "react-app"
