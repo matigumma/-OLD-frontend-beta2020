@@ -12,18 +12,27 @@ module.exports = merge(commonConfig, {
     chunkFilename: '[id].[hash].chunk.js'
   },
 
+/*   new webpack.optimize.UglifyJsPlugin({
+    compressor: {
+      warnings: false,
+      screw_ie8: true
+    },
+    cache: true,
+    parallel: true,
+    sourceMap: false,
+    output: {
+      comments: false
+    }
+  }) */
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      compressor: {
-        warnings: false,
-        screw_ie8: true
-      },
-      cache: true,
-      parallel: true,
-      sourceMap: false,
-      output: {
-        comments: false
-      }
-    })
+    new CompressionPlugin({
+      filename: '[path].br[query]',
+      algorithm: 'brotliCompress',
+      test: /\.(js|css|html|svg)$/,
+      compressionOptions: { level: 11 },
+      threshold: 10240,
+      minRatio: 0.8,
+      deleteOriginalAssets: false,
+    }),
   ]
 });
