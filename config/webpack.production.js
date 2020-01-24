@@ -10,7 +10,7 @@ const common = require(`./OLD-webpack.common`);
 module.exports = webpackMerge(common, {
     mode: 'production',
 
-    devtool: "nosource-source-map",
+//    devtool: "nosource-source-map",
 
     output: {
         filename: "js/production.js"
@@ -21,7 +21,7 @@ module.exports = webpackMerge(common, {
             new UglifyJsPlugin({
                 cache: true,
                 parallel: true,
-                sourceMap: true // set to true if you want JS source maps for css
+                sourceMap: false // set to true if you want JS source maps for css
             }),
             new OptimizeCSSAssetsPlugin({})
         ]
