@@ -9,13 +9,7 @@ const axios = lazy(() => import('axios'))
 //import Header from '../Header/Header'
 const Header = lazy(() => import('../Header/Header'))
 //import Home from '../../pages/Home/Home'
-//const Home = lazy(() => import('../../pages/Home/Home'))
-const Home = Loadable({
-	loader: () => import('../../pages/Home/Home'),
-	loading() {
-	  return <div>Loading...</div>
-	}
-  });
+const Home = lazy(() => import('../../pages/Home/Home'))
 //import LoginForm from '../Auth/LoginForm.jsx'
 const LoginForm = lazy(() => import('../Auth/LoginForm.jsx'))
 //import SignupForm from '../Auth/SignupForm.jsx'

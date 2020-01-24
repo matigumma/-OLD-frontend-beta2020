@@ -14,9 +14,9 @@ const LoginForm = (props) =>{
 	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
 	const [redirectTo, setRedirectTo] = useState(null)
-	const [bg,setBg] = useState(null)
+//	const [bg,setBg] = useState(null)
 
-	const fotoBg = () => {
+	/* const fotoBg = () => {
 		try {
 			unsplash.photos.getRandomPhoto({ query: "surf" })
 			.then(toJson)
@@ -26,9 +26,9 @@ const LoginForm = (props) =>{
 		} catch (error) {
 			console.log(error)	
 		}
-	}
+	} */
 
-	useEffect(()=>{
+/* 	useEffect(()=>{
 		//fotoBg()
 	},[])
 	useEffect(()=>{
@@ -39,7 +39,7 @@ const LoginForm = (props) =>{
 			document.getElementById('bg').style.backgroundSize = 'cover'
 		}
         
-	},[bg])
+	},[bg]) */
 
 	function handleUsernameChange(event) {
 		setUsername(event.target.value)
@@ -50,7 +50,7 @@ const LoginForm = (props) =>{
 
 	function handleSubmit(event) {
 		event.preventDefault()
-		console.log('handleSubmit')
+		//console.log('handleSubmit')
 		props._login(username, password)
 		setRedirectTo('/')
 		/* this.setState({

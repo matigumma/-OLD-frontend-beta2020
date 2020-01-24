@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import Loading from '../Loading'
-import ImageBanner from '../ImageBanner'
-import ImageAdBanner from '../ImageAdBanner'
 import {Link} from 'react-router-dom'
-import axios from 'axios'
+import Loading from '../Loading'
+//import ImageBanner from '../ImageBanner'
+const ImageBanner = lazy(()=>import('../ImageBanner'))
+//import ImageAdBanner from '../ImageAdBanner'
+const ImageAdBanner = lazy(()=>import('../ImageAdBanner'))
+//import axios from 'axios'
 
 /* const baseUrl = 'http://localhost:3000/api'
 
@@ -40,24 +42,24 @@ const CamListHome = (props) => {
     //function to get cameras api with axios
 
     useEffect(()=>{
-        async function loadAds () {
+        /* async function loadAds () {
             const resA = await getAds()
             if(resA.status === 200) {
-                console.log('anuncios: ',resA)
+                //console.log('anuncios: ',resA)
                 setAds(resA.data)
                 //let c = await camAds(cameras, ads)
                 //setCamAds(c)
                 setIsLoading(false)
             }
-        }
-        async function loadCams () {
+        } */
+        /* async function loadCams () {
             const res = await getCameras()
-            console.log('camaras: ',res)
+            //console.log('camaras: ',res)
             if(res.status === 200) {
                 setCameras(res.data)
                 loadAds()
             }
-        }
+        } */
        
         //loadCams()
         setCameras(props.cameras)

@@ -2,15 +2,9 @@ import React, {lazy} from 'react';
 import ReactDOM from 'react-dom';
 //import * as serviceWorker from './serviceWorker';
 import './styles/main.scss';
-import Loading from './components/Loading';
-//import App from './components/App/App.jsx'
-const App = lazy(() => import('./components/App/App.jsx'));
+import App from './components/App/App.jsx'
 
-/* import loadable from '@loadable/component'
-
-const LoadableApp = loadable(() => import('./components/App/App.jsx')) */
-
-ReactDOM.render((<App fallback={Loading}/>), document.getElementById('root'));
+ReactDOM.render((<App/>), document.getElementById('root'));
 
 //serviceWorker.unregister();
 
