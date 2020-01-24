@@ -2,10 +2,10 @@ import React, { useState, useEffect, useRef, Suspense, lazy } from 'react'
 import { Redirect } from 'react-router'
 import './styles.scss'
 import Loading from '../../components/Loading'
-//import Iframe from 'react-iframe'
-const Iframe = lazy(()=>import('react-iframe'))
-//import ReactPlayer from 'react-player'
-const ReactPlayer = lazy(()=>import('react-player'))
+import Iframe from 'react-iframe'
+//const Iframe = lazy(()=>import('react-iframe'))
+import ReactPlayer from 'react-player'
+//const ReactPlayer = lazy(()=>import('react-player'))
 
 
 import config from '../../../config'
