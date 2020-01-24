@@ -1,67 +1,18 @@
-import React, { useState, useEffect, Suspense, lazy } from 'react'
+import React, { useState, useEffect } from 'react'
 import {Link} from 'react-router-dom'
-import Loading from '../Loading'
-//import ImageBanner from '../ImageBanner'
-const ImageBanner = lazy(()=>import('../ImageBanner'))
-//import ImageAdBanner from '../ImageAdBanner'
-const ImageAdBanner = lazy(()=>import('../ImageAdBanner'))
-//import axios from 'axios'
+//import Loading from '../Loading'
+import ImageBanner from '../ImageBanner'
+//const ImageBanner = lazy(()=>import('../ImageBanner'))
+import ImageAdBanner from '../ImageAdBanner'
+//const ImageAdBanner = lazy(()=>import('../ImageAdBanner'))
 
-/* const baseUrl = 'http://localhost:3000/api'
-
-async function getCameras() {
-    try {
-        const response = await axios({
-            url: `${baseUrl}/cameras-list`,
-            method: 'GET'
-        })
-        
-        return response
-    } catch (error) {
-        console.log(error)
-    }
-}
-async function getAds() {
-    try {
-        const response = await axios({
-            url: `${baseUrl}/anuncios-cameras-list`,
-            method: 'GET'
-        })
-        
-        return response
-    } catch (error) {
-        console.log(error)
-    }
-} */
 
 const CamListHome = (props) => {
     const [isLoading, setIsLoading] = useState(true)
     const [cameras, setCameras] = useState([])
     const [ads, setAds] = useState([])
 
-    //function to get cameras api with axios
-
     useEffect(()=>{
-        /* async function loadAds () {
-            const resA = await getAds()
-            if(resA.status === 200) {
-                //console.log('anuncios: ',resA)
-                setAds(resA.data)
-                //let c = await camAds(cameras, ads)
-                //setCamAds(c)
-                setIsLoading(false)
-            }
-        } */
-        /* async function loadCams () {
-            const res = await getCameras()
-            //console.log('camaras: ',res)
-            if(res.status === 200) {
-                setCameras(res.data)
-                loadAds()
-            }
-        } */
-       
-        //loadCams()
         setCameras(props.cameras)
         setAds(props.ads)
         setIsLoading(false)
@@ -69,9 +20,7 @@ const CamListHome = (props) => {
 
     let an=[]
     return(
-        isLoading
-        ? <Loading />
-        :<div className="">
+        <div className="">
                 <section className="container m-auto">
                 <div className="clearfix text-right text-secondary my-1">
 {/*                     <span>ver en mapa</span>
@@ -86,9 +35,7 @@ const CamListHome = (props) => {
                                 if(cam_key == ad.pos){
                                     an[ad_key] = <div className="card" key={ad._id}>
                                                     <div className="card-body p-0">
-                                                        <Suspense fallback={<Loading />}>
-                                                            <ImageAdBanner imagen={ad.image} name={ad.title} slug={ad.link}/>
-                                                        </Suspense>
+                                                        <ImageAdBanner imagen={ad.image} name={ad.title} slug={ad.link}/>
                                                     </div>
                                                  </div>
                                 }
@@ -97,9 +44,7 @@ const CamListHome = (props) => {
                                     {an[cam_key]}
                                     <div className="card" key={cam_key}>
                                         <div className="card-body p-0">
-                                            <Suspense fallback={<Loading/>}>
-                                                <ImageBanner imagen={cam.banner} name={cam.name} slug={cam.slug}/>
-                                            </Suspense>
+                                            <ImageBanner imagen={cam.banner} name={cam.name} slug={cam.slug}/>
                                             <div className="ml-2 my-auto">
                                                 <Link to={{
                                                     pathname: 'cam/'+cam.slug,
