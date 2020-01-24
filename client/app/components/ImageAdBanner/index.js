@@ -1,9 +1,7 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 import config from '../../../config'
 
 const imageSrcUrl = config.imageAdBannerSrcUrl
-//const imageSrcPoster = 'https://srv.freewaves.live/images/'
 
 const ImageAdBanner = ({imagen, name, slug}) => {
     function addDefaultSrc(ev){

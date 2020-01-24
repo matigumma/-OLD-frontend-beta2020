@@ -1,8 +1,11 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import axios from 'axios'
 import './App.scss'
-import Loading from '../Loading'
+const baseUrl = config.baseUrl
+import config from '../../../config'
+
+//import axios from 'axios'
+const axios = lazy(() => import('axios'))
 //import Header from '../Header/Header'
 const Header = lazy(() => import('../Header/Header'))
 //import Home from '../../pages/Home/Home'
@@ -13,12 +16,10 @@ const LoginForm = lazy(() => import('../Auth/LoginForm.jsx'))
 const SignupForm = lazy(() => import('../Auth/SignupForm.jsx'))
 //import CameraView from '../../pages/CameraView'
 const CameraView = lazy(() => import('../../pages/CameraView'))
-//import NotFound from '../../pages/NotFound'
-const NotFound = lazy(() => import('../../pages/NotFound'))
 
-import config from '../../../config'
+import NotFound from '../../pages/NotFound'
 
-const baseUrl = config.baseUrl
+import Loading from '../Loading'
 
 async function getCameras() {
     try {
@@ -46,7 +47,7 @@ async function getAds() {
 }
 
 function UserProfile(props){
-	console.log(props)
+	//console.log(props)
 	return ('Hola User profile')
 }
 
@@ -105,7 +106,7 @@ const App = () =>{
             const res = await getUser()
 			
 			if (!!res.data.user) {
-				console.log('THERE IS A USER: ', res.data.user)
+				//console.log('THERE IS A USER: ', res.data.user)
 				setLoggedIn(true)
 				setUser(res.data.user)
 			} else {
@@ -122,7 +123,7 @@ const App = () =>{
 		async function loadAds () {
 			const resA = await getAds()
 			if(resA.status === 200) {
-				console.log('anuncios: ',resA)
+				//console.log('anuncios: ',resA)
 				setAds(resA.data)
 				//setIsLoading(false)
 				//setSplash(false)
@@ -130,7 +131,7 @@ const App = () =>{
 		}
 		async function loadCams () {
 			const res = await getCameras()
-			console.log('camaras: ',res)
+			//console.log('camaras: ',res)
 			if(res.status === 200) {
 				setCameras(res.data)
 				loadAds()
@@ -169,8 +170,8 @@ const App = () =>{
 	return (
 		<Router>
 		<div className="h-100">
+			<Header cameras={cameras} state={user} _logout={_logout} />
 			<Suspense fallback={<Loading />}>
-				<Header cameras={cameras} state={user} _logout={_logout} />
 				<main className="h-100">
 						<Switch>
 							<Route exact path="/" render={() => <Home ads={ads} cameras={cameras} userState={user} />} />
