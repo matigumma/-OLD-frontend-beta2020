@@ -4,8 +4,8 @@ import './App.scss'
 const baseUrl = config.baseUrl
 import config from '../../../config'
 
-//import axios from 'axios'
-const axios = lazy(() => import('axios'))
+import axios from 'axios'
+//const axios = lazy(() => import('axios'))
 //import Header from '../Header/Header'
 const Header = lazy(() => import('../Header/Header'))
 //import Home from '../../pages/Home/Home'

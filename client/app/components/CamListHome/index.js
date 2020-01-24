@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Suspense, lazy } from 'react'
 import {Link} from 'react-router-dom'
 import Loading from '../Loading'
 //import ImageBanner from '../ImageBanner'
@@ -86,7 +86,9 @@ const CamListHome = (props) => {
                                 if(cam_key == ad.pos){
                                     an[ad_key] = <div className="card" key={ad._id}>
                                                     <div className="card-body p-0">
-                                                        <ImageAdBanner imagen={ad.image} name={ad.title} slug={ad.link}/>
+                                                        <Suspense fallback={<Loading />}>
+                                                            <ImageAdBanner imagen={ad.image} name={ad.title} slug={ad.link}/>
+                                                        </Suspense>
                                                     </div>
                                                  </div>
                                 }
@@ -95,7 +97,9 @@ const CamListHome = (props) => {
                                     {an[cam_key]}
                                     <div className="card" key={cam_key}>
                                         <div className="card-body p-0">
-                                            <ImageBanner imagen={cam.banner} name={cam.name} slug={cam.slug}/>
+                                            <Suspense fallback={<Loading/>}>
+                                                <ImageBanner imagen={cam.banner} name={cam.name} slug={cam.slug}/>
+                                            </Suspense>
                                             <div className="ml-2 my-auto">
                                                 <Link to={{
                                                     pathname: 'cam/'+cam.slug,
