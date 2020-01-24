@@ -1,5 +1,4 @@
 import React, {Suspense, lazy} from 'react';
-//import 'whatwg-fetch';
 //import axios from 'axios'
 import Loading from '../../components/Loading'
 //import Slider from '../../components/Slider/Slider';

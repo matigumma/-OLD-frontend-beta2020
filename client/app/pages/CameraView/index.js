@@ -213,6 +213,7 @@ const CameraView = (props) => {
         </div>
     :<div className="">
       <div className='d-flex flex-column justify-content-center bg-dark'>
+        <Suspense fallback={Loading}>
         <ReactPlayer
           className='m-0 p-0'
           ref={player}
@@ -239,6 +240,7 @@ const CameraView = (props) => {
           width='100%'
           height='100%'
           />
+          </Suspense>
         <button ref={skipBtn} className="d-none skip btn btn-sm btn-outline-warning position-absolute" onClick={ handleSkip }>Skip Ad</button>
         <Sponsor sponsor={camara.sponsor} />
       </div>
@@ -263,12 +265,14 @@ const CameraView = (props) => {
         </div>
       </section>
       <section className="w-90 my-5 py-5">
+        <Suspense>
           <Iframe 
                 url={`/assets/weather.html?lat=${camara.lat}&lng=${camara.lng}`}
                 width={window.innerWidth*0.985}
                 height={window.innerWidth<415? '630px' : '700px'}
                 className="d-block border-0"
           />
+        </Suspense>  
       </section>
     </div>
   )

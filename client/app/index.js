@@ -1,10 +1,12 @@
-import React, {lazy} from 'react';
+import React, {Suspense, lazy} from 'react';
 import ReactDOM from 'react-dom';
 //import * as serviceWorker from './serviceWorker';
 import './styles/main.scss';
-import App from './components/App/App.jsx'
+const App = lazy(() =>import('.components/App/App.jsx'))
+//import App from './components/App/App.jsx'
+import Splash from './pages/Splash/Splash'
 
-ReactDOM.render((<App/>), document.getElementById('root'));
+ReactDOM.render((<Suspense fallback={Splash}><App/></Suspense>), document.getElementById('root'));
 
 //serviceWorker.unregister();
 
