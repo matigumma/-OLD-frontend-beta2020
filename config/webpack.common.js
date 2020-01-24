@@ -32,7 +32,7 @@ module.exports = {
     rules: [
       // JS files
       {
-        test: /\.jsx?$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         include: helpers.root('client'),
         loader: 'babel-loader'
@@ -62,7 +62,13 @@ module.exports = {
             'sass-loader'
           ]
         })
-      }
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: [
+          'file-loader',
+        ],
+      } 
     ]
   },
 
