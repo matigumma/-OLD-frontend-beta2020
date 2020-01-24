@@ -1,4 +1,4 @@
-import React, {Suspense, lazy} from 'react';
+import React, {lazy} from 'react';
 import ReactDOM from 'react-dom';
 //import * as serviceWorker from './serviceWorker';
 import './styles/main.scss';
@@ -10,7 +10,7 @@ const App = lazy(() => import('./components/App/App.jsx'));
 
 const LoadableApp = loadable(() => import('./components/App/App.jsx')) */
 
-ReactDOM.render((<Suspense fallback={Loading}><App /></Suspense>), document.getElementById('root'));
+ReactDOM.render((<App fallback={Loading}/>), document.getElementById('root'));
 
 //serviceWorker.unregister();
 

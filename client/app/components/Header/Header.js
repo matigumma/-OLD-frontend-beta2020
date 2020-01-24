@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react"
 import { Link } from 'react-router-dom'
 import classnames from "classnames"
-//import 'bootstrap/dist/js/bootstrap.bundle.min'
+import 'bootstrap/dist/js/bootstrap.bundle.min'
 
 const ListadoCamaras = React.memo(function ListadoCamaras(props){
 //console.log(props.camaras.length)
