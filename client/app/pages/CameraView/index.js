@@ -4,8 +4,8 @@ import './styles.scss'
 import Loading from '../../components/Loading'
 //import Iframe from 'react-iframe'
 const Iframe = lazy(()=>import('react-iframe'))
-//import ReactPlayer from 'react-player'
-const ReactPlayer = lazy(()=>import('react-player'))
+import ReactPlayer from 'react-player'
+//const ReactPlayer = lazy(()=>import('react-player'))
 
 
 import config from '../../../config'
@@ -213,7 +213,6 @@ const CameraView = (props) => {
         </div>
     :<div className="">
       <div className='d-flex flex-column justify-content-center bg-dark'>
-        <Suspense fallback={Loading}>
         <ReactPlayer
           className='m-0 p-0'
           ref={player}
@@ -240,7 +239,6 @@ const CameraView = (props) => {
           width='100%'
           height='100%'
           />
-          </Suspense>
         <button ref={skipBtn} className="d-none skip btn btn-sm btn-outline-warning position-absolute" onClick={ handleSkip }>Skip Ad</button>
         <Sponsor sponsor={camara.sponsor} />
       </div>
