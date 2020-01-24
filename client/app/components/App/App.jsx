@@ -15,7 +15,7 @@ const LoginForm = lazy(() => import('../Auth/LoginForm.jsx'))
 //import SignupForm from '../Auth/SignupForm.jsx'
 const SignupForm = lazy(() => import('../Auth/SignupForm.jsx'))
 //import CameraView from '../../pages/CameraView'
-const CameraView = lazy(() => import('../../pages/CameraView'))
+/* const CameraView = lazy(() => import('../../pages/CameraView')) */
 
 import NotFound from '../../pages/NotFound'
 
@@ -173,12 +173,14 @@ const App = () =>{
 			<Header cameras={cameras} state={user} _logout={_logout} />
 			<main className="h-100">
 				<Switch>
-				<Route exact path="/" render={() => <Home ads={ads} cameras={cameras} userState={user} />} />
-				<Route exact path="/login" render={() => <LoginForm _login={_login} />}/>
-				<Route exact path="/user/:id" render={(props) => <UserProfile {...props} userState={user} />}/>
-				<Route exact path="/cam/:any" render={(state) => <CameraView {...state} cameras={cameras} userState={user} />}/>
-				<Route exact path="/signup" component={() => <SignupForm />} />
-				<Route path="/404" render={(state) => <NotFound {...state}/>} />
+				<Suspense fallback={Loading}>
+					<Route exact path="/" render={() => <Home ads={ads} cameras={cameras} userState={user} />} />
+					<Route exact path="/login" render={() => <LoginForm _login={_login} />}/>
+					<Route exact path="/user/:id" render={(props) => <UserProfile {...props} userState={user} />}/>
+					{/* <Route exact path="/cam/:any" render={(state) => <CameraView {...state} cameras={cameras} userState={user} />}/> */}
+					<Route exact path="/signup" component={() => <SignupForm />} />
+					<Route path="/404" render={(state) => <NotFound {...state}/>} />
+				</Suspense>
 				</Switch>
 			</main>
 		</div>
