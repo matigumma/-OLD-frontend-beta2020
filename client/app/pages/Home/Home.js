@@ -15,9 +15,7 @@ const Home = (props) => {
         <Suspense fallback={<Loading/>}>
           <Slider />
         </Suspense>
-        <Suspense fallback={<Loading/>}>
-          <CamListHome ads={props.ads} cameras={props.cameras} userState={props.userState}/>
-        </Suspense>
+        <CamListHome ads={props.ads} cameras={props.cameras} userState={props.userState}/>
         {/* <MediumHome userState={props.userState}/> */}
         <Suspense fallback={<Loading/>}>
           <Footer />
