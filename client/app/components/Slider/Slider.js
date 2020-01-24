@@ -54,7 +54,7 @@ function Slider(props) {
             </div> */}
             
             <div className="carousel-item active">
-                <img src="/assets/img/slide3.jpg" className="d-block w-100" alt="..."/> 
+                <img src="/assets/img/slide1.jpg" className="d-block w-100" alt="..."/> 
                 <div className="carousel-caption d-none d-lg-block text-left">  
 {/*                 <h1>ANTICIPATE A</h1>
                 <h1>LAS OLAS</h1>
