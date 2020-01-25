@@ -18,7 +18,16 @@ module.exports = merge(commonConfig, {
   optimization: {
     nodeEnv: 'production'
   },
-
+/* ,
+    new CompressionPlugin({
+      filename: '[path].br[query]',
+      algorithm: 'brotliCompress',
+      test: /\.(js|css|html|svg)$/,
+      compressionOptions: { level: 11 },
+      threshold: 10240,
+      minRatio: 0.8,
+      deleteOriginalAssets: false,
+    }), */
   plugins: [
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
@@ -31,15 +40,6 @@ module.exports = merge(commonConfig, {
       output: {
         comments: false
       }
-    }),
-    new CompressionPlugin({
-      filename: '[path].br[query]',
-      algorithm: 'brotliCompress',
-      test: /\.(js|css|html|svg)$/,
-      compressionOptions: { level: 11 },
-      threshold: 10240,
-      minRatio: 0.8,
-      deleteOriginalAssets: false,
-    }),
+    })
   ]
 });
