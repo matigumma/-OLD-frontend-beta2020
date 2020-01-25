@@ -35,23 +35,17 @@ module.exports = {
         test: /\.(js)$/,
         exclude: /node_modules/,
         include: helpers.root('client'),
-        use: [
-          {
+        use: {
           loader: 'babel-loader',
           options: {
-            presets: ['es2015', 'react'],
-            plugins: ["transform-class-properties"]
-            }
-          },
-          {
-          loader: 'eslint-loader'
+            presets: ['@babel/preset-react']
           }
-        ]
+        }          
       },
 
       // SCSS files
       {
-        test: /\.(css|scss)$/,
+        test: /\.(scss)$/,
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
