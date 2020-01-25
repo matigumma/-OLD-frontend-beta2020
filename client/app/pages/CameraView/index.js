@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef, Suspense, lazy } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Redirect } from 'react-router'
 import './styles.scss'
 import Loading from '../../components/Loading'
-//import Iframe from 'react-iframe'
-const Iframe = lazy(()=>import('react-iframe'))
+import Iframe from 'react-iframe'
+//const Iframe = lazy(()=>import('react-iframe'))
 import ReactPlayer from 'react-player'
 //const ReactPlayer = lazy(()=>import('react-player'))
 
@@ -134,13 +134,13 @@ const CameraView = (props) => {
   
 
   useEffect(()=>{
-    async function loadStream(c) { 
+    async function loadStream(c) {
       c.preroll.file ? 
       (
         setWithPreroll(true),
         await load(`${contentBaseUrl}${c.preroll.file}`),
-        setIsLoading(false),
-        showPoster()
+        setIsLoading(false)
+        //showPoster()
       )
       :
       ( 
@@ -159,6 +159,7 @@ const CameraView = (props) => {
     async function loadCam () {
       const any = props.match.params.any
       const list = props.cameras
+      console.log(list)
       const res = await loadTc(any, list)
       console.log('res: ',res[0])
       if(res[0] === undefined){
@@ -263,14 +264,12 @@ const CameraView = (props) => {
         </div>
       </section>
       <section className="w-90 my-5 py-5">
-        <Suspense>
           <Iframe 
                 url={`/assets/weather.html?lat=${camara.lat}&lng=${camara.lng}`}
                 width={window.innerWidth*0.985}
                 height={window.innerWidth<415? '630px' : '700px'}
                 className="d-block border-0"
           />
-        </Suspense>  
       </section>
     </div>
   )

@@ -9,7 +9,11 @@ module.exports = merge(commonConfig, {
 
   output: {
     filename: 'js/[name].[hash].js',
-    chunkFilename: '[id].[hash].chunk.js'
+    chunkFilename: '[id].[hash].chunk.js',
+    pathinfo: false
+  },
+  experimental: {
+    granularChunks: true
   },
 
 /*   new webpack.optimize.UglifyJsPlugin({

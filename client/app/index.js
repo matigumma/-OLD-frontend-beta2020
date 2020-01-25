@@ -1,15 +1,13 @@
-import React, {Suspense, lazy} from 'react';
+import React from 'react';
 import {render} from 'react-dom';
 //import * as serviceWorker from './serviceWorker';
 import './styles/main.scss';
-const App = lazy(() => import('./components/App/App.jsx'))
-//import App from './components/App/App.jsx'
-import Splash from './pages/Splash/Splash'
+//const App = lazy(() => import('./components/App/App.jsx'))
+import App from './components/App/App.jsx'
+//import Splash from './pages/Splash/Splash'
 
 render((
-  <Suspense fallback={<Splash/>}>
     <App/>
-  </Suspense>
   ), 
   document.getElementById('root')
 );
