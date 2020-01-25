@@ -12,12 +12,6 @@ module.exports = merge(commonConfig, {
     chunkFilename: '[id].[hash].chunk.js',
     pathinfo: false
   },
-  experimental: {
-    granularChunks: true
-  },
-  optimization: {
-    nodeEnv: 'production'
-  },
 /* ,
     new CompressionPlugin({
       filename: '[path].br[query]',

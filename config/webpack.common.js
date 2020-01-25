@@ -32,15 +32,26 @@ module.exports = {
     rules: [
       // JS files
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js)$/,
         exclude: /node_modules/,
         include: helpers.root('client'),
-        loader: 'babel-loader'
+        use: [
+          {
+          loader: 'babel-loader',
+          options: {
+            presets: ['es2015', 'react'],
+            plugins: ["transform-class-properties"]
+            }
+          },
+          {
+          loader: 'eslint-loader'
+          }
+        ]
       },
 
       // SCSS files
       {
-        test: /\.scss$/,
+        test: /\.(css|scss)$/,
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
