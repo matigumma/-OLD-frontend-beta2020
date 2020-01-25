@@ -1,21 +1,22 @@
-import React, { useState, useEffect, Suspense, lazy } from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './App.scss'
-const baseUrl = config.baseUrl
-import config from '../../../config'
+
+import 	config from '../../../config'
+		const baseUrl = config.baseUrl
 
 import axios from 'axios'
-//const axios = lazy(() => import('axios'))
+
 import Header from '../Header/Header'
-//const Header = lazy(() => import('../Header/Header'))
+
 import Home from '../../pages/Home/Home'
-//const Home = lazy(() => import('../../pages/Home/Home'))
+
 import LoginForm from '../Auth/LoginForm.jsx'
-//const LoginForm = lazy(() => import('../Auth/LoginForm.jsx'))
+
 import SignupForm from '../Auth/SignupForm.jsx'
-//const SignupForm = lazy(() => import('../Auth/SignupForm.jsx'))
+
 import CameraView from '../../pages/CameraView'
-//const CameraView = lazy(() => import('../../pages/CameraView'))
+
 
 import NotFound from '../../pages/NotFound'
 
@@ -46,10 +47,6 @@ async function getAds() {
     }
 }
 
-function UserProfile(props){
-	//console.log(props)
-	return ('Hola User profile')
-}
 
 async function getUser() {
     try {
@@ -131,7 +128,7 @@ const App = () =>{
 		}
 		async function loadCams () {
 			const res = await getCameras()
-			//console.log('camaras: ',res)
+			console.log('camaras: ',res)
 			if(res.status === 200) {
 				setCameras(res.data)
 				loadAds()

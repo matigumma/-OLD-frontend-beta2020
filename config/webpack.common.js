@@ -22,7 +22,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.js', '.jsx', '.json', '.css', '.scss', '.html'],
+    extensions: ['.js', '.json', '.css', '.scss', '.html'],
     alias: {
       'app': 'client/app'
     }

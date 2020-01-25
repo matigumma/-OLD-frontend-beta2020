@@ -15,20 +15,23 @@ module.exports = merge(commonConfig, {
   experimental: {
     granularChunks: true
   },
+  optimization: {
+    nodeEnv: 'production'
+  },
 
-/*   new webpack.optimize.UglifyJsPlugin({
-    compressor: {
-      warnings: false,
-      screw_ie8: true
-    },
-    cache: true,
-    parallel: true,
-    sourceMap: false,
-    output: {
-      comments: false
-    }
-  }) */
   plugins: [
+    new webpack.optimize.UglifyJsPlugin({
+      compressor: {
+        warnings: false,
+        screw_ie8: true
+      },
+      cache: true,
+      parallel: true,
+      sourceMap: false,
+      output: {
+        comments: false
+      }
+    }),
     new CompressionPlugin({
       filename: '[path].br[query]',
       algorithm: 'brotliCompress',

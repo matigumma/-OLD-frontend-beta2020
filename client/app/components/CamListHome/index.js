@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import {Link} from 'react-router-dom'
-//import Loading from '../Loading'
+import Loading from '../Loading'
 import ImageBanner from '../ImageBanner'
-//const ImageBanner = lazy(()=>import('../ImageBanner'))
 import ImageAdBanner from '../ImageAdBanner'
-//const ImageAdBanner = lazy(()=>import('../ImageAdBanner'))
 
 
 const CamListHome = (props) => {
@@ -20,6 +18,9 @@ const CamListHome = (props) => {
 
     let an=[]
     return(
+        isLoading
+        ? <Loading/>
+        :
         <div className="">
                 <section className="container m-auto">
                 <div className="clearfix text-right text-secondary my-1">
