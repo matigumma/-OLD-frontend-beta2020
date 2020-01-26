@@ -36,10 +36,7 @@ module.exports = {
         exclude: /node_modules/,
         include: helpers.root('client'),
         use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-react']
-          }
+          loader: 'babel-loader'
         }          
       },
 
