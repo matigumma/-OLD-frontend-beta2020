@@ -4,6 +4,9 @@ import config from '../../../config'
 const imageSrcUrl = config.imageAdBannerSrcUrl
 
 const ImageAdBanner = ({imagen, name, slug}) => {
+    console.log(imagen)
+    console.log(name)
+    console.log(slug)
     function addDefaultSrc(ev){
         ev.target.src = '/assets/img/logo-footer.png'
     }
