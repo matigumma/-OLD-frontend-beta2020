@@ -7,7 +7,7 @@ const commonConfig = require('./webpack.common');
 
 module.exports = merge(commonConfig, {
   mode: 'production',
-  devtool: 'source-map',
+  devtool: 'nosources-source-map',
 
   output: {
       filename: 'js/[name].[hash].js',
@@ -18,16 +18,16 @@ module.exports = merge(commonConfig, {
       granularChunks: true
     },
 
-/*     new CompressionPlugin({
-      filename: '[path].br[query]',
-      algorithm: 'brotliCompress',
-      test: /\.(js|css|html|svg)$/,
-      compressionOptions: { level: 11 },
-      threshold: 10240,
-      minRatio: 0.8,
-      deleteOriginalAssets: false,
-    }) */
-  plugins: [
+    plugins: [
+       new CompressionPlugin({
+        filename: '[path].br[query]',
+        algorithm: 'brotliCompress',
+        test: /\.(js|css|html|svg)$/,
+        compressionOptions: { level: 11 },
+        threshold: 10240,
+        minRatio: 0.8,
+        deleteOriginalAssets: true,
+      }),
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
         warnings: false,
