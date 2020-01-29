@@ -14,7 +14,7 @@ const ImageAdBanner = ({imagen, name, slug}) => {
         ev.target.previousSibling.className="d-none"
         ev.target.className="img-responsive m-0 adimg w-100 d-block"
     }
-    if(imagen){
+/*     if(imagen){ */
         return (
             <div className="adimg">
                 <div className="hovereffect">
@@ -27,7 +27,7 @@ const ImageAdBanner = ({imagen, name, slug}) => {
                 </div>
             </div>
             )
-    }else{
+/*     }else{
         return (
             <div className="adimg">
                 <div className="hovereffect">
@@ -39,6 +39,6 @@ const ImageAdBanner = ({imagen, name, slug}) => {
                     </div>
                 </div>
             </div>)
-    }
+    } */
 }
 export default ImageAdBanner
