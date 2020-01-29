@@ -17,17 +17,17 @@ module.exports = merge(commonConfig, {
       granularChunks: true
     },
 
+/*     new CompressionPlugin({
+      filename: '[path].br[query]',
+      algorithm: 'brotliCompress',
+      test: /\.(js|css|html|svg)$/,
+      compressionOptions: { level: 11 },
+      threshold: 10240,
+      minRatio: 0.8,
+      deleteOriginalAssets: false,
+    }) */
   plugins: [
-      new CompressionPlugin({
-        filename: '[path].br[query]',
-        algorithm: 'brotliCompress',
-        test: /\.(js|css|html|svg)$/,
-        compressionOptions: { level: 11 },
-        threshold: 10240,
-        minRatio: 0.8,
-        deleteOriginalAssets: false,
-      })
-/*     new webpack.optimize.UglifyJsPlugin({
+    new webpack.optimize.UglifyJsPlugin({
       compressor: {
         warnings: false,
         screw_ie8: true
@@ -38,6 +38,6 @@ module.exports = merge(commonConfig, {
       output: {
         comments: false
       }
-    }) */
+    })
   ]
 });
