@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './App.scss'
 
 import 	config from '../../../config'
-		const baseUrl = config.baseUrl
+
+const baseUrl = config.baseUrl
 
 import axios from 'axios'
 
@@ -17,7 +18,6 @@ import SignupForm from '../Auth/SignupForm.jsx'
 
 import CameraView from '../../pages/CameraView'
 
-
 import NotFound from '../../pages/NotFound'
 
 //import Loading from '../Loading'
@@ -28,32 +28,35 @@ async function getCameras() {
             url: `${baseUrl}/cameras-list`,
             method: 'GET'
         })
+        console.log('getCameras(): ',response)
         
         return response
     } catch (error) {
-        console.log(error)
+		console.log(error)
     }
 }
 async function getAds() {
-    try {
-        const response = await axios({
-            url: `${baseUrl}/anuncios-cameras-list`,
+	try {
+		const response = await axios({
+			url: `${baseUrl}/anuncios-cameras-list`,
             method: 'GET'
         })
+		console.log('getAds(): ',response)
         
         return response
     } catch (error) {
-        console.log(error)
+		console.log(error)
     }
 }
 
 
 async function getUser() {
-    try {
-        const response = await axios({
-            url: '/auth/user',
+	try {
+		const response = await axios({
+			url: '/auth/user',
             method: 'GET'
         })
+		console.log('getUser(): ',response)
         
         return response
     } catch (error) {
@@ -103,7 +106,6 @@ const App = () =>{
             const res = await getUser()
 			
 			if (!!res.data.user) {
-				//console.log('THERE IS A USER: ', res.data.user)
 				setLoggedIn(true)
 				setUser(res.data.user)
 			} else {

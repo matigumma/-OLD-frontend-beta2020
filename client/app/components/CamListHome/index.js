@@ -14,7 +14,7 @@ const CamListHome = (props) => {
         setCameras(props.cameras)
         setAds(props.ads)
         setIsLoading(false)
-    },[])
+    },[props])
 
     let an=[]
     return(
