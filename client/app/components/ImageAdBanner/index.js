@@ -18,8 +18,8 @@ const ImageAdBanner = ({imagen, name, slug}) => {
         return (
             <div className="adimg">
                 <div className="hovereffect">
-                    <i className="fas fa-4x m-2 fa-sync fa-spin" style={{outerHeight:'90px'}}></i>
-                    <img className="img-responsive m-0 adimg d-none" src={ imageSrcUrl + imagen } onLoad={loaded} alt={name}/>
+                    
+                    <img className="img-responsive m-0 adimg d-none" src={ imageSrcUrl + imagen }  alt={name}/>
                     <div className="overlay">
                     <h2>{name}</h2>
                     <a className="info" href={slug} target="_blank">+ info</a>
