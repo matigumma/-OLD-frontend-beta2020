@@ -5,7 +5,7 @@
             "@babel/preset-env",
             {
                 "targets": {
-                    "browsers": "last 1 versions"
+                    "browsers": "last 2 versions"
                 },
                 "modules": false,
                 "loose": false
