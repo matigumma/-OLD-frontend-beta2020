@@ -32,7 +32,7 @@ module.exports = {
     rules: [
       // JS files
       {
-        test: /\.(js)$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         include: helpers.root('client'),
         use: {
