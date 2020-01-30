@@ -139,8 +139,8 @@ const CameraView = (props) => {
       (
         setWithPreroll(true),
         await load(`${contentBaseUrl}${c.preroll.file}`),
-        setIsLoading(false)
-        //showPoster()
+        setIsLoading(false),
+        showPoster()
       )
       :
       ( 
