@@ -12,9 +12,10 @@ import config from '../../../config'
 
 const videoBaseUrl = config.videoBaseUrl
 const contentBaseUrl = config.baseUrl
-
+console.log('config:',config)
 async function loadTc(any, list){
   try {    
+    console.log('loadTc(any, list):',[any, list])
     const eureca = await list.map((c)=>{
       if(c.slug === any)
         return c
@@ -34,13 +35,14 @@ function getAdsList(tc) {//podria reemplazar esto por el dato traido por props
       if(tc.ad4.file!='') tmpAds.push(tc.ad4)
       if(tc.ad5.file!='') tmpAds.push(tc.ad5)
       if(tc.ad6.file!='') tmpAds.push(tc.ad6)
+      console.log('getAdsList: ',tmpAds)
       return tmpAds
   } catch (error) {
       console.log(error)
   }
 }
 const Sponsor = React.memo(function Sponsor({sponsor}){
-  if(sponsor.file){
+  if(sponsor && sponsor.file){
     return (
     <a href={sponsor.link} rel="external" target="_blank" >
       <img  src={`${contentBaseUrl}${sponsor.file}`} 
