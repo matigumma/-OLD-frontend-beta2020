@@ -178,7 +178,7 @@ const CameraView = (props) => {
     ( */
 
     /* ) */
-  },[])
+  },[props])
 
   
   return (
@@ -222,7 +222,7 @@ const CameraView = (props) => {
             file: { 
               attributes: { 
                 preload: 'metadata',
-                poster: camara.poster.file!=''? `${contentBaseUrl}${camara.poster.file}` : `/assets/img/sumateComoAnunciante.jpg`
+                poster: camara.poster.file? `${contentBaseUrl}${camara.poster.file}` : `/assets/img/sumateComoAnunciante.jpg`
               } 
             } 
           }}
