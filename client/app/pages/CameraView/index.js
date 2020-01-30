@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef } from 'react'
 import { Redirect } from 'react-router'
 import './styles.scss'
 import Loading from '../../components/Loading'
-import Iframe from 'react-iframe'
+//import Iframe from 'react-iframe'
+import Iframe from 'iframe-resizer-react'
 //const Iframe = lazy(()=>import('react-iframe'))
 import ReactPlayer from 'react-player'
 //const ReactPlayer = lazy(()=>import('react-player'))
@@ -266,9 +267,11 @@ const CameraView = (props) => {
       </section>
       <section className="w-90 my-5 py-5">
           <Iframe 
-                url={`/assets/weather.html?lat=${camara.lat}&lng=${camara.lng}`}
-                width={window.innerWidth<415? window.innerWidth+'px' : window.innerWidth*0.985 + 'px'}
-                height={window.innerWidth<415? '630px' : '700px'}
+                src={`/assets/weather.html?lat=${camara.lat}&lng=${camara.lng}`}
+                style={{ width: '1px', minWidth: '100%'}}
+                log
+                /* width={window.innerWidth<415? window.innerWidth+'px' : window.innerWidth*0.985 + 'px'} */
+                /* height={window.innerWidth<415? '630px' : '700px'} */
                 className="d-block border-0"
           />
       </section>
