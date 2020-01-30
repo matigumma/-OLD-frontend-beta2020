@@ -160,8 +160,8 @@ const CameraView = (props) => {
     async function loadCam () {
       const any = props.match.params.any
       const list = props.cameras
-      console.log('list (props.cameras) : ',list)
-      const res = await loadTc(any, list)
+      console.log(' (props.cameras) : ',props.cameras)
+      const res = await loadTc(any, props.cameras)
       console.log('res: ',res[0])
       if(res[0] === undefined){
         setNotFound(true)
