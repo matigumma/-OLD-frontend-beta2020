@@ -16,7 +16,7 @@ const contentBaseUrl = config.baseUrl
 async function loadTc(any, list){
   try {
     const eureca = await list.map((c)=>{
-      if(c.slug === any)
+      if(c.slug == any)
         return c
     })
     return eureca
@@ -158,11 +158,11 @@ const CameraView = (props) => {
     }
 
     async function loadCam () {
-      const any = props.match.params.any
-      const list = props.cameras
-      console.log(' (props.cameras) : ',props.cameras)
-      const res = await loadTc(any, props.cameras)
-      console.log('res: ',res[0])
+      //const any = props.match.params.any
+      //const list = props.cameras
+      //console.log(' (props.cameras) : ',props.cameras)
+      const res = await loadTc(props.match.params.any, props.cameras)
+      //console.log('res: ',res[0])
       if(res[0] === undefined){
         setNotFound(true)
       }else{
@@ -215,7 +215,6 @@ const CameraView = (props) => {
         </div>
     :<div className="">
       <div className='d-flex flex-column justify-content-center bg-dark'>
-        {console.log('camara antes de ReactPlayer: ',camara)}
         <ReactPlayer
           className='m-0 p-0'
           ref={player}
@@ -224,7 +223,7 @@ const CameraView = (props) => {
             file: { 
               attributes: { 
                 preload: 'metadata',
-                poster: (camara.poster && camara.poster.file)? `${contentBaseUrl}${camara.poster.file}` : `/assets/img/sumateComoAnunciante.jpg`
+                poster: (camara.poster && camara.poster.file)? `${contentBaseUrl}${camara.poster.file}` : `/assets/img/sumateComoAnunciante.jpeg`
               } 
             } 
           }}
@@ -268,7 +267,7 @@ const CameraView = (props) => {
       <section className="w-90 my-5 py-5">
           <Iframe 
                 url={`/assets/weather.html?lat=${camara.lat}&lng=${camara.lng}`}
-                width={window.innerWidth*0.985}
+                width={window.innerWidth<415? window.innerWidth+'px' : window.innerWidth*0.985 + 'px'}
                 height={window.innerWidth<415? '630px' : '700px'}
                 className="d-block border-0"
           />
