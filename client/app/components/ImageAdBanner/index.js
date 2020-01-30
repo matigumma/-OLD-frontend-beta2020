@@ -19,7 +19,7 @@ const ImageAdBanner = ({imagen, name, slug}) => {
             <div className="adimg">
                 <div className="hovereffect">
                     
-                    <img className="img-responsive m-0 adimg d-none" src={ imageSrcUrl + imagen }  alt={name}/>
+                    <img className="img-responsive m-0 adimg d-none" src={`${imageSrcUrl}${imagen}`}  alt={name}/>
                     <div className="overlay">
                     <h2>{name}</h2>
                     <a className="info" href={slug} target="_blank">+ info</a>
