@@ -12,10 +12,9 @@ import config from '../../../config'
 
 const videoBaseUrl = config.videoBaseUrl
 const contentBaseUrl = config.baseUrl
-console.log('config:',config)
+
 async function loadTc(any, list){
-  try {    
-    console.log('loadTc(any, list):',[any, list])
+  try {
     const eureca = await list.map((c)=>{
       if(c.slug === any)
         return c
@@ -35,7 +34,6 @@ function getAdsList(tc) {//podria reemplazar esto por el dato traido por props
       if(tc.ad4.file!='') tmpAds.push(tc.ad4)
       if(tc.ad5.file!='') tmpAds.push(tc.ad5)
       if(tc.ad6.file!='') tmpAds.push(tc.ad6)
-      console.log('getAdsList: ',tmpAds)
       return tmpAds
   } catch (error) {
       console.log(error)
@@ -136,6 +134,7 @@ const CameraView = (props) => {
   
 
   useEffect(()=>{
+    console.log('props: ',props)
     async function loadStream(c) {
       c.preroll.file ? 
       (
@@ -161,7 +160,7 @@ const CameraView = (props) => {
     async function loadCam () {
       const any = props.match.params.any
       const list = props.cameras
-      console.log(list)
+      console.log('list (props.cameras) : ',list)
       const res = await loadTc(any, list)
       console.log('res: ',res[0])
       if(res[0] === undefined){
