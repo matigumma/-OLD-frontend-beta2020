@@ -4,6 +4,8 @@ import Loading from '../Loading'
 import ImageBanner from '../ImageBanner'
 import ImageAdBanner from '../ImageAdBanner'
 
+import config from '../../../config'
+const imageSrcUrl = config.imageAdBannerSrcUrl
 
 const CamListHome = (props) => {
     const [isLoading, setIsLoading] = useState(true)
@@ -36,7 +38,16 @@ const CamListHome = (props) => {
                                 if(cam_key == ad.pos){
                                     an[ad_key] = <div className="card" key={ad._id}>
                                                     <div className="card-body p-0">
-                                                        <ImageAdBanner imagen={ad.image} name={ad.title} slug={ad.link}/>
+                                                        {/* <ImageAdBanner imagen={ad.image} name={ad.title} slug={ad.link}/> */}
+                                                        <div className="adimg">
+                                                            <div className="hovereffect">
+                                                                <img className="img-responsive m-0 adimg w-100 d-block" src={`${imageSrcUrl}${ad.image}`}  alt={ad.title}/>
+                                                                <div className="overlay">
+                                                                <h2>{ad.title}</h2>
+                                                                <a className="info" href={ad.link} target="_blank">+ info</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                  </div>
                                 }
