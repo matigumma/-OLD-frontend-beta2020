@@ -214,6 +214,7 @@ const CameraView = (props) => {
         </div>
     :<div className="">
       <div className='d-flex flex-column justify-content-center bg-dark'>
+        {console.log('camara antes de ReactPlayer: ',camara)}
         <ReactPlayer
           className='m-0 p-0'
           ref={player}
@@ -222,7 +223,7 @@ const CameraView = (props) => {
             file: { 
               attributes: { 
                 preload: 'metadata',
-                poster: camara.poster.file? `${contentBaseUrl}${camara.poster.file}` : `/assets/img/sumateComoAnunciante.jpg`
+                poster: (camara.poster && camara.poster.file)? `${contentBaseUrl}${camara.poster.file}` : `/assets/img/sumateComoAnunciante.jpg`
               } 
             } 
           }}
