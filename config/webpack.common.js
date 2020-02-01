@@ -1,6 +1,8 @@
 const path = require('path')
-const webpack = require('webpack')
+// const webpack = require('webpack')
+const autoprefixer = require('autoprefixer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HappyPack = require('happypack')
 const os = require('os')
 const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length })
@@ -16,7 +18,7 @@ const webpackConfigBase = {
   output: {
     path: resolve('../dist'),
     filename: devMode ?'js/[name].[hash].js' : 'js/[name].[contenthash].js',
-    chunkFilename: devMode ? 'chunks/[name].[hash:4].js':'chunks/[name].[contenthash].js',
+    chunkFilename: devMode ? 'chunks/[name].[hash:4].js':'chunks/[name].[contenthash].js'
     // publicPath: './'
   },
   resolve: {// 减少后缀
@@ -80,7 +82,7 @@ const webpackConfigBase = {
           priority: -10,// 确定模块打入的优先级
           reuseExistingChunk: true,// 使用复用已经存在的模块
           enforce: true,
-        },
+        }
         //  antd: {
         //    test: /[\\/]node_modules[\\/]antd/,
         //    name: 'antd',
@@ -114,7 +116,7 @@ const webpackConfigBase = {
         loader: 'happypack/loader?id=happyBabel',
       },
       {
-        test: /\.(css|scss)$/,
+        test: /\.(css)$/,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
@@ -125,6 +127,32 @@ const webpackConfigBase = {
           },
           'happypack/loader?id=happyStyle',
         ]
+      },
+      // SCSS files
+      {
+        test: /\.(scss)$/,
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                sourceMap: true,
+                importLoaders: 2
+              }
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: () => [
+                  autoprefixer
+                ],
+                sourceMap: true
+              }
+            },
+            'sass-loader'
+          ]
+        })
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -152,7 +180,10 @@ const webpackConfigBase = {
   plugins: [
     // 去除moment的语言包
     // new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /de|fr|hu/),
-
+    new ExtractTextPlugin({
+      filename: devMode ? 'css/styleSCSS.css':'css/styleSCSS.[contenthash].css'
+    }),
+    // chunkFilename: devMode ? 'css/style.[id].css':'css/style.[contenthash].[id].css',
     new MiniCssExtractPlugin({
       filename: devMode ? 'css/style.css':'css/style.[contenthash].css',
       chunkFilename: devMode ? 'css/style.[id].css':'css/style.[contenthash].[id].css'
@@ -192,12 +223,6 @@ const webpackConfigBase = {
           options: {
             sourceMap: true,//为true,在样式追溯时，显示的是编写时的样式，为false，则为编译后的样式
           }
-        },
-        {
-          loader: 'sass-loader',
-          options: {
-            sourceMap: true,
-          }
         }
       ],
       //代表共享进程池，即多个 HappyPack 实例都使用同一个共享进程池中的子进程去处理任务，以防止资源占用过多。
@@ -205,7 +230,7 @@ const webpackConfigBase = {
       //允许 HappyPack 输出日志
       verbose: false,
     }),
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    // new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
   ]
 }
 
