@@ -51,7 +51,7 @@
     "webpack": "webpack",
     "webpack-dev-server": "webpack-dev-server",
     "dev": "npm run webpack-dev-server -- --env.mode development && node server",
-    "prod": "npm run webpack -- --env.NODE_ENV=production --config ./config/webpack.prod.js && node server",
+    "prod": "npm run webpack -- --env.NODE_ENV=production && node server",
     "analyze": "source-map-explorer 'build/static/js/*.js'"
   },
   "eslintConfig": {
