@@ -17,8 +17,8 @@ const webpackConfigBase = {
   },
   output: {
     path: resolve('../dist'),
-    filename: devMode ?'js/[name].[hash].js' : 'js/[name].[contenthash].js',
-    chunkFilename: devMode ? 'chunks/[name].[hash:4].js':'chunks/[name].[contenthash].js'
+    filename: devMode ?'assets/js/[name].[hash].js' : 'assets/js/[name].[contenthash].js',
+    chunkFilename: devMode ? 'chunks/[name].[hash:4].js':'assets/chunks/[name].[contenthash].js'
     // publicPath: './'
   },
   resolve: {// 减少后缀
@@ -162,7 +162,7 @@ const webpackConfigBase = {
         options: {
           limit: 8192,
           name: '[name].[hash:4].[ext]',
-          outputPath: '/img'
+          outputPath: 'assets/img'
         }
       },
       {
@@ -171,7 +171,8 @@ const webpackConfigBase = {
         loader: 'url-loader',
         options: {
           limit: 8192,
-          name: 'font/[name].[hash:4].[ext]'
+          name: 'font/[name].[hash:4].[ext]',
+          outputPath: 'assets/fonts/'
         }
       },
     ],
@@ -181,12 +182,12 @@ const webpackConfigBase = {
     // 去除moment的语言包
     // new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /de|fr|hu/),
     new ExtractTextPlugin({
-      filename: devMode ? 'css/styleSCSS.css':'css/styleSCSS.[contenthash].css'
+      filename: devMode ? 'assets/css/styleSCSS.css':'assets/css/styleSCSS.[contenthash].css'
     }),
     // chunkFilename: devMode ? 'css/style.[id].css':'css/style.[contenthash].[id].css',
     new MiniCssExtractPlugin({
-      filename: devMode ? 'css/style.css':'css/style.[contenthash].css',
-      chunkFilename: devMode ? 'css/style.[id].css':'css/style.[contenthash].[id].css'
+      filename: devMode ? 'assets/css/style.css':'assets/css/style.[contenthash].css',
+      chunkFilename: devMode ? 'assets/css/style.[id].css':'assets/css/style.[contenthash].[id].css'
     }),
 
     new HappyPack({
