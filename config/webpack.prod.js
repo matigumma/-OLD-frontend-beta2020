@@ -1,7 +1,7 @@
 const webpack = require('webpack')
 const path = require('path')
 const merge = require('webpack-merge')
-const webpackConfigBase = require('./webpack.common.js')
+const webpackConfigBase = require('./webpack.common')
 const Copy = require('copy-webpack-plugin')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const HtmlWebpackPlugin = require('html-webpack-plugin')

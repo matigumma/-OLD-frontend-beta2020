@@ -24,6 +24,7 @@
     "happypack": "^5.0.0",
     "jquery": "^3.4.1",
     "mongoose": "^5.8.9",
+    "nodemon": "^2.0.2",
     "node-sass": "^4.13.1",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "passport": "^0.4.1",
