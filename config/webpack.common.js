@@ -24,8 +24,8 @@ const webpackConfigBase = {
   resolve: {// 减少后缀
     extensions: ['.js', '.jsx', '.json'],
     modules: [ // 指定以下目录寻找第三方模块，避免webpack往父级目录递归搜索
-      resolve('client/app'),
-      resolve('node_modules'),
+      resolve('../client/app'),
+      resolve('../node_modules'),
     ],
      alias: { // 减少使用别名提高编译速速
       '@app': path.join(__dirname, '../client/app'),
