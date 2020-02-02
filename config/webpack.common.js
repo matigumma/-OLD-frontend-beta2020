@@ -13,13 +13,13 @@ function resolve(relatedPath) {
 
 const webpackConfigBase = {
   entry: {
-    client: resolve('../client/app/index.js'),
+    app: resolve('../client/app/index.js'),
   },
   output: {
     path: resolve('../dist'),
     filename: devMode ?'assets/js/[name].[hash].js' : 'assets/js/[name].[contenthash].js',
-    chunkFilename: devMode ? 'chunks/[name].[hash:4].js':'assets/chunks/[name].[contenthash].js'
-    // publicPath: './'
+    chunkFilename: devMode ? 'chunks/[name].[hash:4].js':'assets/chunks/[name].[contenthash].js',
+    publicPath: './'
   },
   resolve: {// 减少后缀
     extensions: ['.js', '.jsx', '.json'],
@@ -27,8 +27,8 @@ const webpackConfigBase = {
     //   resolve('app'),
     //   resolve('node_modules'),
     // ],
-    // alias: { // 减少使用别名提高编译速速
-      // '@app': path.join(__dirname, '../app'),
+     alias: { // 减少使用别名提高编译速速
+      '@app': path.join(__dirname, '../client/app'),
       // '@actions': path.join(__dirname, '../app/redux/actions'),
       // '@reducers': path.join(__dirname, '../app/redux/reducers'),
       // '@apis': path.join(__dirname, '../app/apis'),
@@ -43,7 +43,7 @@ const webpackConfigBase = {
       // '@styles': path.join(__dirname, '../app/styles'),
       // '@tableList': path.join(__dirname, '../app/components/tableList/tableList.js'),
       // 'react-dom': devMode ? '@hot-loader/react-dom' : 'react-dom', // react-hot-loader需要
-    // },
+    },
   },
   optimization: {
     usedExports: true,
