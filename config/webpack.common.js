@@ -355,8 +355,6 @@ module.exports = {
     ]
   },
 
-  performance: true,
-
   plugins: [
     
     new webpack.HotModuleReplacementPlugin(),
