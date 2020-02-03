@@ -257,8 +257,8 @@ module.exports = {
 
   output: {
     path: resolve('../dist'),
-    publicPath: '/'
-    //pathinfo: false
+    publicPath: '/',
+    pathinfo: false
   },
 
   resolve: {
@@ -330,7 +330,7 @@ module.exports = {
             {
               loader: 'css-loader',
               options: {
-                'sourceMap': true,
+                'sourceMap': false,
                 'importLoaders': 1
               }
             },
