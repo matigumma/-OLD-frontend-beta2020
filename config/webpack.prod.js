@@ -18,7 +18,7 @@ const webpackConfigProd = {
   output: {
     publicPath: './',
   },
-  devtool: 'cheap-module-souce-map',/* 
+  devtool: 'cheap-module-souce-map',
   optimization: {
     minimizer: [
       new TerserJSPlugin({ // 多进程压缩
@@ -27,14 +27,16 @@ const webpackConfigProd = {
         parallel: 4,// 开启多进程压缩
         // sourceMap,
         terserOptions: {
+          comments: false,
           compress: {
             // 删除所有的 `console` 语句
             drop_console: true,
           },
+          extractComments: false,
         },
       }),
     ]
-  }, */
+  },
   plugins: [
     // 定义环境变量为开发环境
     new webpack.DefinePlugin({
