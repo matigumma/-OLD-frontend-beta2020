@@ -2,7 +2,7 @@ const webpack = require('webpack')
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-
+const WebpackBundleAnalyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const path = require('path')
 const autoprefixer = require('autoprefixer');
 //const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -356,14 +356,19 @@ module.exports = {
   },
 
   plugins: [
+    new WebpackBundleAnalyzer(),
     
     new webpack.HotModuleReplacementPlugin(),
+
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production')
+    }),/* 
 
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(NODE_ENV)
       }
-    }),
+    }), */
 
     new HappyPack({
       //用id来标识 happypack处理那里类文件

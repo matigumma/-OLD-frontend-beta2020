@@ -45,9 +45,7 @@
     "react-router-dom": "^4.2.2",
     "react-scripts": "3.3.0",
     "react-spring": "^8.0.27",
-    "terser-webpack-plugin": "^2.2.1",
-    "uglifyjs-webpack-plugin": "^2.2.0",
-    "webpack-bundle-analyzer": "^3.6.0"
+    "terser-webpack-plugin": "^2.2.1"
   },
   "scripts": {
     "start": "react-scripts start",
