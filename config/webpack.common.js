@@ -275,7 +275,7 @@ module.exports = {
       'pages': 'client/app/pages',
       'styles': 'client/app/styles',
       // '@tableList': path.join(__dirname, '../app/components/tableList/tableList.js'),
-      'react-dom': devMode ? '@hot-loader/react-dom' : 'react-dom' // react-hot-loader需要
+      'react-dom': !isProd ? '@hot-loader/react-dom' : 'react-dom' // react-hot-loader需要
     }
   },
 
