@@ -298,12 +298,24 @@ module.exports = {
         },
         vendor: {
           test: /[\\/]node_modules[\\/]/,
-          name: 'vendor',
-          minChunks: 2,
-          priority: -10,// 确定模块打入的优先级
-          reuseExistingChunk: true,// 使用复用已经存在的模块
-          enforce: true,
+          name(module) {
+            // get the name. E.g. node_modules/packageName/not/this/part.js
+            // or node_modules/packageName
+            const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+
+            // npm package names are URL-safe, but some servers don't like @ symbols
+            return `npm.${packageName.replace('@', '')}`;
+          },
         },
+/*         vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor',
+          chunks: 'all'
+          // minChunks: 2,
+          // priority: -10,// 确定模块打入的优先级
+          // reuseExistingChunk: true,// 使用复用已经存在的模块
+          // enforce: true,
+        }, */
       },
     },
   },
@@ -356,7 +368,7 @@ module.exports = {
   },
 
   plugins: [
-    new WebpackBundleAnalyzer(),
+    //new WebpackBundleAnalyzer(),
     
     new webpack.HotModuleReplacementPlugin(),
 
