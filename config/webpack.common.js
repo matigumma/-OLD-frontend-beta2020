@@ -257,8 +257,8 @@ module.exports = {
 
   output: {
     path: resolve('../dist'),
-    publicPath: '/',
-    pathinfo: false
+    publicPath: '/'
+    //pathinfo: false
   },
 
   resolve: {
