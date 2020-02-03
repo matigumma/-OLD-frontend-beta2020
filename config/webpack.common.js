@@ -273,9 +273,9 @@ module.exports = {
       // '@images': path.join(__dirname, '../app/images'),
       // '@middleware': path.join(__dirname, '../app/middleware'),
       'pages': 'client/app/pages',
-      'styles': 'client/app/styles',
+      'styles': 'client/app/styles'
       // '@tableList': path.join(__dirname, '../app/components/tableList/tableList.js'),
-      'react-dom': !isProd ? '@hot-loader/react-dom' : 'react-dom' // react-hot-loader需要
+      //'react-dom': !isProd ? '@hot-loader/react-dom' : 'react-dom' // react-hot-loader需要
     }
   },
 
