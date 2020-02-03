@@ -284,9 +284,9 @@ module.exports = {
     runtimeChunk: {
       name: 'runtime'
     },
-    splitChunks: false, /*{
-      chunks: "all", // 共有三个值可选：initial(初始模块)、async(按需加载模块)和all(全部模块)
-      minSize: 30000, // 模块超过30k自动被抽离成公共模块
+    splitChunks: {
+      chunks: "async", // 共有三个值可选：initial(初始模块)、async(按需加载模块)和all(全部模块)
+      minSize: 100000, // 模块超过30k自动被抽离成公共模块
       minChunks: 1, // 模块被引用>=1次，便分割
       name: true, // 默认由模块名+hash命名，名称相同时多个模块将合并为1个，可以设置为function
       automaticNameDelimiter: '~', // 命名分隔符
@@ -305,7 +305,7 @@ module.exports = {
           enforce: true,
         },
       },
-    },*/
+    },
   },
 
   module: {
@@ -356,10 +356,6 @@ module.exports = {
   },
 
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'manifest',
-      minChunks: Infinity,
-    }),
     
     new webpack.HotModuleReplacementPlugin(),
 
