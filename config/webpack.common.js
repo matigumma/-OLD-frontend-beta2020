@@ -1,16 +1,20 @@
-const path = require('path')
 const webpack = require('webpack')
+
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
+const path = require('path')
 const autoprefixer = require('autoprefixer');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+//const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HappyPack = require('happypack')
 const os = require('os')
 const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length })
-const devMode = process.env.NODE_ENV !== 'production'
+//const devMode = process.env.NODE_ENV !== 'production'
 function resolve(relatedPath) {
   return path.join(__dirname, relatedPath)
 }
-
+/*
 const webpackConfigBase = {
   entry: {
     client: resolve('../client/app/index.js'),
@@ -236,14 +240,10 @@ const webpackConfigBase = {
 }
 
 module.exports = webpackConfigBase
+*/
+// ----------------------------------
 
-/* const webpack = require('webpack');
-const autoprefixer = require('autoprefixer');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-
-const helpers = require('./helpers');
+//const helpers = require('./helpers');
 
 const NODE_ENV = process.env.NODE_ENV;
 const isProd = NODE_ENV === 'production';
@@ -251,12 +251,12 @@ const isProd = NODE_ENV === 'production';
 module.exports = {
   entry: {
     'app': [
-      helpers.root('client/app/index.js')
+      resolve('../client/app/index.js')
     ]
   },
 
   output: {
-    path: helpers.root('dist'),
+    path: resolve('../dist'),
     publicPath: '/'
   },
 
@@ -267,15 +267,45 @@ module.exports = {
     }
   },
 
+  optimization: {
+    usedExports: true,
+    runtimeChunk: {
+      name: 'runtime'
+    },
+    splitChunks: {
+      chunks: "all", // 共有三个值可选：initial(初始模块)、async(按需加载模块)和all(全部模块)
+      minSize: 30000, // 模块超过30k自动被抽离成公共模块
+      minChunks: 1, // 模块被引用>=1次，便分割
+      name: true, // 默认由模块名+hash命名，名称相同时多个模块将合并为1个，可以设置为function
+      automaticNameDelimiter: '~', // 命名分隔符
+      cacheGroups: {
+        default: { // 模块缓存规则，设置为false，默认缓存组将禁用
+          minChunks: 2, // 模块被引用>=2次，拆分至vendors公共模块
+          priority: -20, // 优先级
+          reuseExistingChunk: true, // 默认使用已有的模块
+        },
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor',
+          // minChunks: 1,
+          priority: -10,// 确定模块打入的优先级
+          reuseExistingChunk: true,// 使用复用已经存在的模块
+          enforce: true,
+        },
+      },
+    },
+  },
+
   module: {
     rules: [
       // JS files
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        include: helpers.root('client'),
+        include: resolve('../client'),
         use: {
-          loader: 'babel-loader'
+          //loader: 'babel-loader'
+          loader: 'happypack/loader?id=happyBabel'
         }          
       },
 
@@ -323,8 +353,25 @@ module.exports = {
       }
     }),
 
+    new HappyPack({
+      //用id来标识 happypack处理那里类文件
+      id: 'happyBabel',
+      //如何处理  用法和loader 的配置一样
+      loaders: [{
+        loader: 'babel-loader',
+        options: {
+          // babelrc: true,
+          cacheDirectory: true // 启用缓存
+        }
+      }],
+      //代表共享进程池，即多个 HappyPack 实例都使用同一个共享进程池中的子进程去处理任务，以防止资源占用过多。
+      threadPool: happyThreadPool,
+      //允许 HappyPack 输出日志
+      verbose: false,
+    }),
+
     new HtmlWebpackPlugin({
-      template: helpers.root('client/public/index.html'),
+      template: resolve('../client/public/index.html'),
       inject: 'body'
     }),
 
@@ -334,8 +381,7 @@ module.exports = {
     }),
 
     new CopyWebpackPlugin([{
-      from: helpers.root('client/public')
+      from: resolve('../client/public')
     }])
   ]
 };
- */
