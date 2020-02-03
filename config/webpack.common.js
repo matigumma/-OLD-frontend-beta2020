@@ -257,13 +257,25 @@ module.exports = {
 
   output: {
     path: resolve('../dist'),
-    publicPath: '/'
+    publicPath: '/',
+    pathinfo: false
   },
 
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.css', '.scss', '.html'],
     alias: {
-      'app': 'client/app'
+      'app': 'client/app',
+      'components': 'client/app/components',
+      // '@configs': path.join(__dirname, '../app/configs'),
+      // '@config': path.join(__dirname, '../app/configs/config.js'),
+      // '@ajax': path.join(__dirname, '../app/configs/ajax.js'),
+      // '@reg': path.join(__dirname, '../app/configs/regular.config.js'),
+      // '@images': path.join(__dirname, '../app/images'),
+      // '@middleware': path.join(__dirname, '../app/middleware'),
+      'pages': 'client/app/pages',
+      'styles': 'client/app/styles',
+      // '@tableList': path.join(__dirname, '../app/components/tableList/tableList.js'),
+      'react-dom': devMode ? '@hot-loader/react-dom' : 'react-dom' // react-hot-loader需要
     }
   },
 
@@ -275,7 +287,7 @@ module.exports = {
     splitChunks: {
       chunks: "all", // 共有三个值可选：initial(初始模块)、async(按需加载模块)和all(全部模块)
       minSize: 30000, // 模块超过30k自动被抽离成公共模块
-      minChunks: 1, // 模块被引用>=1次，便分割
+      minChunks: 3, // 模块被引用>=1次，便分割
       name: true, // 默认由模块名+hash命名，名称相同时多个模块将合并为1个，可以设置为function
       automaticNameDelimiter: '~', // 命名分隔符
       cacheGroups: {
@@ -287,7 +299,7 @@ module.exports = {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
           name: 'vendor',
-          // minChunks: 1,
+          minChunks: 3,
           priority: -10,// 确定模块打入的优先级
           reuseExistingChunk: true,// 使用复用已经存在的模块
           enforce: true,
@@ -342,6 +354,8 @@ module.exports = {
       } 
     ]
   },
+
+  performance: true,
 
   plugins: [
     
