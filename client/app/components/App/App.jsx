@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+import loadable from '@loadable/component'
+
 import './App.scss'
 
 import 	config from '../../../config'
@@ -16,7 +18,8 @@ import LoginForm from '../Auth/LoginForm.jsx'
 
 import SignupForm from '../Auth/SignupForm.jsx'
 
-import CameraView from '../../pages/CameraView'
+//import CameraView from '../../pages/CameraView'
+const CameraView = loadable(()=> import ('../../pages/CameraView'))
 
 import NotFound from '../../pages/NotFound'
 

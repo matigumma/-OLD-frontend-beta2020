@@ -3,6 +3,7 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const WebpackBundleAnalyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const CompressionPlugin = require('compression-webpack-plugin');
 const path = require('path')
 const autoprefixer = require('autoprefixer');
 //const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -249,10 +250,21 @@ const NODE_ENV = process.env.NODE_ENV;
 const isProd = NODE_ENV === 'production';
 
 module.exports = {
+  devtool: '',
   entry: {
     'app': [
       resolve('../client/app/index.js')
-    ]
+    ],
+    'header': [
+      resolve('../client/app/components/Header/Header.js')
+    ],
+    'camlisthome': [
+      resolve('../client/app/components/CamListHome/index.js')
+    ],
+    'cameraview': [
+      resolve('../client/app/pages/CameraView/index.js')
+    ],
+    
   },
 
   output: {
@@ -335,7 +347,7 @@ module.exports = {
 
       // SCSS files
       {
-        test: /\.(scss)$/,
+        test: /\.s[ac]ss$/i,
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
@@ -354,7 +366,15 @@ module.exports = {
                 ]
               }
             },
-            'sass-loader'
+            {
+              loader: 'sass-loader',
+              options: {
+                sassOptions: {
+                  outputStyle: 'compressed'
+                },
+              },
+            },
+            //'sass-loader'
           ]
         })
       },
@@ -368,14 +388,31 @@ module.exports = {
   },
 
   plugins: [
-    //new WebpackBundleAnalyzer(),
+    new WebpackBundleAnalyzer(),
     
     new webpack.HotModuleReplacementPlugin(),
+ 
+    new CompressionPlugin({
+      filename: '[path].gz[query]',
+      algorithm: 'gzip',
+      test: /\.js$|\.s[ac]ss$|\.html$/,
+      threshold: 10240,
+      minRatio: 0.8,
+    }),
+    new CompressionPlugin({
+      filename: '[path].br[query]',
+      algorithm: 'brotliCompress',
+      test: /\.(js|css|html|svg)$/,
+      compressionOptions: { level: 11 },
+      threshold: 10240,
+      minRatio: 0.8,
+    }),
 
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
     }),/* 
 
+    
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(NODE_ENV)
