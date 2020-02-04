@@ -388,7 +388,7 @@ module.exports = {
   },
 
   plugins: [
-    new WebpackBundleAnalyzer(),
+    //new WebpackBundleAnalyzer(),
     
     new webpack.HotModuleReplacementPlugin(),
  
