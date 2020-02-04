@@ -10,7 +10,8 @@ const baseUrl = config.baseUrl
 
 import axios from 'axios'
 
-import Header from '../Header/Header'
+//import Header from '../Header/Header'
+const Header = loadable(()=>import('../Header/Header'))
 
 import Home from '../../pages/Home/Home'
 

@@ -1,19 +1,79 @@
 $primary: rgba(0,140,200,0.9);
-@import "../../../node_modules/bootstrap/scss/bootstrap";
+//@import "../../../node_modules/bootstrap/scss/bootstrap";
+//@import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
-/*
-Most used sizes in order for freewaves last year:
-360x640
-375x667
-414x736
-320x568
-412x732
-375x812
-360x720
-640x360
-360x740
-768x1024
-*/
+@import "../../../node_modules/bootstrap/scss/_functions.scss";
+@import "../../../node_modules/bootstrap/scss/_variables.scss";
+// mixins
+@import "../../../node_modules/bootstrap/scss/vendor/rfs";
+// Utilities
+@import "../../../node_modules/bootstrap/scss/mixins/deprecate";
+@import "../../../node_modules/bootstrap/scss/mixins/breakpoints";
+@import "../../../node_modules/bootstrap/scss/mixins/hover";
+//@import "../../../node_modules/bootstrap/scss/mixins/image";
+//@import "../../../node_modules/bootstrap/scss/mixins/badge";
+@import "../../../node_modules/bootstrap/scss/mixins/resize";
+//@import "../../../node_modules/bootstrap/scss/mixins/screen-reader";
+@import "../../../node_modules/bootstrap/scss/mixins/size";
+@import "../../../node_modules/bootstrap/scss/mixins/reset-text";
+@import "../../../node_modules/bootstrap/scss/mixins/text-emphasis";
+@import "../../../node_modules/bootstrap/scss/mixins/text-hide";
+@import "../../../node_modules/bootstrap/scss/mixins/text-truncate";
+@import "../../../node_modules/bootstrap/scss/mixins/visibility";
+// Components
+//@import "../../../node_modules/bootstrap/scss/mixins/alert";
+@import "../../../node_modules/bootstrap/scss/mixins/buttons";
+@import "../../../node_modules/bootstrap/scss/mixins/caret";
+//@import "../../../node_modules/bootstrap/scss/mixins/pagination";
+@import "../../../node_modules/bootstrap/scss/mixins/lists";
+//@import "../../../node_modules/bootstrap/scss/mixins/list-group";
+@import "../../../node_modules/bootstrap/scss/mixins/nav-divider";
+@import "../../../node_modules/bootstrap/scss/mixins/forms";
+//@import "../../../node_modules/bootstrap/scss/mixins/table-row";
+// Skins
+@import "../../../node_modules/bootstrap/scss/mixins/background-variant";
+@import "../../../node_modules/bootstrap/scss/mixins/border-radius";
+@import "../../../node_modules/bootstrap/scss/mixins/box-shadow";
+@import "../../../node_modules/bootstrap/scss/mixins/gradients";
+@import "../../../node_modules/bootstrap/scss/mixins/transition";
+// Layout
+@import "../../../node_modules/bootstrap/scss/mixins/clearfix";
+@import "../../../node_modules/bootstrap/scss/mixins/grid-framework";
+@import "../../../node_modules/bootstrap/scss/mixins/grid";
+@import "../../../node_modules/bootstrap/scss/mixins/float";
+//reboot
+@import "../../../node_modules/bootstrap/scss/_root.scss";
+@import "../../../node_modules/bootstrap/scss/_reboot.scss";
+@import "../../../node_modules/bootstrap/scss/_type.scss";
+@import "../../../node_modules/bootstrap/scss/_grid.scss";
+@import "../../../node_modules/bootstrap/scss/_forms.scss";
+@import "../../../node_modules/bootstrap/scss/_buttons.scss";
+@import "../../../node_modules/bootstrap/scss/_dropdown.scss";
+@import "../../../node_modules/bootstrap/scss/_custom-forms.scss";
+@import "../../../node_modules/bootstrap/scss/_nav.scss";
+@import "../../../node_modules/bootstrap/scss/_navbar.scss";
+@import "../../../node_modules/bootstrap/scss/_card.scss";
+
+//utilities
+@import "../../../node_modules/bootstrap/scss/utilities/align";
+@import "../../../node_modules/bootstrap/scss/utilities/background";
+@import "../../../node_modules/bootstrap/scss/utilities/borders";
+@import "../../../node_modules/bootstrap/scss/utilities/clearfix";
+@import "../../../node_modules/bootstrap/scss/utilities/display";
+@import "../../../node_modules/bootstrap/scss/utilities/embed";
+@import "../../../node_modules/bootstrap/scss/utilities/flex";
+@import "../../../node_modules/bootstrap/scss/utilities/float";
+@import "../../../node_modules/bootstrap/scss/utilities/overflow";
+@import "../../../node_modules/bootstrap/scss/utilities/position";
+//@import "../../../node_modules/bootstrap/scss/utilities/screenreaders";
+@import "../../../node_modules/bootstrap/scss/utilities/shadows";
+@import "../../../node_modules/bootstrap/scss/utilities/sizing";
+//@import "../../../node_modules/bootstrap/scss/utilities/stretched-link";
+@import "../../../node_modules/bootstrap/scss/utilities/spacing";
+@import "../../../node_modules/bootstrap/scss/utilities/text";
+@import "../../../node_modules/bootstrap/scss/utilities/visibility";
+
+
 html, body, #app{
     height: 100%;
 }
@@ -338,84 +398,3 @@ div.espuma{
     -ms-transform: scale(1);
     transform: scale(1);
   }
-/* form classess
-.form-label-group {
-position: relative;
-margin-bottom: 1rem;
-}
-
-.form-label-group > input,
-.form-label-group > label {
-height: 3.125rem;
-padding: .75rem;
-}
-
-.form-label-group > label {
-position: absolute;
-top: 0;
-left: 0;
-display: block;
-width: 100%;
-margin-bottom: 0; /* Override default `<label>` margin *
-line-height: 1.5;
-color: #495057;
-pointer-events: none;
-cursor: text; /* Match the input under the label *
-border: 1px solid transparent;
-border-radius: .25rem;
-transition: all .1s ease-in-out;
-}
-
-.form-label-group input::-webkit-input-placeholder {
-color: transparent;
-}
-
-.form-label-group input:-ms-input-placeholder {
-color: transparent;
-}
-
-.form-label-group input::-ms-input-placeholder {
-color: transparent;
-}
-
-.form-label-group input::-moz-placeholder {
-color: transparent;
-}
-
-.form-label-group input::placeholder {
-color: transparent;
-}
-
-.form-label-group input:not(:placeholder-shown) {
-padding-top: 1.25rem;
-padding-bottom: .25rem;
-}
-
-.form-label-group input:not(:placeholder-shown) ~ label {
-padding-top: .25rem;
-padding-bottom: .25rem;
-font-size: 12px;
-color: #777;
-}
-
-/* Fallback for Edge
--------------------------------------------------- *
-@supports (-ms-ime-align: auto) {
-.form-label-group > label {
-    display: none;
-}
-.form-label-group input::-ms-input-placeholder {
-    color: #777;
-}
-}
-
-/* Fallback for IE
--------------------------------------------------- 
-@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-.form-label-group > label {
-    display: none;
-}
-.form-label-group input:-ms-input-placeholder {
-    color: #777;
-}
-}*/
