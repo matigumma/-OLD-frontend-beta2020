@@ -4,25 +4,33 @@ import loadable from '@loadable/component'
 
 import './App.scss'
 
-import 	config from '../../../config'
+import config from '../../../config'
 
 const baseUrl = config.baseUrl
 
 import axios from 'axios'
 
 //import Header from '../Header/Header'
-const Header = loadable(()=>import('../Header/Header'))
+const Header = loadable(()=>import('../Header/Header'), {
+	fallback: <div>Loading Header...</div>,
+  })
 
-import Home from '../../pages/Home/Home'
+//import Home from '../../pages/Home/Home'
+const Home = loadable(()=> import('../../pages/Home/Home'), {
+	fallback: <div>Loading Home...</div>,
+  })
 
-import LoginForm from '../Auth/LoginForm.jsx'
+//import LoginForm from '../Auth/LoginForm.jsx'
+const LoginForm = loadable(()=> import('../Auth/LoginForm.jsx'))
 
-import SignupForm from '../Auth/SignupForm.jsx'
+//import SignupForm from '../Auth/SignupForm.jsx'
+const SignupForm = loadable(()=> import('../Auth/SignupForm.jsx'))
 
 //import CameraView from '../../pages/CameraView'
 const CameraView = loadable(()=> import ('../../pages/CameraView'))
 
-import NotFound from '../../pages/NotFound'
+//import NotFound from '../../pages/NotFound'
+const NotFound = loadable(()=> import('../../pages/NotFound'))
 
 //import Loading from '../Loading'
 
