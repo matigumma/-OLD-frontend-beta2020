@@ -43,8 +43,8 @@ function Slider(props) {
                 <div className="carousel-caption d-none d-lg-block text-left">  
                 <h1>ANTICIPATE A</h1>
                 <h1>LAS OLAS</h1>
-                <p>Freewaves es la forma mas fácil de viewpor<br/>
-                    tu spot preferido en tiempo real esté<br/>
+                <p>Freewaves es la forma mas fácil de ver<br/>
+                    tu spot preferido en tiempo real estés<br/>
                     donde estés.<br/>
                 </p>
 {/*                 <span><b>VER CAMARAS</b></span>
