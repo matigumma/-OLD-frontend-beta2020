@@ -4,9 +4,9 @@ import loadable from '@loadable/component'
 
 import './App.scss'
 
-import config from '../../../config'
+//import config from '../../../config'
 
-const baseUrl = config.baseUrl
+//const baseUrl = config.baseUrl
 
 import axios from 'axios'
 
@@ -27,13 +27,15 @@ const LoginForm = loadable(()=> import('../Auth/LoginForm.jsx'))
 const SignupForm = loadable(()=> import('../Auth/SignupForm.jsx'))
 
 //import CameraView from '../../pages/CameraView'
-const CameraView = loadable(()=> import ('../../pages/CameraView'))
+const CameraView = loadable(()=> import ('../../pages/CameraView'), {
+	fallback: <div>Loading Camera...</div>,
+  })
 
 //import NotFound from '../../pages/NotFound'
 const NotFound = loadable(()=> import('../../pages/NotFound'))
 
 //import Loading from '../Loading'
-
+/* 
 async function getCameras() {
     try {
         const response = await axios({
@@ -60,7 +62,7 @@ async function getAds() {
 		console.log(error)
     }
 }
-
+ */
 
 async function getUser() {
 	try {
@@ -130,7 +132,7 @@ const App = () =>{
 		loadUser()
 		
 //cams
-
+/* 
 		async function loadAds () {
 			const resA = await getAds()
 			if(resA.status === 200) {
@@ -149,7 +151,7 @@ const App = () =>{
 			}
 		}
 
-		loadCams()
+		loadCams() */
 
 	},[])
 
@@ -181,12 +183,15 @@ const App = () =>{
 	return (
 		<Router>
 		<div className="h-100">
-			<Header cameras={cameras} state={user} _logout={_logout} />
+			{/* <Header cameras={cameras} state={user} _logout={_logout} /> */}
+			<Header state={user} _logout={_logout} />
 			<main className="h-100">
-				<Route exact path="/" render={() => <Home ads={ads} cameras={cameras} userState={user} />} />
+				{/* <Route exact path="/" render={() => <Home ads={ads} cameras={cameras} userState={user} />} /> */}
+				<Route exact path="/" render={() => <Home userState={user} />} />
 				<Route exact path="/login" render={() => <LoginForm _login={_login} />}/>
 				<Route exact path="/user/:id" render={(props) => <UserProfile {...props} userState={user} />}/>
-				<Route exact path="/cam/:any" render={(state) => <CameraView {...state} cameras={cameras} userState={user} />}/>
+				{/* <Route exact path="/cam/:any" render={(state) => <CameraView {...state} cameras={cameras} userState={user} />}/> */}
+				<Route exact path="/cam/:any" render={(state) => <CameraView {...state} userState={user} />}/>
 				<Route exact path="/signup" component={() => <SignupForm />} />
 				<Route path="/404" render={(state) => <NotFound {...state}/>} />
 			</main>

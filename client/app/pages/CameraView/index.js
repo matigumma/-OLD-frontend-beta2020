@@ -3,16 +3,13 @@ import { Redirect } from 'react-router'
 import './styles.scss'
 import Loading from '../../components/Loading'
 import Iframe from 'react-iframe'
-//import Iframe from 'iframe-resizer-react'
-//const Iframe = lazy(()=>import('react-iframe'))
 import ReactPlayer from 'react-player'
-//const ReactPlayer = lazy(()=>import('react-player'))
-
+import axios from 'axios'
 
 import config from '../../../config'
-
+const baseUrl = config.baseUrl
 const videoBaseUrl = config.videoBaseUrl
-const contentBaseUrl = config.baseUrl
+const contentBaseUrl = config.imageBannerSrcUrl
 
 async function loadTc(any, list){
   try {
@@ -20,7 +17,8 @@ async function loadTc(any, list){
       if(c.slug == any)
         return c
     })
-    return eureca
+    const res = eureca.filter(eu => eu != undefined);
+    return res
   } catch (error) {
     console.log(error)
   }
@@ -83,8 +81,22 @@ function Anuncios({listadoAnuncios}){
   )
 } 
 
+async function getCameras() {
+  try {
+      const response = await axios({
+          url: `${baseUrl}/cameras-list`,
+          method: 'GET'
+      })
+      console.log('getCameras(): ',response)
+      
+      return response
+  } catch (error) {
+  console.log(error)
+  }
+}
 
 const CameraView = (props) => {
+  //const [cameras, setCameras] = useState([])
   const [camara, setCamara] = useState([])
   const [ads, setAds] = useState([])
   const [adsReady, setAdsReady] = useState(false)
@@ -135,7 +147,14 @@ const CameraView = (props) => {
   
 
   useEffect(()=>{
-    console.log('props: ',props)
+		async function loadCams () {
+			const res = await getCameras()
+			if(res.status === 200) {
+        console.log('loadCams: ',res.data)
+        return res.data
+			}
+		}
+    
     async function loadStream(c) {
       c.preroll.file ? 
       (
@@ -158,12 +177,13 @@ const CameraView = (props) => {
       setAdsReady(true)
     }
 
-    async function loadCam () {
+    async function loadCam (cams) {
       //const any = props.match.params.any
       //const list = props.cameras
-      //console.log(' (props.cameras) : ',props.cameras)
-      const res = await loadTc(props.match.params.any, props.cameras)
-      //console.log('res: ',res[0])
+      // console.log(' (any) : ',props.match.params.any)
+      // console.log(' (cams) : ',cams)
+      let res = await loadTc(props.match.params.any, cams)
+      console.log('res: ',res)
       if(res[0] === undefined){
         setNotFound(true)
       }else{
@@ -172,15 +192,14 @@ const CameraView = (props) => {
         loadStream(res[0])
       }
     }
-    
-    loadCam()
+    loadCams().then((cameras)=>loadCam(cameras))
     /* thiscam.status ? 
       setError(true)
     :
     ( */
 
     /* ) */
-  },[props])
+  },[])
 
   
   return (

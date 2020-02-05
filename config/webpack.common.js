@@ -254,10 +254,10 @@ module.exports = {
   entry: {
     'app': [
       resolve('../client/app/index.js')
-    ],/* 
-    'header': [
-      resolve('../client/app/components/Header/Header.js')
-    ],
+    ],/*
+    'index': [
+      resolve('../client/public/index.html')
+    ], 
     'camlisthome': [
       resolve('../client/app/components/CamListHome/index.js')
     ],
@@ -276,6 +276,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.css', '.scss', '.html'],
     alias: {
+      'index': 'client/public',
       'app': 'client/app',
       'components': 'client/app/components',
       'header': 'client/app/components/Header/Header.js',
@@ -307,12 +308,12 @@ module.exports = {
       cacheGroups: {
         default: { // 模块缓存规则，设置为false，默认缓存组将禁用
           minChunks: 2, // 模块被引用>=2次，拆分至vendors公共模块
-          priority: -20, // 优先级
+          priority: -10, // 优先级
           reuseExistingChunk: true, // 默认使用已有的模块
         },
         vendor: {
           test: /[\\/]node_modules[\\/]/,
-          priority: -10,
+          priority: 1,
           reuseExistingChunk: true,
           enforce: true,
           name(module) {

@@ -2,21 +2,70 @@ import React, { useState, useEffect } from 'react'
 import {Link} from 'react-router-dom'
 import Loading from '../Loading'
 import ImageBanner from '../ImageBanner'
-import ImageAdBanner from '../ImageAdBanner'
+//import ImageAdBanner from '../ImageAdBanner'
 
 import config from '../../../config'
 const imageSrcUrl = config.imageAdBannerSrcUrl
+const baseUrl = config.baseUrl
+import axios from 'axios'
 
-const CamListHome = (props) => {
+async function getCameras() {
+    try {
+        const response = await axios({
+            url: `${baseUrl}/cameras-list`,
+            method: 'GET'
+        })
+        console.log('getCameras(): ',response)
+        
+        return response
+    } catch (error) {
+		console.log(error)
+    }
+}
+async function getAds() {
+	try {
+		const response = await axios({
+			url: `${baseUrl}/anuncios-cameras-list`,
+            method: 'GET'
+        })
+		console.log('getAds(): ',response)
+        
+        return response
+    } catch (error) {
+		console.log(error)
+    }
+}
+
+
+const CamListHome = () => {
     const [isLoading, setIsLoading] = useState(true)
     const [cameras, setCameras] = useState([])
     const [ads, setAds] = useState([])
 
-    useEffect(()=>{
+/*     useEffect(()=>{
         setCameras(props.cameras)
         setAds(props.ads)
         setIsLoading(false)
-    },[props])
+    },[props]) */
+
+    useEffect(()=>{
+
+		async function loadAds () {
+			const resA = await getAds()
+			if(resA.status === 200) {
+				setAds(resA.data)
+			}
+		}
+		async function loadCams () {
+			const res = await getCameras()
+			if(res.status === 200) {
+				setCameras(res.data)
+				loadAds()
+			}
+		}
+
+		loadCams().then(()=>setIsLoading(false))
+    },[])
 
     let an=[]
     return(

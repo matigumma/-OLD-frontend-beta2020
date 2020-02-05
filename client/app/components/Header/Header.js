@@ -3,6 +3,23 @@ import { Link } from 'react-router-dom'
 import classnames from "classnames"
 import 'bootstrap/dist/js/bootstrap.bundle.min'
 
+import config from '../../../config'
+const baseUrl = config.baseUrl
+import axios from 'axios'
+async function getCameras() {
+  try {
+      const response = await axios({
+          url: `${baseUrl}/cameras-list`,
+          method: 'GET'
+      })
+      console.log('getCameras(): ',response)
+      
+      return response
+  } catch (error) {
+  console.log(error)
+  }
+}
+
 const ListadoCamaras = React.memo(function ListadoCamaras(props){
 //console.log(props.camaras.length)
   if(props.camaras.length > 0){
@@ -79,11 +96,22 @@ const UserNavMenu = React.memo(function UserNavMenu(props){
 
 const Header = (props) => {
   const [listadoCamaras, setListadoCamaras] = useState([])
+  //const [cameras, setCameras] = useState([])
   const [prevScrollpos, setPrevScrollpos] = useState(window.pageYOffset)
   const [visible, setVisible] = useState(true)
 
   useEffect(()=>{
-    setListadoCamaras(props.cameras)
+
+    async function loadCams () {
+			const res = await getCameras()
+			if(res.status === 200) {
+        //setCameras(res.data)
+        return res.data
+			}
+		}
+
+    loadCams().then((retcams)=>setListadoCamaras(retcams))
+    
   },[])
 
   useEffect(()=>{
