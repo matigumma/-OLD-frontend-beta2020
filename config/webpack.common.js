@@ -278,6 +278,8 @@ module.exports = {
     alias: {
       'app': 'client/app',
       'components': 'client/app/components',
+      'header': 'client/app/components/Header/Header.js',
+      'header': 'client/app/pages/Home/Home.js',
       // '@configs': path.join(__dirname, '../app/configs'),
       // '@config': path.join(__dirname, '../app/configs/config.js'),
       // '@ajax': path.join(__dirname, '../app/configs/ajax.js'),
