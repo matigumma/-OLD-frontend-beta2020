@@ -371,7 +371,7 @@ div.espuma{
     display: inline-block;
     text-decoration: none;
     padding: 7px 14px;
-    border: 1px solid #fff;
+    border: 1px solid #000;
     /* margin: 50px 0 0 0; */
     background-color: transparent;
   }
@@ -380,7 +380,7 @@ div.espuma{
     box-shadow: 0 0 5px #fff;
   }
   
-  .hovereffect a.info, .hovereffect h2 {
+  .hovereffect h2 {
     -webkit-transform: scale(0.7);
     -ms-transform: scale(0.7);
     transform: scale(0.7);
@@ -390,6 +390,9 @@ div.espuma{
     filter: alpha(opacity=0);
     color: #fff;
     text-transform: uppercase;
+  }
+  .hovereffect a.info{
+      color:#000;
   }
   
   .hovereffect:hover a.info, .hovereffect:hover h2 {
