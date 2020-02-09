@@ -98,7 +98,7 @@ const CamListHome = () => {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                 </div>
+                                                </div>
                                 }
                             })
                             return(<div key={cam_key}>
