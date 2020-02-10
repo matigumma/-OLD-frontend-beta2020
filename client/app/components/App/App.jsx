@@ -179,7 +179,7 @@ const App = () =>{
 /* 	splash? <Loading />
 	: */
 	return (
-		<Router onUpdate={() => window.scrollTo(0, 0)} >
+		<Router >
 		<div className="h-100">
 			{/* <Header cameras={cameras} state={user} _logout={_logout} /> */}
 			<Header state={user} _logout={_logout} />

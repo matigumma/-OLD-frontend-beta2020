@@ -147,10 +147,12 @@ const CameraView = (props) => {
   
 
   useEffect(()=>{
+    (() => window.scrollTo(0, 0))()
+
 		async function loadCams () {
 			const res = await getCameras()
 			if(res.status === 200) {
-        console.log('loadCams: ',res.data)
+        //console.log('loadCams: ',res.data)
         return res.data
 			}
 		}
@@ -178,12 +180,8 @@ const CameraView = (props) => {
     }
 
     async function loadCam (cams) {
-      //const any = props.match.params.any
-      //const list = props.cameras
-      // console.log(' (any) : ',props.match.params.any)
-      // console.log(' (cams) : ',cams)
       let res = await loadTc(props.match.params.any, cams)
-      console.log('res: ',res)
+      //console.log('res: ',res)
       if(res[0] === undefined){
         setNotFound(true)
       }else{
