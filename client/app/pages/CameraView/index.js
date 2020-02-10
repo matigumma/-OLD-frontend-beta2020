@@ -234,7 +234,7 @@ const CameraView = (props) => {
     :<div className="">
       <div className='d-flex flex-column justify-content-center bg-dark'>
         <ReactPlayer
-          className={window.innerWidth>1024? 'm-0 p-0' : 'mx-auto'}
+          className={window.innerWidth>1024? 'mx-auto' : 'm-0 p-0'}
           ref={player}
           url={url}
           config={{
@@ -256,7 +256,7 @@ const CameraView = (props) => {
           playsinline
           pip
           controls
-          width={window.innerWidth>1024? '90%' : '100%'}
+          width={window.innerWidth>1024? '80%' : '100%'}
           height='100%'
           />
         <button ref={skipBtn} className="d-none skip btn btn-sm btn-outline-warning position-absolute" onClick={ handleSkip }>Skip Ad</button>
