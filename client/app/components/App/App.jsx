@@ -11,6 +11,8 @@ import './App.scss'
 import axios from 'axios'
 
 //import Header from '../Header/Header'
+const UserProfile = loadable(()=>import('../../pages/User'))
+
 const Header = loadable(()=>import('../Header/Header'))
 /* , {
 	fallback: <div>Loading Header...</div>,
