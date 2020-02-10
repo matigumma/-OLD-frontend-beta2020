@@ -78,6 +78,20 @@ $primary: rgba(0,140,200,0.9);
 html, body, #app{
     height: 100%;
 }
+body {
+    animation: yourAnimation 1s forwards 2s ease;
+}
+@keyframes yourAnimation{
+    0%{
+        background: rgba(0,140,200,0.9) ;
+        }
+    55%{
+        background: rgba(0,140,200,0.4) ;
+        }
+    100%{
+        background: #ffffff;
+        }
+}
 @font-face {
     font-family: 'ostrich_sansheavy';
     src: url('/assets/font/ostrichsans-heavy-webfont.woff2') format('woff2'),

@@ -293,6 +293,9 @@ module.exports = {
       //'react-dom': !isProd ? '@hot-loader/react-dom' : 'react-dom' // react-hot-loader需要
     }
   },
+  performance: {
+    hints: false,
+  },
 
   optimization: {
     usedExports: true,
@@ -394,7 +397,7 @@ module.exports = {
   },
 
   plugins: [
-    //new WebpackBundleAnalyzer(),
+    new WebpackBundleAnalyzer(),
     
     new webpack.HotModuleReplacementPlugin(),
  

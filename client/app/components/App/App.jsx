@@ -11,14 +11,12 @@ import './App.scss'
 import axios from 'axios'
 
 //import Header from '../Header/Header'
-const Header = loadable(()=>import('../Header/Header'), {
+const Header = loadable(()=>import('../Header/Header'))
+/* , {
 	fallback: <div>Loading Header...</div>,
-  })
-
+  } */
 //import Home from '../../pages/Home/Home'
-const Home = loadable(()=> import('../../pages/Home/Home'), {
-	fallback: <div>Loading Home...</div>,
-  })
+const Home = loadable(()=> import('../../pages/Home/Home'))
 
 //import LoginForm from '../Auth/LoginForm.jsx'
 const LoginForm = loadable(()=> import('../Auth/LoginForm.jsx'))
@@ -27,9 +25,7 @@ const LoginForm = loadable(()=> import('../Auth/LoginForm.jsx'))
 const SignupForm = loadable(()=> import('../Auth/SignupForm.jsx'))
 
 //import CameraView from '../../pages/CameraView'
-const CameraView = loadable(()=> import ('../../pages/CameraView'), {
-	fallback: <div>Loading Camera...</div>,
-  })
+const CameraView = loadable(()=> import ('../../pages/CameraView'))
 
 //import NotFound from '../../pages/NotFound'
 const NotFound = loadable(()=> import('../../pages/NotFound'))

@@ -1,6 +1,7 @@
-import React, {useRef, useState, useEffect, useCallback} from 'react';
+import React, {useRef, useState, Lazy} from 'react';
 //import {useTransition, animated} from 'react-spring'
 import './styles.scss';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 function Slider(props) {
     const ref = useRef([])
@@ -39,7 +40,12 @@ function Slider(props) {
             </ol>
             <div className="carousel-inner">            
             <div className="carousel-item active">
-                <img src="/assets/img/slide1.jpg" className="d-block w-100" alt="..."/> 
+            <LazyLoadImage
+                className="d-block w-100"
+                src='/assets/img/slide1.jpg' // use normal <img> attributes as props
+                />
+                    {/* <img src="/assets/img/slide1.jpg" className="d-block w-100" alt="..."/> */}
+
                 <div className="carousel-caption d-none d-lg-block text-left">  
                 <h1>ANTICIPATE A</h1>
                 <h1>LAS OLAS</h1>
