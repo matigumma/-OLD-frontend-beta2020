@@ -286,7 +286,7 @@ const CameraView = (props) => {
           <Iframe 
                 url={`/assets/weather.html?lat=${camara.lat}&lng=${camara.lng}`}
                 width={window.innerWidth}
-                height={window.innerWidth<415? '630px' : '700px'}
+                height={window.innerWidth<426? '426px' : '434px'}
                 className="d-block border-0 w-100"
           />
       </section>
