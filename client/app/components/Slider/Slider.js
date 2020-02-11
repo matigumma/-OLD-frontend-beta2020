@@ -1,7 +1,8 @@
 import React, {useRef, useState, Lazy} from 'react';
 //import {useTransition, animated} from 'react-spring'
 import './styles.scss';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+//import { LazyLoadImage } from 'react-lazy-load-image-component';
+import ProgressiveImage from "./ProgressiveImage";
 
 function Slider(props) {
     const ref = useRef([])
@@ -40,10 +41,20 @@ function Slider(props) {
             </ol>
             <div className="carousel-inner">            
             <div className="carousel-item active">
-            <LazyLoadImage
+            <ProgressiveImage
+                className={"d-block w-100"}
+                alt={"slider"}
+                overlaySrc={
+                "/assets/img/slide1-420.jpg"
+                }
+                src={
+                "/assets/img/slide1.jpg"
+                }
+            />
+            {/* <LazyLoadImage
                 className="d-block w-100"
                 src='/assets/img/slide1.jpg' // use normal <img> attributes as props
-                />
+                /> */}
                     {/* <img src="/assets/img/slide1.jpg" className="d-block w-100" alt="..."/> */}
 
                 <div className="carousel-caption d-none d-lg-block text-left">  
