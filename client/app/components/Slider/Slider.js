@@ -45,7 +45,7 @@ function Slider(props) {
                 className={"d-block w-100"}
                 alt={"slider"}
                 overlaySrc={
-                "/assets/img/slide1-420.jpg"
+                "/assets/img/slide1-2kb.jpg"
                 }
                 src={
                 "/assets/img/slide1.jpg"
