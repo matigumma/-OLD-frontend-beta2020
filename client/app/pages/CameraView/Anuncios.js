@@ -9,11 +9,12 @@ const Anuncios = ({listadoAnuncios}) => {
 
         function addDefaultSrc(ev){
             ev.target.src = '/assets/img/logo-footer.png'
+            ev.target.nextSibling.className="d-none"
         }
 
         return(
         listadoAnuncios.map((ad,key)=>{
-            return ( <div className="adimg" key={key}>
+            return ( <div className="adimg m-1" key={key}>
                     <div className="hovereffect">
                         <i className="fas fa-4x m-2 fa-sync fa-spin" style={{outerHeight:'90px'}}></i>
                         <img className="img-responsive m-0 adimg d-none" onLoad={loaded} src={`${contentBaseUrl}${ad.file}`} onError={addDefaultSrc} alt={ad.name}/>

@@ -24,11 +24,13 @@ export default class ProgressiveImage extends Component {
     const { highResImageLoaded } = this.state;
     let filteredProps = omit(this.props, "overlaySrc");
     return (
-      <span>
+      <>
         <img
           {...filteredProps}
-          onLoad={() => {
+          className="d-none"
+          onLoad={(e) => {
             this.setState({ highResImageLoaded: true });
+            e.target.className = this.props.className;
           }}
           ref={img => {
             this.highResImage = img;
@@ -41,7 +43,7 @@ export default class ProgressiveImage extends Component {
           {...highResImageLoaded && { style: { display: "none" } }}
           src={overlaySrc}
         />
-      </span>
+      </>
     );
   }
 }
