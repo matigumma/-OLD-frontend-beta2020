@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { Redirect } from 'react-router'
 import './styles.scss'
 import Loading from '../../components/Loading'
+import Anuncios from './Anuncios'
 import Iframe from 'react-iframe'
 import ReactPlayer from 'react-player'
 import axios from 'axios'
@@ -58,7 +59,7 @@ const Sponsor = React.memo(function Sponsor({sponsor}){
     )
   }
 })
-function loaded(ev){
+/* function loaded(ev){
   ev.target.previousSibling.className="d-none"
   ev.target.className="img-responsive m-0 adimg w-100 d-block"
 }
@@ -79,7 +80,7 @@ function Anuncios({listadoAnuncios}){
           )
   })
   )
-} 
+}  */
 
 async function getCameras() {
   try {

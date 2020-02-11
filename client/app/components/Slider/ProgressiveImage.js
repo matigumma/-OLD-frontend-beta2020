@@ -9,7 +9,7 @@ const omit = (obj, omitKey) =>
 
 const overlayStyles = {
   position: "absolute",
-  filter: "blur(1px)",
+  filter: "blur(2px)",
   transition: "opacity ease-in 1000ms",
   clipPath: "inset(0)"
 };
@@ -38,7 +38,7 @@ export default class ProgressiveImage extends Component {
         <img
           {...filteredProps}
           className={`${this.props.className} ${overlayStyles}`}
-          {...highResImageLoaded && { style: { display: "none !important" } }}
+          {...highResImageLoaded && { style: { display: "none" } }}
           src={overlaySrc}
         />
       </span>
