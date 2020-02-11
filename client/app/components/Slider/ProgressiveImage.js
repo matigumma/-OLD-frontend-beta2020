@@ -40,7 +40,7 @@ export default class ProgressiveImage extends Component {
         <img
           {...filteredProps}
           className={`${this.props.className} ${overlayStyles}`}
-          {...highResImageLoaded && { style: { display: "none" } }}
+          {...highResImageLoaded && { className = "d-none" }}
           src={overlaySrc}
         />
       </>
