@@ -72,7 +72,7 @@ const CamListHome = () => {
         isLoading
         ? <Loading/>
         :
-        <div className="bg-light">
+        <div className="bg-white">
                 <section className="container m-auto">
                 <div className="clearfix text-right text-secondary my-1">
 {/*                     <span>ver en mapa</span>

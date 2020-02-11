@@ -1,13 +1,14 @@
 import React from 'react';
 import {render} from 'react-dom';
+import loadable from '@loadable/component'
 //import * as serviceWorker from './serviceWorker';
 //import './styles/main.scss';
 //const App = lazy(() => import('./components/App/App.jsx'))
 //import App from './components/App/App.jsx'
-import Splash from './pages/Splash/Splash'
-
+//import Splash from './pages/Splash/Splash'
+const App = loadable(()=>import('./components/App/App'))
 render((
-    <Splash/>
+    <App/>
   ), 
   document.getElementById('root')
 );
