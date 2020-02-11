@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import loadable from '@loadable/component'
-
+import '../../styles/main.scss';
 import './App.scss'
 
 //import config from '../../../config'
