@@ -68,7 +68,7 @@ async function getUser() {
 			url: '/auth/user',
             method: 'GET'
         })
-		console.log('getUser(): ',response)
+		//console.log('getUser(): ',response)
         
         return response
     } catch (error) {
@@ -155,7 +155,7 @@ const App = () =>{
 
 	async function _logout(event) {
 		event.preventDefault()
-		console.log('logging out')
+		//console.log('logging out')
 		const res = await getLogout()
 		if (res.status === 200) {
 			setLoggedIn(false)
@@ -167,7 +167,7 @@ const App = () =>{
 
 	async function _login(username, password) {
 		const res = await getLogin(username, password)
-		console.log('loggin in..')
+		//console.log('loggin in..')
 		if (res.status === 200) {
 			setLoggedIn(true)
 			setUser(res.data.user)

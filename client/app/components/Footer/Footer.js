@@ -23,7 +23,12 @@ FreeWaves es la forma más fácil de ver tu spot preferido en tiempo real estés
       </div>
       <div className="col-md-12 col-lg-6">
         <div className="embed-responsive embed-responsive-16by9">
-          <ReactPlayer className="embed-responsive-item" url='https://www.youtube.com/embed/n-5txBw5Ml8' />
+          <ReactPlayer 
+          className="embed-responsive-item" 
+          url='https://www.youtube.com/embed/n-5txBw5Ml8' 
+          width='100%'
+          height='100%'
+          />
         </div>
       </div>
     </div>
