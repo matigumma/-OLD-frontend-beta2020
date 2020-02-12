@@ -48,7 +48,7 @@ function Slider(props) {
                 "/assets/img/slide1-2kb.jpg"
                 }
                 src={
-                "/assets/img/slide1.jpg"
+                    window.innerWidth<426? '/assets/img/slide1-420.jpg' : '/assets/img/slide1.jpg'
                 }
             />
             {/* <LazyLoadImage

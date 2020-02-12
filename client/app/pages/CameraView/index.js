@@ -284,13 +284,18 @@ const CameraView = (props) => {
         </div>
       </section>
       <section className="w-90 my-5 d-block">
+        {camara.lat && camara.lng
+        ?
           <Iframe 
                 url={`/assets/weather.html?lat=${camara.lat}&lng=${camara.lng}`}
                 width={window.innerWidth}
-                height={window.innerWidth<426? '426px' : '600px'}
+                height={window.innerWidth<426? '426px' : '700px'}
                 className="d-block border-0 w-100"
           />
-      </section>
+          :
+          <></>
+        }
+        </section>
     </div>
   )
 }
