@@ -3,7 +3,8 @@ import { Redirect } from 'react-router'
 import './styles.scss'
 import Loading from '../../components/Loading'
 import Anuncios from './Anuncios'
-import Iframe from 'react-iframe'
+// import Iframe from 'react-iframe'
+import Iframe from 'iframe-resizer-react'
 import ReactPlayer from 'react-player'
 import axios from 'axios'
 
@@ -287,10 +288,9 @@ const CameraView = (props) => {
         {camara.lat && camara.lng
         ?
           <Iframe 
-                url={`/assets/weather.html?lat=${camara.lat}&lng=${camara.lng}`}
-                width={window.innerWidth}
-                height={window.innerWidth<426? '426px' : '700px'}
-                className="d-block border-0 w-100"
+                src={`/assets/weather.html?lat=${camara.lat}&lng=${camara.lng}`}
+                style={{ width: '1px', minWidth: '100%'}}
+                heightCalculationMethod="lowestElement"
           />
           :
           <></>

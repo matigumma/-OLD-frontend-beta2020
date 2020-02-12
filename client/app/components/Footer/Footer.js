@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactPlayer from 'react-player'
 
 const Footer = () => (
 <footer className="footer w-100 mt-3">
@@ -22,8 +23,7 @@ FreeWaves es la forma más fácil de ver tu spot preferido en tiempo real estés
       </div>
       <div className="col-md-12 col-lg-6">
         <div className="embed-responsive embed-responsive-16by9">
-          <embed className="embed-responsive-item" 
-            src="https://www.youtube.com/embed/n-5txBw5Ml8" type="video/mp4"/>
+          <ReactPlayer className="embed-responsive-item" url='https://www.youtube.com/embed/n-5txBw5Ml8' />
         </div>
       </div>
     </div>
