@@ -12,7 +12,7 @@ async function getCameras() {
           url: `${baseUrl}/cameras-list`,
           method: 'GET'
       })
-      console.log('getCameras(): ',response)
+      //console.log('getCameras(): ',response)
       
       return response
   } catch (error) {
@@ -198,28 +198,28 @@ const Header = (props) => {
                   <ul className="navbar-nav ml-2">
                       
                       <li className="nav-item">
-                          {/* <Link className="nav-link" to="/camaras">Camaras</Link> */}
-                          <span className="nav-link">
-                          Camaras
-                          </span>
-                      </li>
-                      <li className="nav-item">
                           {/* <Link className="nav-link" to="/anuncios">Comunidad</Link> */}
-                          <span className="nav-link">
+                          <a href="http://freewaves.live/comunidad-fw/matias-canto/" className="nav-link">
                           Comunidad
-                          </span>
+                          </a>
                       </li>
                       <li className="nav-item">
                           {/* <Link className="nav-link" to="/users/list">Galeria</Link> */}
-                          <span className="nav-link">
+                          <a href="http://freewaves.live/nahuel-villarino/" className="nav-link">
                           Galeria
-                          </span>
+                          </a>
+                      </li>
+                      <li className="nav-item">
+                          {/* <Link className="nav-link" to="/users/list">Galeria</Link> */}
+                          <a href="http://freewaves.live/auspiciantes/" className="nav-link">
+                          Auspiciantes
+                          </a>
                       </li>
                       <li className="nav-item">
                           {/* <Link className="nav-link" to="/settings">Contacto</Link> */}
-                          <span className="nav-link">
+                          <a href="http://freewaves.live/contacto/" className="nav-link">
                           Contacto
-                          </span>
+                          </a>
                       </li>
                   </ul>
               </div>
