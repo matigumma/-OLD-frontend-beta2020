@@ -191,9 +191,9 @@ const App = () =>{
 				<Route exact path="/login" render={() => <LoginForm loggedin={loggedIn} user={user} _login={_login} />}/>
 				<Route exact path="/user/:id" render={(props) => <UserProfile userState={user} />}/>
 				{/* <Route exact path="/cam/:any" render={(state) => <CameraView  cameras={cameras} userState={user} />}/> */}
-				<Route exact path="/cam/:any" render={(state) => <CameraView userState={user} />}/>
+				<Route exact path="/cam/:any" render={(state) => <CameraView {...props} userState={user} />}/>
 				<Route exact path="/signup" component={() => <SignupForm />} />
-				<Route path="/404" render={(state) => <NotFound />} />
+				<Route path="/404" render={(state) => <NotFound {...props}/>} />
 			</main>
 		</div>
 		</Router>
