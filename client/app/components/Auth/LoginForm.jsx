@@ -98,8 +98,6 @@ const LoginForm = (props) =>{
 						/>
 						<ReCAPTCHA
 							sitekey="6LdfatgUAAAAABsolYHFu15_VrsnsbW4t_ms_su3"
-							size="compact"
-							badge="inline"
 							onChange={onChange}
 						/>
 					<button ref={buttonEl} onClick={handleSubmit} disabled className="mt-2 btn btn-primary btn-lg btn-block">Login</button>
