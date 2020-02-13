@@ -9,6 +9,7 @@ import './App.scss'
 //const baseUrl = config.baseUrl
 
 import axios from 'axios'
+import { set } from 'mongoose';
 
 //import Header from '../Header/Header'
 const UserProfile = loadable(()=>import('../../pages/User'))
@@ -33,34 +34,17 @@ const CameraView = loadable(()=> import ('../../pages/CameraView'))
 const NotFound = loadable(()=> import('../../pages/NotFound'))
 
 //import Loading from '../Loading'
-/* 
-async function getCameras() {
-    try {
-        const response = await axios({
-            url: `${baseUrl}/cameras-list`,
-            method: 'GET'
-        })
-        console.log('getCameras(): ',response)
-        
-        return response
-    } catch (error) {
-		console.log(error)
-    }
+
+const StatusMsg = (props) => {
+	return(
+		<div class={`alert alert-${props.kind} alert-dismissible fade show`} role="alert">
+			{props.msg}
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+	)
 }
-async function getAds() {
-	try {
-		const response = await axios({
-			url: `${baseUrl}/anuncios-cameras-list`,
-            method: 'GET'
-        })
-		console.log('getAds(): ',response)
-        
-        return response
-    } catch (error) {
-		console.log(error)
-    }
-}
- */
 
 async function getUser() {
 	try {
@@ -72,7 +56,7 @@ async function getUser() {
         
         return response
     } catch (error) {
-        console.log(error)
+		return error
     }
 }
 async function getLogout(user) {
@@ -85,7 +69,6 @@ async function getLogout(user) {
         
         return response
     } catch (error) {
-		console.log(error)
 		return error
     }
 }
@@ -102,7 +85,6 @@ async function getLogin(username, password) {
         
         return response
     } catch (error) {
-		console.log(error)
 		return error
     }
 }
@@ -111,9 +93,7 @@ const App = () =>{
 	const [loggedIn, setLoggedIn] = useState(false)
 	//const [splash, setSplash] = useState(true)
 	const [user, setUser] = useState(null)
-	const [cameras, setCameras] = useState([])
-    const [ads, setAds] = useState([])
-	const [wannaLogin, setWannaLogin] = useState(false)
+	const [notiStatus, setNotiStatus] = useState({show:false,kind:'',msg:''})
 
 	useEffect(()=>{
 		async function loadUser () {//first load of app
@@ -124,35 +104,15 @@ const App = () =>{
 				setUser(res.data.user)
 			} else {
 				setTimeout(() => {
-					setWannaLogin(true)
+					setNotiStatus({
+						show:true,
+						kind:'primary',
+						msg:'ya te registraste?'
+					})
 				}, 10000);
 			}
         }
-       
 		loadUser()
-		
-//cams
-/* 
-		async function loadAds () {
-			const resA = await getAds()
-			if(resA.status === 200) {
-				//console.log('anuncios: ',resA)
-				setAds(resA.data)
-				//setIsLoading(false)
-				//setSplash(false)
-			}
-		}
-		async function loadCams () {
-			const res = await getCameras()
-			console.log('camaras: ',res)
-			if(res.status === 200) {
-				setCameras(res.data)
-				loadAds()
-			}
-		}
-
-		loadCams() */
-
 	},[])
 
 	async function _logout(event) {
@@ -162,20 +122,19 @@ const App = () =>{
 		if (res.status === 200) {
 			setLoggedIn(false)
 			setUser(null)
+			return res
 		}else{
-			console.log('Err while trying to logout.. try again: ',res)
+			return res
 		}
 	}
 
 	async function _login(username, password) {
 		const res = await getLogin(username, password)
-		//console.log('loggin in..')
 		if (res.status === 200) {
 			setLoggedIn(true)
 			setUser(res.data.user)
 			return res
 		}else{
-			console.log('Error while trying to log in..: ',res)
 			return res
 		}
 	}
@@ -187,6 +146,7 @@ const App = () =>{
 		<div className="h-100">
 			{/* <Header cameras={cameras} state={user} _logout={_logout} /> */}
 			<Header state={user} _logout={_logout} />
+			{notiStatus.show && <StatusMsg props={notiStatus} />}
 			<main className="h-100">
 				{/* <Route exact path="/" render={() => <Home ads={ads} cameras={cameras} userState={user} />} /> */}
 				<Route exact path="/" render={() => <Home userState={user} />} />

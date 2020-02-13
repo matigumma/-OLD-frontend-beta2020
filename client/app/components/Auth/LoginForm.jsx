@@ -52,10 +52,8 @@ const LoginForm = (props) =>{
 		event.preventDefault()
 		event.target.disabled = true
 		//console.log('handleSubmit')
-		console.log('props antes: ',props)
 		const resLogin = await props._login(username, password)
 		console.log('resLogin: ',resLogin)
-		console.log('props despues: ',props)
 		//setRedirectTo('/')
 		/* this.setState({
 			redirectTo: '/'

@@ -19,9 +19,9 @@ router.get('/user', (req, res, next) => {
 	console.log('===== user!!======')
 	console.log(req.user)
 	if (req.user) {
-		return res.json({ user: req.user })
+		return res.status(200).json({ user: req.user })
 	} else {
-		return res.json({ user: null })
+		return res.status(404).json({ user: null })
 	}
 })
 
@@ -41,7 +41,7 @@ router.post(
 			console.log(`Deleting ${cleanUser.local.password}`)
 			delete cleanUser.local.password
 		}
-		res.json({ user: cleanUser })
+		res.status(200).json({ user: cleanUser })
 	}
 )
 
@@ -50,9 +50,9 @@ router.post('/logout', (req, res) => {
 	if (req.user) {
 		req.session.destroy()
 		res.clearCookie('connect.sid') // clean up!
-		return res.json({ msg: 'logging you out' })
+		return res.status(200).json({ msg: 'logging you out' })
 	} else {
-		return res.json({ msg: 'no user to log out!' })
+		return res.status(202).json({ msg: 'no user to log out!' })
 	}
 })
 
@@ -61,8 +61,8 @@ router.post('/signup', (req, res) => {
 	// ADD VALIDATION
 	User.findOne({ 'local.username': username }, (err, userMatch) => {
 		if (userMatch) {
-			return res.json({
-				error: `Sorry, already a user with the username: ${username}`
+			return res.status(202).json({
+				error: `Ya existe alguien con este nombre: ${username}`
 			})
 		}
 		const newUser = new User({
@@ -70,9 +70,9 @@ router.post('/signup', (req, res) => {
 			'local.password': password
 		})
 		newUser.save((err, savedUser) => {
-			if (err) return res.json({error: err})
+			if (err) return res.status(400).json({error: err})
 			console.log(savedUser)
-			return res.json(savedUser)
+			return res.status(200).json(savedUser)
 		})
 	})
 })
