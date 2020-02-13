@@ -97,7 +97,7 @@ const LoginForm = (props) =>{
 							onChange={handlePasswordChange}
 						/>
 						<ReCAPTCHA
-							sitekey="6LdfatgUAAAAABsolYHFu15_VrsnsbW4t_ms_su3"
+							sitekey="6LdfatgUAAAAACy_1FXTuMHaiMngDtM737s52tyg"
 							size="compact"
 							badge="inline"
 							onChange={onChange}
