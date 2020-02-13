@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 //import Unsplash, { toJson } from 'unsplash-js'
-// import googleButton from './google_signin_buttons/web/1x/btn_google_signin_dark_disabled_web.png'
+//import googleButton from './google_signin_buttons/web/1x/btn_google_signin_dark_disabled_web.png'
 //import googleButton from './google_signin_buttons/web/1x/btn_google_signin_dark_normal_web.png'
 /* const unsplash = new Unsplash({ 
 	accessKey: "087974b986846a742f7b79b785d09baafceaa494a1713e28aac8af3e6cba565e",
@@ -21,7 +21,7 @@ const LoginForm = (props) =>{
 			unsplash.photos.getRandomPhoto({ query: "surf" })
 			.then(toJson)
 			.then(json => {
-			  setBg(json)
+				setBg(json)
 			});
 		} catch (error) {
 			console.log(error)	
@@ -48,11 +48,15 @@ const LoginForm = (props) =>{
 		setPassword(event.target.value)
 	}
 
-	function handleSubmit(event) {
+	async function handleSubmit(event) {
 		event.preventDefault()
+		event.target.disabled = true
 		//console.log('handleSubmit')
-		props._login(username, password)
-		setRedirectTo('/')
+		console.log('props antes: ',props)
+		const resLogin = await props._login(username, password)
+		console.log('resLogin: ',resLogin)
+		console.log('props despues: ',props)
+		//setRedirectTo('/')
 		/* this.setState({
 			redirectTo: '/'
 		}) */
