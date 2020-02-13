@@ -97,7 +97,8 @@ const LoginForm = (props) =>{
 							onChange={handlePasswordChange}
 						/>
 						<ReCAPTCHA
-							sitekey="6LdOa9gUAAAAANiIDz5OK54e8j3SjteRTm66RWF0"
+							className="g-recaptcha"
+							sitekey="6LfZa9gUAAAAAJb13_dQ_V9pqdQOZ7uWYasM6e5B"
 							onChange={onChange}
 						/>
 					<button ref={buttonEl} onClick={handleSubmit} disabled className="mt-2 btn btn-primary btn-lg btn-block">Login</button>
