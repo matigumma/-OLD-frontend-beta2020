@@ -97,7 +97,7 @@ const LoginForm = (props) =>{
 							onChange={handlePasswordChange}
 						/>
 						<ReCAPTCHA
-							sitekey="6LdfatgUAAAAABsolYHFu15_VrsnsbW4t_ms_su3"
+							sitekey="6LdOa9gUAAAAANiIDz5OK54e8j3SjteRTm66RWF0"
 							onChange={onChange}
 						/>
 					<button ref={buttonEl} onClick={handleSubmit} disabled className="mt-2 btn btn-primary btn-lg btn-block">Login</button>
