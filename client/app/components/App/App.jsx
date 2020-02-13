@@ -173,8 +173,10 @@ const App = () =>{
 		if (res.status === 200) {
 			setLoggedIn(true)
 			setUser(res.data.user)
+			return res
 		}else{
 			console.log('Error while trying to log in..: ',res)
+			return res
 		}
 	}
 
