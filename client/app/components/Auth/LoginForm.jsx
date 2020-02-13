@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 import { Redirect } from 'react-router-dom'
+
+import ReCAPTCHA from "react-google-recaptcha";
+
 //import Unsplash, { toJson } from 'unsplash-js'
 //import googleButton from './google_signin_buttons/web/1x/btn_google_signin_dark_disabled_web.png'
 //import googleButton from './google_signin_buttons/web/1x/btn_google_signin_dark_normal_web.png'
@@ -14,6 +17,7 @@ const LoginForm = (props) =>{
 	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
 	const [redirectTo, setRedirectTo] = useState(null)
+	const buttonEl = useRef(null);
 //	const [bg,setBg] = useState(null)
 
 	/* const fotoBg = () => {
@@ -47,7 +51,10 @@ const LoginForm = (props) =>{
 	function handlePasswordChange(event) {
 		setPassword(event.target.value)
 	}
-
+	function onChange(value) {
+		console.log("Captcha value:", value);
+		buttonEl.current.disabled=false
+	}
 	async function handleSubmit(event) {
 		event.preventDefault()
 		event.target.disabled = true
@@ -89,7 +96,13 @@ const LoginForm = (props) =>{
 							value={password}
 							onChange={handlePasswordChange}
 						/>
-					<button onClick={handleSubmit} className="mt-2 btn btn-primary btn-lg btn-block">Login</button>
+						<ReCAPTCHA
+							sitekey="6LdfatgUAAAAABsolYHFu15_VrsnsbW4t_ms_su3"
+							size="compact"
+							badge="inline"
+							onChange={onChange}
+						/>
+					<button ref={buttonEl} onClick={handleSubmit} disabled className="mt-2 btn btn-primary btn-lg btn-block">Login</button>
 						{/* <GoogleButton /> 
 					<a href="/auth/google" className="btn btn-outline-info btn-lg btn-block">
 						<img src='/assets/img/btn_google_signin_dark_normal_web.png' alt="sign into Google Button" />

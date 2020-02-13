@@ -37,6 +37,7 @@ const NotFound = loadable(()=> import('../../pages/NotFound'))
 
 const StatusMsg = (props) => {
 	return(
+		props.show &&
 		<div class={`alert alert-${props.kind} alert-dismissible fade show`} role="alert">
 			{props.msg}
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -99,7 +100,7 @@ const App = () =>{
 		async function loadUser () {//first load of app
             const res = await getUser()
 			
-			if (!!res.data.user) {
+			if (res.data.user) {
 				setLoggedIn(true)
 				setUser(res.data.user)
 			} else {
@@ -146,16 +147,16 @@ const App = () =>{
 		<div className="h-100">
 			{/* <Header cameras={cameras} state={user} _logout={_logout} /> */}
 			<Header state={user} _logout={_logout} />
-			{notiStatus.show && <StatusMsg props={notiStatus} />}
+			<StatusMsg props={notiStatus} />
 			<main className="h-100">
 				{/* <Route exact path="/" render={() => <Home ads={ads} cameras={cameras} userState={user} />} /> */}
 				<Route exact path="/" render={() => <Home userState={user} />} />
 				<Route exact path="/login" render={() => <LoginForm loggedin={loggedIn} user={user} _login={_login} />}/>
 				<Route exact path="/user/:id" render={(props) => <UserProfile userState={user} />}/>
 				{/* <Route exact path="/cam/:any" render={(state) => <CameraView  cameras={cameras} userState={user} />}/> */}
-				<Route exact path="/cam/:any" render={(state) => <CameraView {...props} userState={user} />}/>
+				<Route exact path="/cam/:any" render={(state) => <CameraView {...state} userState={user} />}/>
 				<Route exact path="/signup" component={() => <SignupForm />} />
-				<Route path="/404" render={(state) => <NotFound {...props}/>} />
+				<Route path="/404" render={(state) => <NotFound {...state}/>} />
 			</main>
 		</div>
 		</Router>
