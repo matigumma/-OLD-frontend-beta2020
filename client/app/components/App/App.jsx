@@ -186,7 +186,7 @@ const App = () =>{
 			<main className="h-100">
 				{/* <Route exact path="/" render={() => <Home ads={ads} cameras={cameras} userState={user} />} /> */}
 				<Route exact path="/" render={() => <Home userState={user} />} />
-				<Route exact path="/login" render={() => <LoginForm _login={_login} />}/>
+				<Route exact path="/login" render={() => <LoginForm {...props} {...state}_login={_login} />}/>
 				<Route exact path="/user/:id" render={(props) => <UserProfile {...props} userState={user} />}/>
 				{/* <Route exact path="/cam/:any" render={(state) => <CameraView {...state} cameras={cameras} userState={user} />}/> */}
 				<Route exact path="/cam/:any" render={(state) => <CameraView {...state} userState={user} />}/>
