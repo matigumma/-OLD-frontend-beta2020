@@ -37,13 +37,14 @@ const NotFound = loadable(()=> import('../../pages/NotFound'))
 
 const StatusMsg = (props) => {
 	return(
-		props.show &&
+		props.show==true ?
 		<div class={`alert alert-${props.kind} alert-dismissible fade show`} role="alert">
 			{props.msg}
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</div>
+		: <></>
 	)
 }
 

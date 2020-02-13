@@ -267,7 +267,7 @@ const CameraView = (props) => {
       <section className="container mx-auto">
         <div className="clearfix text-right text-secondary my-1">
           <a href={camara.gmapLink} target="_blank" className="text-muted">
-            <i className="ml-2 mr-1 mt-2 fa-2x fas fa-map-marker-alt"></i>
+            <i className={`ml-2 mr-1 mt-2 fa-${window.innerWidth>1024? '2x':'1x'} fas fa-map-marker-alt`}></i>
             <span>UBICACIÓN</span>
           </a>
         </div>
