@@ -85,7 +85,8 @@ async function getLogout(user) {
         
         return response
     } catch (error) {
-        console.log(error)
+		console.log(error)
+		return error
     }
 }
 async function getLogin(username, password) {
@@ -101,7 +102,8 @@ async function getLogin(username, password) {
         
         return response
     } catch (error) {
-        console.log(error)
+		console.log(error)
+		return error
     }
 }
 
@@ -161,7 +163,7 @@ const App = () =>{
 			setLoggedIn(false)
 			setUser(null)
 		}else{
-			console.log('Err while trying to logout.. try again')
+			console.log('Err while trying to logout.. try again: ',res)
 		}
 	}
 
@@ -172,7 +174,7 @@ const App = () =>{
 			setLoggedIn(true)
 			setUser(res.data.user)
 		}else{
-			alert('Error while trying to log in..')
+			console.log('Error while trying to log in..: ',res)
 		}
 	}
 
