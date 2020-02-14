@@ -99,19 +99,23 @@ const App = () =>{
 
 	useEffect(()=>{
 		async function loadUser () {//first load of app
-            const res = await getUser()
-			
-			if (res.data.user) {
-				setLoggedIn(true)
-				setUser(res.data.user)
-			} else {
-				setTimeout(() => {
-					setNotiStatus({
-						show:true,
-						kind:'primary',
-						msg:'ya te registraste?'
-					})
-				}, 10000);
+			try {
+				const res = await getUser()
+				console.log('res del loadUser', res)
+				if (res.data.user) {
+					setLoggedIn(true)
+					setUser(res.data.user)
+				} else {
+					setTimeout(() => {
+						setNotiStatus({
+							show:true,
+							kind:'primary',
+							msg:'ya te registraste?'
+						})
+					}, 10000);
+				}
+			} catch (error) {
+				console.log(error)
 			}
         }
 		loadUser()

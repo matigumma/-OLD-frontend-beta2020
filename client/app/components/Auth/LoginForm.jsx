@@ -54,12 +54,14 @@ const LoginForm = (props) =>{
 	function onChange() {
 		buttonEl.current.disabled=false
 	}
-	async function handleSubmit(event) {
+	function handleSubmit(event) {
 		event.preventDefault()
+		console.log('event.target: ',event.target)
 		event.target.disabled = true
 		//console.log('handleSubmit')
-		const resLogin = await props._login(username, password)
-		console.log('resLogin: ',resLogin)
+		props._login(username, password).then((res)=>{
+			console.log('res_Login: ',res)
+		} )
 		//setRedirectTo('/')
 		/* this.setState({
 			redirectTo: '/'
