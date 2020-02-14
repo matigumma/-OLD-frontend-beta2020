@@ -38,10 +38,11 @@ router.post(
 		const user = JSON.parse(JSON.stringify(req.user)) // hack
 		const cleanUser = Object.assign({}, user)
 		if (cleanUser.local) {
-			console.log(`Deleting ${cleanUser.local.password}`)
 			delete cleanUser.local.password
+			res.status(200).json({ user: cleanUser })
+		}else{
+			res.status(404).json({ user: null })
 		}
-		res.status(200).json({ user: cleanUser })
 	}
 )
 

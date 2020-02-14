@@ -55,11 +55,17 @@ const LoginForm = (props) =>{
 		buttonEl.current.disabled=false
 	}
 	function handleSubmit(event) {
-		console.log('event: ',event)
 		buttonEl.current.disabled = true
-		//console.log('handleSubmit')
 		props._login(username, password).then((res)=>{
-			console.log('res_Login: ',res)
+			console.log('res status: ',res.status)
+			if(res.status === 200){
+				buttonEl.current.classList.remove('btn-primary')
+				buttonEl.current.classList.add('btn-success')
+			}else{
+				buttonEl.current.classList.remove('btn-primary')
+				buttonEl.current.classList.remove('btn-success')
+				buttonEl.current.classList.add('btn-danger')
+			}
 		} )
 		event.preventDefault();
 		//setRedirectTo('/')
