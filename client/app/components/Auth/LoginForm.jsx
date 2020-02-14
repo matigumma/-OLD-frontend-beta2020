@@ -55,13 +55,13 @@ const LoginForm = (props) =>{
 		buttonEl.current.disabled=false
 	}
 	function handleSubmit(event) {
-		event.preventDefault()
-		console.log('event.target: ',event.target)
-		event.target.disabled = true
+		console.log('event: ',event)
+		buttonEl.current.disabled = true
 		//console.log('handleSubmit')
 		props._login(username, password).then((res)=>{
 			console.log('res_Login: ',res)
 		} )
+		event.preventDefault();
 		//setRedirectTo('/')
 		/* this.setState({
 			redirectTo: '/'
@@ -78,7 +78,7 @@ const LoginForm = (props) =>{
 				{/* <div className="card-header">
 					<h1>Login form</h1>
 					</div> */}
-				<form className="card-body">
+				<form onSubmit={handleSubmit} className="card-body">
 					<div className="form-group w-100">
 						<label class="sr-only" for="inlineFormInputGroup">Username</label>
 						<div class="input-group mb-2">
@@ -97,7 +97,7 @@ const LoginForm = (props) =>{
 						<label class="sr-only" for="inlineFormInputGroupPassword">Password</label>
 						<div class="input-group mb-2">
 							<div class="input-group-prepend">
-							  <div class="input-group-text">*</div>
+							  <div class="input-group-text">**</div>
 							</div>
 							<input
 								type="password"
@@ -118,7 +118,7 @@ const LoginForm = (props) =>{
 							<label class="form-check-label" for="Check1">No soy un Robot :)</label>
 						</div>
 							
-					<button ref={buttonEl} onClick={handleSubmit} disabled className="mt-2 btn btn-primary btn-lg btn-block">Login</button>
+					<button ref={buttonEl} type="submit" disabled className="mt-2 btn btn-primary btn-lg btn-block">Login</button>
 						{/* <GoogleButton /> 
 					<a href="/auth/google" className="btn btn-outline-info btn-lg btn-block">
 						<img src='/assets/img/btn_google_signin_dark_normal_web.png' alt="sign into Google Button" />
