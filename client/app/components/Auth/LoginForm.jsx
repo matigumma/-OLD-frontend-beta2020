@@ -113,7 +113,7 @@ const LoginForm = (props) =>{
 								className="form-check-input"
 								onChange={onChange}
 							/>
-							<label class="form-check-label" for="Check1">No soy un Robot :)
+							<label class="form-check-label" for="Check1">No soy un Robot :)</label>
 						</div>
 							
 					<button ref={buttonEl} onClick={handleSubmit} disabled className="mt-2 btn btn-primary btn-lg btn-block">Login</button>
