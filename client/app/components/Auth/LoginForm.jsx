@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react'
 import { Redirect } from 'react-router-dom'
 
-import ReCAPTCHA from "react-google-recaptcha";
+//import ReCAPTCHA from "react-google-recaptcha";
 
 //import Unsplash, { toJson } from 'unsplash-js'
 //import googleButton from './google_signin_buttons/web/1x/btn_google_signin_dark_disabled_web.png'
@@ -51,8 +51,7 @@ const LoginForm = (props) =>{
 	function handlePasswordChange(event) {
 		setPassword(event.target.value)
 	}
-	function onChange(value) {
-		console.log("Captcha value:", value);
+	function onChange() {
 		buttonEl.current.disabled=false
 	}
 	async function handleSubmit(event) {
@@ -79,28 +78,44 @@ const LoginForm = (props) =>{
 					</div> */}
 				<form className="card-body">
 					<div className="form-group w-100">
-						<label htmlFor="username">User: </label>
-						<input
-							type="text"
-							name="username"
-							className="form-control mb-2"
-							value={username}
-							onChange={handleUsernameChange}
-						/>
-
-						<label htmlFor="password">Pass: </label>
-						<input
-							type="password"
-							name="password"
-							className="form-control"
-							value={password}
-							onChange={handlePasswordChange}
-						/>
-						<ReCAPTCHA
-							className="g-recaptcha"
-							sitekey="6LfZa9gUAAAAAJb13_dQ_V9pqdQOZ7uWYasM6e5B"
-							onChange={onChange}
-						/>
+						<label class="sr-only" for="inlineFormInputGroup">Username</label>
+						<div class="input-group mb-2">
+							<div class="input-group-prepend">
+							  <div class="input-group-text">@</div>
+							</div>
+							<input
+								type="text"
+								name="username"
+								id="inlineFormInputGroup" placeholder="Username"
+								className="form-control"
+								value={username}
+								onChange={handleUsernameChange}
+							/>
+						</div>
+						<label class="sr-only" for="inlineFormInputGroupPassword">Password</label>
+						<div class="input-group mb-2">
+							<div class="input-group-prepend">
+							  <div class="input-group-text">*</div>
+							</div>
+							<input
+								type="password"
+								name="password"
+								id="inlineFormInputGroupPassword" placeholder="Password"
+								className="form-control"
+								value={password}
+								onChange={handlePasswordChange}
+							/>
+						</div>
+						<div class="form-check">  
+							<input
+								type="checkbox"
+								id="Check1"
+								className="form-check-input"
+								onChange={onChange}
+							/>
+							<label class="form-check-label" for="Check1">No soy un Robot :)
+						</div>
+							
 					<button ref={buttonEl} onClick={handleSubmit} disabled className="mt-2 btn btn-primary btn-lg btn-block">Login</button>
 						{/* <GoogleButton /> 
 					<a href="/auth/google" className="btn btn-outline-info btn-lg btn-block">
