@@ -167,6 +167,7 @@ const Header = (props) => {
   
   /* render() { */
     return (
+      <>
       <nav className=
       {classnames("navbar navbar-light bg-light shadow", {
         "navbar hide": !visible
@@ -230,6 +231,8 @@ const Header = (props) => {
                   <ListadoCamaras camaras={listadoCamaras} toggle={toggleListadoCamaras} />
               </div>
       </nav>
+      {props.children}
+      </>
     );
   /* } */
 }

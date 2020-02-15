@@ -15,7 +15,7 @@ async function getCameras() {
             url: `${baseUrl}/cameras-list`,
             method: 'GET'
         })
-        console.log('getCameras(): ',response)
+        //console.log('getCameras(): ',response)
         
         return response
     } catch (error) {
@@ -28,7 +28,7 @@ async function getAds() {
 			url: `${baseUrl}/anuncios-cameras-list`,
             method: 'GET'
         })
-		console.log('getAds(): ',response)
+		//console.log('getAds(): ',response)
         
         return response
     } catch (error) {

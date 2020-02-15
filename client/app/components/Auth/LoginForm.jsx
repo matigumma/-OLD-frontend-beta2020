@@ -17,6 +17,9 @@ const LoginForm = (props) =>{
 	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
 	const [redirectTo, setRedirectTo] = useState(null)
+	const userEl = useRef(null);
+	const passEl = useRef(null);
+	const checkEl = useRef(null);
 	const buttonEl = useRef(null);
 //	const [bg,setBg] = useState(null)
 
@@ -47,26 +50,50 @@ const LoginForm = (props) =>{
 
 	function handleUsernameChange(event) {
 		setUsername(event.target.value)
+		validate()
 	}
 	function handlePasswordChange(event) {
 		setPassword(event.target.value)
+		validate()
 	}
-	function onChange() {
-		buttonEl.current.disabled=false
+
+	function validate(){
+		buttonEl.current.innerText = 'Login'
+		if(userEl.current.textLength >= 3 && passEl.current.textLength >= 5){
+			checkEl.current.disabled=false
+		}else{
+			checkEl.current.disabled=true
+			checkEl.current.checked=false
+		}
+		if(checkEl.current.checked == true){
+			buttonEl.current.classList.remove('btn-danger')
+			buttonEl.current.classList.add('btn-primary')
+			buttonEl.current.disabled = false
+		}else{
+			buttonEl.current.disabled = true
+		}
 	}
+	
 	function handleSubmit(event) {
 		buttonEl.current.disabled = true
+		checkEl.current.disabled=true
+		checkEl.current.checked=false
+		buttonEl.current.innerText = 'Loading...'
 		props._login(username, password).then((res)=>{
-			console.log('res status: ',res.status)
 			if(res.status === 200){
 				buttonEl.current.classList.remove('btn-primary')
 				buttonEl.current.classList.add('btn-success')
+				buttonEl.current.innerText = 'Login Success!'
+				setRedirectTo('/')
 			}else{
 				buttonEl.current.classList.remove('btn-primary')
 				buttonEl.current.classList.remove('btn-success')
 				buttonEl.current.classList.add('btn-danger')
+				buttonEl.current.innerText = 'Login FAIL!'
+				console.log(buttonEl.current)
 			}
 		} )
+		passEl.current.value=''
 		event.preventDefault();
 		//setRedirectTo('/')
 		/* this.setState({
@@ -93,6 +120,7 @@ const LoginForm = (props) =>{
 							</div>
 							<input
 								type="text"
+								ref={userEl}
 								name="username"
 								id="inlineFormInputGroup" placeholder="Username"
 								className="form-control"
@@ -107,6 +135,7 @@ const LoginForm = (props) =>{
 							</div>
 							<input
 								type="password"
+								ref={passEl}
 								name="password"
 								id="inlineFormInputGroupPassword" placeholder="Password"
 								className="form-control"
@@ -114,12 +143,14 @@ const LoginForm = (props) =>{
 								onChange={handlePasswordChange}
 							/>
 						</div>
-						<div class="form-check">  
+						<div class="form-check ml-auto">  
 							<input
 								type="checkbox"
+								disabled
+								ref={checkEl}
 								id="Check1"
 								className="form-check-input"
-								onChange={onChange}
+								onChange={()=>validate()}
 							/>
 							<label class="form-check-label" for="Check1">No soy un Robot :)</label>
 						</div>

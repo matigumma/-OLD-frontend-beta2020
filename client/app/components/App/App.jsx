@@ -35,16 +35,16 @@ const NotFound = loadable(()=> import('../../pages/NotFound'))
 
 //import Loading from '../Loading'
 
-const StatusMsg = (props) => {
+const StatusMsg = ({noti}) => {
 	return(
-		props.show==true ?
-		<div class={`alert alert-${props.kind} alert-dismissible fade show`} role="alert">
-			{props.msg}
+		noti.show ?
+		<div class={`alert alert-${noti.kind} alert-dismissible fade show`} role="alert">
+			{noti.msg}
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</div>
-		: <></>
+		: ''
 	)
 }
 
@@ -54,7 +54,7 @@ async function getUser() {
 			url: '/auth/user',
             method: 'GET'
         })
-		//console.log('getUser(): ',response)
+		console.log('getUser(): ',response)
         
         return response
     } catch (error) {
@@ -95,27 +95,14 @@ const App = () =>{
 	const [loggedIn, setLoggedIn] = useState(false)
 	//const [splash, setSplash] = useState(true)
 	const [user, setUser] = useState(null)
-	const [notiStatus, setNotiStatus] = useState({show:false,kind:'',msg:''})
+	const [notiStatus, setNotiStatus] = useState({show:true,kind:'',msg:'este es un mensaje de prueba'})
 
 	useEffect(()=>{
 		async function loadUser () {//first load of app
-			try {
-				const res = await getUser()
-				console.log('res del loadUser', res)
-				if (res.data.user) {
-					setLoggedIn(true)
-					setUser(res.data.user)
-				} else {
-					setTimeout(() => {
-						setNotiStatus({
-							show:true,
-							kind:'primary',
-							msg:'ya te registraste?'
-						})
-					}, 10000);
-				}
-			} catch (error) {
-				console.log(error)
+			const res = await getUser()
+			if (res.data.user!=null) {
+				setLoggedIn(true)
+				setUser(res.data.user)
 			}
         }
 		loadUser()
@@ -148,23 +135,25 @@ const App = () =>{
 /* 	splash? <Loading />
 	: */
 	return (
-		<Router >
-		<div className="h-100">
-			{/* <Header cameras={cameras} state={user} _logout={_logout} /> */}
-			<Header state={user} _logout={_logout} />
-			<StatusMsg props={notiStatus} />
-			<main className="h-100">
-				{/* <Route exact path="/" render={() => <Home ads={ads} cameras={cameras} userState={user} />} /> */}
-				<Route exact path="/" render={() => <Home userState={user} />} />
-				<Route exact path="/login" render={() => <LoginForm loggedin={loggedIn} user={user} _login={_login} />}/>
-				<Route exact path="/user/:id" render={(props) => <UserProfile userState={user} />}/>
-				{/* <Route exact path="/cam/:any" render={(state) => <CameraView  cameras={cameras} userState={user} />}/> */}
-				<Route exact path="/cam/:any" render={(state) => <CameraView {...state} userState={user} />}/>
-				<Route exact path="/signup" component={() => <SignupForm />} />
-				<Route path="/404" render={(state) => <NotFound {...state}/>} />
-			</main>
-		</div>
-		</Router>
+		<>
+			{/* <StatusMsg noti={notiStatus} /> */}
+			<Router >
+			<div className="h-100">
+				{/* <Header cameras={cameras} state={user} _logout={_logout} /> */}
+				<Header state={user} _logout={_logout} />
+				<main className="h-100">
+					{/* <Route exact path="/" render={() => <Home ads={ads} cameras={cameras} userState={user} />} /> */}
+					<Route exact path="/" render={() => <Home userState={user} />} />
+					<Route exact path="/login" render={() => <LoginForm loggedin={loggedIn} user={user} _login={_login} />}/>
+					<Route exact path="/user/:id" render={(props) => <UserProfile userState={user} />}/>
+					{/* <Route exact path="/cam/:any" render={(state) => <CameraView  cameras={cameras} userState={user} />}/> */}
+					<Route exact path="/cam/:any" render={(state) => <CameraView {...state} userState={user} />}/>
+					<Route exact path="/signup" component={() => <SignupForm />} />
+					<Route path="/404" render={(state) => <NotFound {...state}/>} />
+				</main>
+			</div>
+			</Router>
+		</>
 	)
 }
 
