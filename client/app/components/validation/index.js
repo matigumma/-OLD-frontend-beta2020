@@ -5,7 +5,7 @@ async function prevalidationUser(preid) {
 	try {
         console.log('preid: ',preid)
 		let prevalidationUser_response = await axios({
-            url: '/auth/validate',
+            url: '/auth/prevalidate',
             data:{id:preid},
             method: 'POST'
         })
@@ -21,7 +21,7 @@ async function validationUser(valid) {
 	try {
 		let validationUser_response = await axios({
             url: '/auth/validate',
-            data:{valid},
+            data:{id:valid},
             method: 'POST'
         })
 		console.log('validationUser(): ',validationUser_response)
@@ -35,7 +35,6 @@ const Validation = (props) => {
     const [redirectTo, setRedirectTo] = useState(null)
     const [username, setUsername] = useState(null)
     const warning = useRef()
-    console.log('id del props.match.params.id', props.match.params.id)
     
     useEffect(()=>{
         async function prevalidation () {//first load of app
@@ -45,11 +44,13 @@ const Validation = (props) => {
                 if (prevalidationUser_res.status === 200) {
                     console.log(`validando ${props.match.params.id} obtuvo status 200:`)
                     console.log(prevalidationUser_res)
-                    setUsername(prevalidationUser_res.data.local.username)
+                    setUsername(prevalidationUser_res.data.username)
                 }else{
                     setRedirectTo('/404')
                 }
-			}
+			}else{
+                setRedirectTo('/404')
+            }
         }
 		prevalidation()
     },[])

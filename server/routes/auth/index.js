@@ -40,7 +40,7 @@ router.get('/user', (req, res, next) => {
 	}
 })
 
-router.post('/validate', (req, res, next) => {
+router.post('/prevalidate', (req, res, next) => {
 	console.log('req.body: ',req.body)
 	const { id } = req.body
 	User.findById( id , (findErr, findResponse) => {
@@ -49,7 +49,7 @@ router.post('/validate', (req, res, next) => {
 			return res.status(404)
 		}
 		console.log('get validate response: ', findResponse)
-		return res.status(200).json(findResponse)			
+		return res.status(200).json(findResponse.local.username)			
 /* 		if(idMatch.active!=undefined){
 			if(idMatch.active){
 				return res.status(200).json({ user: idMatch })
