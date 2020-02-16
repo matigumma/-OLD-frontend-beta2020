@@ -42,10 +42,11 @@ router.get('/user', (req, res, next) => {
 
 router.get('/validate', (req, res, next) => {
 	const { id } = req.body
-	User.findById( id , (err, idMatch) => {
+	User.findById( id , (err, res) => {
 		if(err){
-			return res.status(404).json({ user: null })
+			return res.status(404)
 		}
+		return res.status(200).json(res)			
 /* 		if(idMatch.active!=undefined){
 			if(idMatch.active){
 				return res.status(200).json({ user: idMatch })
@@ -53,7 +54,6 @@ router.get('/validate', (req, res, next) => {
 				return res.status(401).json({ msg: 'user not active', username: idMatch.local.username })
 			}
 		}else{ */
-			return res.status(200).json({ user: idMatch })			
 		/* } */
 	})
 })
