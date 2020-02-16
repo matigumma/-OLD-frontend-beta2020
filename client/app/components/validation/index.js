@@ -15,8 +15,9 @@ const Validation = (props) => {
         })
         .then(response => {
             if(response.status === 200){
-                setRedirectTo('/')
-                return
+                /* setRedirectTo('/')
+                return */
+                console.log(response)
             }
             if(response.status === 404){
                 setRedirectTo('/404')

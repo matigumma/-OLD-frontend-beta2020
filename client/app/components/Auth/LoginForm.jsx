@@ -59,14 +59,17 @@ const LoginForm = (props) =>{
 
 	function validate(){
 		buttonEl.current.innerText = 'Login'
-		if(userEl.current.textLength >= 3 && passEl.current.textLength >= 5){
+		if(userEl.current.textLength > 3 && passEl.current.textLength > 5){
 			checkEl.current.disabled=false
+			checkEl.current.checked=false
 		}else{
 			checkEl.current.disabled=true
 			checkEl.current.checked=false
 		}
-		if(checkEl.current.checked == true){
+
+		if(checkEl.current.checked === true){
 			buttonEl.current.classList.remove('btn-danger')
+			buttonEl.current.classList.remove('btn-warning')
 			buttonEl.current.classList.add('btn-primary')
 			buttonEl.current.disabled = false
 		}else{
@@ -90,7 +93,6 @@ const LoginForm = (props) =>{
 				buttonEl.current.classList.remove('btn-success')
 				buttonEl.current.classList.add('btn-danger')
 				buttonEl.current.innerText = 'Login FAIL!'
-				console.log(buttonEl.current)
 			}
 		} )
 		passEl.current.value=''
