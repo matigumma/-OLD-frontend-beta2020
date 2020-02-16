@@ -8,7 +8,7 @@ const Validation = (props) => {
     const warning = useRef()
 
     useEffect(()=>{
-        const id = props.match.params.any
+        const id = props.match.params.id
         axios
         .get('/auth/validate', {
             id
