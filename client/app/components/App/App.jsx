@@ -50,35 +50,35 @@ const NotFound = loadable(()=> import('../../pages/NotFound'))
 	)
 } */
 
-/* async function getUser() {
+async function getUser() {
 	try {
-		const response = await axios({
+		let getUser_response = await axios({
 			url: '/auth/user',
             method: 'GET'
         })
-		console.log('getUser(): ',response)
+		console.log('getUser(): ',getUser_response)
         
-        return response
-    } catch (error) {
-		return error
+        return getUser_response
+    } catch (getUser_error) {
+		return getUser_error
     }
-} */
+}
 async function getLogout(user) {
     try {
-        const response = await axios({
+        let getLogout_response = await axios({
 			url: '/auth/logout',
 			data: {user},
             method: 'POST'
         })
         
-        return response
-    } catch (error) {
-		return error
+        return getLogout_response
+    } catch (getLogout_error) {
+		return getLogout_error
     }
 }
-/* async function getLogin(username, password) {
+async function getLogin(username, password) {
     try {
-        const response = await axios({
+        let getLogin_response = await axios({
 			url: '/auth/login',
 			data: {
 				username,
@@ -87,11 +87,11 @@ async function getLogout(user) {
             method: 'POST'
         })
         
-        return response
-    } catch (error) {
-		return error
+        return getLogin_response
+    } catch (getLogin_error) {
+		return getLogin_error
     }
-} */
+}
 
 const App = () =>{
 	const [loggedIn, setLoggedIn] = useState(false)
@@ -100,55 +100,38 @@ const App = () =>{
 /* 	const [notiStatus, setNotiStatus] = useState({show:true,kind:'',msg:'este es un mensaje de prueba'}) */
 
 	useEffect(()=>{
-		axios.get('/auth/user').then(res => {
-			if (res.data.user!=null) {
+		async function loadUser () {//first load of app
+			let loadUser_res = await getUser()
+			if (loadUser_res.data!=null) {
 				setLoggedIn(true)
-				setUser(res.data.user)
-			}
-			console.log('useEffect, user get: ',res)
-		})
-		/* async function loadUser () {//first load of app
-			const res = await getUser()
-			if (res.data.user!=null) {
-				setLoggedIn(true)
-				setUser(res.data.user)
+				setUser(loadUser_res.data.user)
 			}
         }
-		loadUser() */
+		loadUser()
 	},[])
 
 	async function _logout(event) {
 		event.preventDefault()
 		//console.log('logging out')
-		const res = await getLogout()
-		if (res.status === 200) {
+		let logout_res = await getLogout()
+		if (logout_res.status === 200) {
 			setLoggedIn(false)
 			setUser(null)
-			return res
+			return logout_res
 		}else{
-			return res
+			return logout_res
 		}
 	}
 
-	//async function _login(username, password) {
-	function _login(username, password) {
-		// const res = await getLogin(username, password)
-		axios({
-			url: '/auth/login',
-			data: {
-				username,
-				password
-			},
-            method: 'POST'
-        }).then(res => {
-			if (res.status === 200) {
-				setLoggedIn(true)
-				setUser(res.data.user)
-				return res
-			}else{
-				return res
-			}
-		})
+	async function _login(username, password) {
+		let login_res = await getLogin(username, password)
+		if (login_res.status === 200) {
+			setLoggedIn(true)
+			setUser(login_res.data.user)
+			return login_res
+		}else{
+			return login_res
+		}
 	}
 
 /* 	splash? <Loading />

@@ -1,7 +1,22 @@
 import React, {useEffect, useState, useRef} from 'react';
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
-
+async function prevalidationUser(id) {
+	try {
+		let prevalidationUser_response = await axios({
+            url: '/auth/validate',
+            data:{
+                id
+            },
+            method: 'GET'
+        })
+		console.log('prevalidationUser(): ',prevalidationUser_response)
+        
+        return prevalidationUser_response
+    } catch (prevalidationUser_error) {
+		return prevalidationUser_error
+    }
+}
 const Validation = (props) => {
     const [redirectTo, setRedirectTo] = useState(null)
     const [username, setUsername] = useState(null)
@@ -9,22 +24,21 @@ const Validation = (props) => {
 
     useEffect(()=>{
         const id = props.match.params.id
-        axios({
-			url: '/auth/validate',
-			data: {
-				id
-			},
-            method: 'GET'
-        }).then(res => {
-			if (res.status === 200) {
-				console.log(`validando ${id} obtuvo status 200:`)
-                console.log(res)
-                setUsername(res.data.user.local.username)
-			}else{
-				setRedirectTo('/404')
+        async function prevalidation () {//first load of app
+			let prevalidationUser_res = await prevalidationUser()
+			if (prevalidationUser_res.data!=null) {
+                if (prevalidationUser_res.status === 200) {
+                    console.log(`validando ${id} obtuvo status 200:`)
+                    console.log(prevalidationUser_res)
+                    setUsername(prevalidationUser_res.data.local.username)
+                }else{
+                    setRedirectTo('/404')
+                }
 			}
-		})
+        }
+		prevalidation()
     },[])
+    
     function handleSubmit(event){
         axios
         .post('/auth/validate', {
