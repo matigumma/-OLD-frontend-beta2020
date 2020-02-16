@@ -50,7 +50,7 @@ const NotFound = loadable(()=> import('../../pages/NotFound'))
 	)
 } */
 
-async function getUser() {
+/* async function getUser() {
 	try {
 		const response = await axios({
 			url: '/auth/user',
@@ -62,7 +62,7 @@ async function getUser() {
     } catch (error) {
 		return error
     }
-}
+} */
 async function getLogout(user) {
     try {
         const response = await axios({
@@ -100,14 +100,17 @@ const App = () =>{
 /* 	const [notiStatus, setNotiStatus] = useState({show:true,kind:'',msg:'este es un mensaje de prueba'}) */
 
 	useEffect(()=>{
-		async function loadUser () {//first load of app
+		axios.get('/auth/user').then(res => {
+			console.log('useEffect, user get: ',res)
+		})
+		/* async function loadUser () {//first load of app
 			const res = await getUser()
 			if (res.data.user!=null) {
 				setLoggedIn(true)
 				setUser(res.data.user)
 			}
         }
-		loadUser()
+		loadUser() */
 	},[])
 
 	async function _logout(event) {

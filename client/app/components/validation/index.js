@@ -7,8 +7,8 @@ const Validation = (props) => {
     const [username, setUsername] = useState(null)
     const warning = useRef()
 
-    const id = props.match.params.any
     useEffect(()=>{
+        const id = props.match.params.any
         axios
         .get('/validate', {
             id
