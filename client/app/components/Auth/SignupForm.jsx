@@ -7,7 +7,6 @@ const SignupForm = () => {
 	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
  	const [confirmPassword, setConfirmPassword] = useState('')
-	const [redirectTo, setRedirectTo] = useState(null)
 	const btnRegistro = useRef()
 	const warning = useRef()
 	const form = useRef()
@@ -132,9 +131,6 @@ const SignupForm = () => {
 	}
 
 	return(
-		redirectTo
-		? <Redirect to={{ pathname: redirectTo }} />
-		:
 		<div id="bg" className="position-absolute w-100 h-100">
 		<div className="mt-5 card col-sm-12 col-md-8 col-lg-4 p-0 mx-auto">
 			<div className="card-header">

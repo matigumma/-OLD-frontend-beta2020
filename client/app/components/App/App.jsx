@@ -15,6 +15,8 @@ import axios from 'axios'
 const UserProfile = loadable(()=>import('../../pages/User'))
 
 const Header = loadable(()=>import('../Header/Header'))
+
+const Validation = loadable(()=>import('../validation'))
 /* , {
 	fallback: <div>Loading Header...</div>,
   } */
@@ -149,6 +151,7 @@ const App = () =>{
 					{/* <Route exact path="/cam/:any" render={(state) => <CameraView  cameras={cameras} userState={user} />}/> */}
 					<Route exact path="/cam/:any" render={(state) => <CameraView {...state} userState={user} />}/>
 					<Route exact path="/signup" component={() => <SignupForm />} />
+					<Route exact path="/validation/:id" component={() => <Validation {...state}/>} />
 					<Route path="/404" render={(state) => <NotFound {...state}/>} />
 				</main>
 			</div>
