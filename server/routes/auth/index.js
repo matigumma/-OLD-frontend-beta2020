@@ -40,9 +40,9 @@ router.get('/user', (req, res, next) => {
 	}
 })
 
-router.get('/validate', (req, res, next) => {
+router.post('/validate', (req, res, next) => {
 	const { id } = req.body
-	console.log('id recibido a get/validate: ',id)
+	console.log('req recibido a get/validate: ',req)
 	User.findById( {_id: id} , (findErr, findResponse) => {
 		if(findErr){
 			console.log('get validate: findeErr',findErr)
