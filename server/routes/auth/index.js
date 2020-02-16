@@ -63,11 +63,11 @@ router.post('/prevalidate', (req, res, next) => {
 
 router.post('/validate', (req, res) => {
 	const { id } = req.body
-	User.findByIdAndUpdate(id, { active: true },(error, res) =>{
-		if(error){
-			return res.status(500).json({error: error})
+	User.findByIdAndUpdate(id, { active: true },(finderror, findres) =>{
+		if(finderror){
+			return res.status(500).json({error: finderror})
 		}
-		return res.status(200)
+		return res.status(200).json(findres)
 	})
 })
 
