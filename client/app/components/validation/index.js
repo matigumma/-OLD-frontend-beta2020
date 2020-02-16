@@ -10,7 +10,7 @@ const Validation = (props) => {
     useEffect(()=>{
         const id = props.match.params.any
         axios
-        .get('/validate', {
+        .get('/auth/validate', {
             id
         })
         .then(response => {
@@ -29,7 +29,7 @@ const Validation = (props) => {
     },[])
     function handleSubmit(event){
         axios
-        .post('/validate', {
+        .post('/auth/validate', {
             id
         })
         .then(response => {
