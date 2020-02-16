@@ -132,7 +132,9 @@ router.post('/signup', (req, res) => {
 			'local.password': password
 		})
 		newUser.save((err, savedUser) => {
-			if (err) return res.status(400).json({error: err})
+			if (err) {
+				return res.status(500).json({error: 'no se pudo registrar el usuario: '+err})
+			}
 			console.log(savedUser)
 			//mail de validacion:
 			let message = {
@@ -149,13 +151,13 @@ router.post('/signup', (req, res) => {
 			}
 			transporter.sendMail(message, function(rr, info){
 				if(rr){
-					return res.status(400).json({error: rr})
+					return res.status(200).json({error: 'Usuario registrado pero fallo el mail de validacion, comunicase con el administrador: err:'+rr})
 				}else{
 					console.log(info)
+					return res.status(200).json(savedUser)
 				}
 			})
 
-			return res.status(200).json(savedUser)
 		})
 	})
 })
