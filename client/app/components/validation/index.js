@@ -37,14 +37,14 @@ const Validation = (props) => {
     const [redirectTo, setRedirectTo] = useState(null)
     const [username, setUsername] = useState(null)
     const warning = useRef()
-    const id = props.match.params.id
-
+    console.log('id del props.match.params.id', props.match.params.id)
+    
     useEffect(()=>{
         async function prevalidation () {//first load of app
-			let prevalidationUser_res = await prevalidationUser(id)
+			let prevalidationUser_res = await prevalidationUser(props.match.params.id)
 			if (prevalidationUser_res.data!=null) {
                 if (prevalidationUser_res.status === 200) {
-                    console.log(`validando ${id} obtuvo status 200:`)
+                    console.log(`validando ${props.match.params.id} obtuvo status 200:`)
                     console.log(prevalidationUser_res)
                     setUsername(prevalidationUser_res.data.local.username)
                 }else{
@@ -57,7 +57,7 @@ const Validation = (props) => {
 
     function handleSubmit(event){
         async function validation () {//first load of app
-			let validationUser_res = await validationUser(id)
+			let validationUser_res = await validationUser(props.match.params.id)
 			if (validationUser_res.data!=null) {
                 if (validationUser_res.status === 200) {
                     setRedirectTo('/login')
