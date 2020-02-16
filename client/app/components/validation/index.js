@@ -9,25 +9,21 @@ const Validation = (props) => {
 
     useEffect(()=>{
         const id = props.match.params.id
-        axios
-        .get('/auth/validate', {
-            id
-        })
-        .then(response => {
-            if(response.status === 200){
-                /* setRedirectTo('/')
-                return */
-                console.log(`validando ${id} obtuvo status 200:`)
-                console.log(response)
-            }
-            if(response.status === 404){
-                setRedirectTo('/404')
-                return
-            }/* 
-            if(response.status === 401){
-                setUsername(response.data.username)
-            } */
-        })
+        axios({
+			url: '/auth/validate',
+			data: {
+				id
+			},
+            method: 'GET'
+        }).then(res => {
+			if (res.status === 200) {
+				console.log(`validando ${id} obtuvo status 200:`)
+                console.log(res)
+                setUsername(res.data.user.local.username)
+			}else{
+				setRedirectTo('/404')
+			}
+		})
     },[])
     function handleSubmit(event){
         axios
