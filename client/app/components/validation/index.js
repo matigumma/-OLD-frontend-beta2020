@@ -60,7 +60,7 @@ const Validation = (props) => {
                 <p>Hace click en el boton para validar la cuenta</p>
             </div>
             <div className="card-footer">
-                <button ref={btnRegistro} type="submit" className="mt-2 btn btn-primary btn-lg btn-block" >Validar</button>
+                <button type="submit" className="mt-2 btn btn-primary btn-lg btn-block" >Validar</button>
             </div>
         </from>
     </div>
