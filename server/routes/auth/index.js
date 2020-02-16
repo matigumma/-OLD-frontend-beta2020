@@ -4,7 +4,7 @@ const router = express.Router()
 const User = require('../../models/User')
 const passport = require('../../passport')
 
-import config from '../../../config/config'
+const config = require('../../../config/config')
 const nodemailer = require('nodemailer')
 
 let transporter = nodemailer.createTransport({
