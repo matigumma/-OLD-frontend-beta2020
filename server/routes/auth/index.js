@@ -41,11 +41,11 @@ router.get('/user', (req, res, next) => {
 })
 
 router.post('/validate', (req, res, next) => {
+	console.log('req.body: ',req.body)
 	const { id } = req.body
-	console.log('req recibido a get/validate: ',req)
-	User.findById( {_id: id} , (findErr, findResponse) => {
+	User.findById( id , (findErr, findResponse) => {
 		if(findErr){
-			console.log('get validate: findeErr',findErr)
+			console.log('get validate: findeErr')
 			return res.status(404)
 		}
 		console.log('get validate response: ', findResponse)
