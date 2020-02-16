@@ -1,29 +1,26 @@
 import React, {useEffect, useState, useRef} from 'react';
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
-async function prevalidationUser(id) {
+async function prevalidationUser(preid) {
 	try {
 		let prevalidationUser_response = await axios({
             url: '/auth/validate',
-            data:{
-                id
-            },
+            data:{preid},
             method: 'GET'
         })
 		console.log('prevalidationUser(): ',prevalidationUser_response)
         
         return prevalidationUser_response
     } catch (prevalidationUser_error) {
-		return prevalidationUser_error
+		console.log('prevalidationUser_error: ',prevalidationUser_error)
+        return prevalidationUser_error
     }
 }
-async function validationUser(id) {
+async function validationUser(valid) {
 	try {
 		let validationUser_response = await axios({
             url: '/auth/validate',
-            data:{
-                id
-            },
+            data:{valid},
             method: 'POST'
         })
 		console.log('validationUser(): ',validationUser_response)
