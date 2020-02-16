@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 async function prevalidationUser(preid) {
 	try {
+        console.log('preid: ',preid)
 		let prevalidationUser_response = await axios({
             url: '/auth/validate',
             data:{preid},
@@ -38,7 +39,8 @@ const Validation = (props) => {
     
     useEffect(()=>{
         async function prevalidation () {//first load of app
-			let prevalidationUser_res = await prevalidationUser(props.match.params.id)
+            const prevalidationId = props.match.params.id
+			let prevalidationUser_res = await prevalidationUser(prevalidationId)
 			if (prevalidationUser_res.data!=null) {
                 if (prevalidationUser_res.status === 200) {
                     console.log(`validando ${props.match.params.id} obtuvo status 200:`)
@@ -54,7 +56,8 @@ const Validation = (props) => {
 
     function handleSubmit(event){
         async function validation () {//first load of app
-			let validationUser_res = await validationUser(props.match.params.id)
+            const validationId = props.match.params.id
+			let validationUser_res = await validationUser(validationId)
 			if (validationUser_res.data!=null) {
                 if (validationUser_res.status === 200) {
                     setRedirectTo('/login')
