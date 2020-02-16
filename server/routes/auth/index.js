@@ -46,10 +46,14 @@ router.get('/validate', (req, res, next) => {
 		if(err){
 			return res.status(404).json({ user: null })
 		}
-		if(idMatch.active){
-			return res.status(200).json({ user: idMatch })
+		if(idMatch.active!=undefined){
+			if(idMatch.active){
+				return res.status(200).json({ user: idMatch })
+			}else{
+				return res.status(401).json({ msg: 'user not active', username: idMatch.local.username })
+			}
 		}else{
-			return res.status(401).json({ msg: 'user not active', username: idMatch.local.username })
+			return res.status(200).json({ user: idMatch })			
 		}
 	})
 })
@@ -78,13 +82,18 @@ router.post(
 		console.log('POST to /login')
 		const user = JSON.parse(JSON.stringify(req.user)) // hack
 		const cleanUser = Object.assign({}, user)
-		if (cleanUser.local && cleanUser.active) {
+		if (cleanUser.local) {
 			delete cleanUser.local.password
-			res.status(200).json({ user: cleanUser })
-		}else{
-			if(!cleanUser.active){
-				return res.status(300).json({ error: 'usuario inactivo, revise su correo para validar la cuenta.'})
+			if(cleanUser.active!=undefined){
+				if(cleanUser.active){
+					return res.status(200).json({ user: cleanUser })
+				}else{
+					return res.status(401).json({ error: 'usuario inactivo, revise su correo para validar la cuenta.'})
+				}
+			}else{
+				return res.status(200).json({ user: cleanUser, error: 'active: udnefined...'})
 			}
+		}else{
 			res.status(404).json({ user: null })
 		}
 	}
