@@ -62,11 +62,9 @@ router.post('/validate', (req, res) => {
 	const { id } = req.body
 	User.findByIdAndUpdate(id, { active: true},(error, res) =>{
 		if(error){
-			return res.status(500)
+			return res.status(500).json({error: error})
 		}
-		return res.status(200).json({
-			msg: 'Validado correctamente'
-		})
+		return res.status(200)
 	})
 })
 

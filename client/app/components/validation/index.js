@@ -17,15 +17,16 @@ const Validation = (props) => {
             if(response.status === 200){
                 /* setRedirectTo('/')
                 return */
+                console.log(`validando ${id} obtuvo status 200:`)
                 console.log(response)
             }
             if(response.status === 404){
                 setRedirectTo('/404')
                 return
-            }
+            }/* 
             if(response.status === 401){
                 setUsername(response.data.username)
-            }
+            } */
         })
     },[])
     function handleSubmit(event){
@@ -36,16 +37,17 @@ const Validation = (props) => {
         .then(response => {
             if(response.status === 200){
                 setRedirectTo('/login')
-                return
             }
             if(response.status === 500){
                 warning.current.classList.remove('d-none')
 				warning.current.classList.add('alert-warning')
-				warning.current.innerText='Hubo un error en el servidor al validar, intenta mas tarde'
+                warning.current.innerText='Hubo un error en el servidor al validar, intenta mas tarde'
+                console.log('error 500 del handlesubmit: ',response.data.error)
             }
         })
         event.preventDefault()
     }
+
     return(
     redirectTo
     ? <Redirect to={{ pathname: redirectTo }} />

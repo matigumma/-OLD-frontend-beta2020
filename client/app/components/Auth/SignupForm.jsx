@@ -9,7 +9,6 @@ const SignupForm = () => {
  	const [confirmPassword, setConfirmPassword] = useState('')
 	const btnRegistro = useRef()
 	const warning = useRef()
-	const form = useRef()
 	const emailEl = useRef(null);
 	const userEl = useRef(null);
 	const passEl = useRef(null);
@@ -38,6 +37,13 @@ const SignupForm = () => {
 	}
 	function handleUsernameChange(event) {
 		setUsername(event.target.value)
+		if(event.target.value < 3){
+			event.target.classList.remove('is-valid')
+			event.target.classList.add('is-invalid')
+		}else{
+			event.target.classList.remove('is-invalid')
+			event.target.classList.add('is-valid')
+		}
 		validate()
 	}
 	function handlePasswordChange(event) {
@@ -136,7 +142,7 @@ const SignupForm = () => {
 			<div className="card-header">
 			<h1 className="h2">Registro de usuario</h1>	
 			</div>
-			<form ref={form} onSubmit={handleSubmit} className="card-body">
+			<form onSubmit={handleSubmit} className="card-body">
 				<div className="form-group w-100">
 					<div ref={warning} className="alert alert-warning d-none" role="alert"></div>
 					<label class="sr-only" for="inlineFormInputGroup">E-mail</label>

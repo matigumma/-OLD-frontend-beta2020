@@ -76,7 +76,7 @@ async function getLogout(user) {
 		return error
     }
 }
-async function getLogin(username, password) {
+/* async function getLogin(username, password) {
     try {
         const response = await axios({
 			url: '/auth/login',
@@ -91,7 +91,7 @@ async function getLogin(username, password) {
     } catch (error) {
 		return error
     }
-}
+} */
 
 const App = () =>{
 	const [loggedIn, setLoggedIn] = useState(false)
@@ -101,6 +101,10 @@ const App = () =>{
 
 	useEffect(()=>{
 		axios.get('/auth/user').then(res => {
+			if (res.data.user!=null) {
+				setLoggedIn(true)
+				setUser(res.data.user)
+			}
 			console.log('useEffect, user get: ',res)
 		})
 		/* async function loadUser () {//first load of app
@@ -126,15 +130,25 @@ const App = () =>{
 		}
 	}
 
-	async function _login(username, password) {
-		const res = await getLogin(username, password)
-		if (res.status === 200) {
-			setLoggedIn(true)
-			setUser(res.data.user)
-			return res
-		}else{
-			return res
-		}
+	//async function _login(username, password) {
+	function _login(username, password) {
+		// const res = await getLogin(username, password)
+		axios({
+			url: '/auth/login',
+			data: {
+				username,
+				password
+			},
+            method: 'POST'
+        }).then(res => {
+			if (res.status === 200) {
+				setLoggedIn(true)
+				setUser(res.data.user)
+				return res
+			}else{
+				return res
+			}
+		})
 	}
 
 /* 	splash? <Loading />

@@ -50,30 +50,39 @@ const LoginForm = (props) =>{
 
 	function handleUsernameChange(event) {
 		setUsername(event.target.value)
-		validate()
+		if(event.target.value.lenght < 3){
+			event.target.classList.remove('is-valid')
+			event.target.classList.add('is-invalid')
+		}else{
+			event.target.classList.remove('is-invalid')
+			event.target.classList.add('is-valid')
+		}
 	}
 	function handlePasswordChange(event) {
 		setPassword(event.target.value)
-		validate()
+		if(event.target.value.lenght < 5){
+			event.target.classList.remove('is-valid')
+			event.target.classList.add('is-invalid')
+		}else{
+			event.target.classList.remove('is-invalid')
+			event.target.classList.add('is-valid')
+		}
 	}
 
 	function validate(){
-		buttonEl.current.innerText = 'Login'
-		if(userEl.current.textLength > 3 && passEl.current.textLength > 5){
-			checkEl.current.disabled=false
-			checkEl.current.checked=false
-		}else{
-			checkEl.current.disabled=true
-			checkEl.current.checked=false
-		}
-
-		if(checkEl.current.checked === true){
-			buttonEl.current.classList.remove('btn-danger')
-			buttonEl.current.classList.remove('btn-warning')
-			buttonEl.current.classList.add('btn-primary')
-			buttonEl.current.disabled = false
-		}else{
-			buttonEl.current.disabled = true
+//		buttonEl.current.innerText = 'Login'
+		if(userEl.current.classList.contains('is-valid') && passEl.current.classList.contains('is-valid')){
+			if(checkEl.current.checked === true){
+				buttonEl.current.disabled = false
+				buttonEl.current.classList.remove('btn-danger')
+				buttonEl.current.classList.remove('btn-warning')
+				buttonEl.current.classList.add('btn-primary')
+			}else{
+				buttonEl.current.disabled = true
+				buttonEl.current.classList.remove('btn-danger')
+				buttonEl.current.classList.remove('btn-warning')
+				buttonEl.current.classList.add('btn-primary')
+			}
 		}
 	}
 	
@@ -148,7 +157,6 @@ const LoginForm = (props) =>{
 						<div class="form-check ml-auto">  
 							<input
 								type="checkbox"
-								disabled
 								ref={checkEl}
 								id="Check1"
 								className="form-check-input"
