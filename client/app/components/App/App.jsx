@@ -164,11 +164,11 @@ const App = () =>{
 					{/* <Route exact path="/" render={() => <Home ads={ads} cameras={cameras} userState={user} />} /> */}
 					<Route exact path="/" render={() => <Home userState={user} />} />
 					<Route exact path="/login" render={() => <LoginForm loggedin={loggedIn} user={user} _login={_login} />}/>
-					<Route exact path="/user/:id" render={(props) => <UserProfile userState={user} />}/>
+					<Route exact path="/user/:id" render={() => <UserProfile userState={user} />}/>
 					{/* <Route exact path="/cam/:any" render={(state) => <CameraView  cameras={cameras} userState={user} />}/> */}
 					<Route exact path="/cam/:any" render={(state) => <CameraView {...state} userState={user} />}/>
 					<Route exact path="/signup" component={() => <SignupForm />} />
-					<Route exact path="/validation/:id" component={(state) => <Validation {...state}/>} />
+					<Route exact path="/validation/:id" component={(props) => <Validation {...props}/>} />
 					<Route path="/404" render={(state) => <NotFound {...state}/>} />
 				</main>
 			</div>
