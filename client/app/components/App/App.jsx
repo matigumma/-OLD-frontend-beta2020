@@ -151,7 +151,7 @@ const App = () =>{
 					{/* <Route exact path="/cam/:any" render={(state) => <CameraView  cameras={cameras} userState={user} />}/> */}
 					<Route exact path="/cam/:any" render={(state) => <CameraView {...state} userState={user} />}/>
 					<Route exact path="/signup" component={() => <SignupForm />} />
-					<Route exact path="/validation/:id" component={() => <Validation {...state}/>} />
+					<Route exact path="/validation/:id" component={(state) => <Validation {...state}/>} />
 					<Route path="/404" render={(state) => <NotFound {...state}/>} />
 				</main>
 			</div>
