@@ -200,25 +200,25 @@ const Header = (props) => {
                       
                       <li className="nav-item">
                           {/* <Link className="nav-link" to="/anuncios">Comunidad</Link> */}
-                          <a href="http://freewaves.live/comunidad-fw/matias-canto/" className="nav-link">
+                          <a href="http://freewaves.live/comunidad-fw/" target="_blank" className="nav-link">
                           Comunidad
                           </a>
                       </li>
                       <li className="nav-item">
                           {/* <Link className="nav-link" to="/users/list">Galeria</Link> */}
-                          <a href="http://freewaves.live/nahuel-villarino/" className="nav-link">
+                          <a href="http://freewaves.live/nahuel-villarino/" target="_blank" className="nav-link">
                           Galeria
                           </a>
                       </li>
                       <li className="nav-item">
                           {/* <Link className="nav-link" to="/users/list">Galeria</Link> */}
-                          <a href="http://freewaves.live/auspiciantes/" className="nav-link">
+                          <a href="http://freewaves.live/auspiciantes/" target="_blank" className="nav-link">
                           Auspiciantes
                           </a>
                       </li>
                       <li className="nav-item">
                           {/* <Link className="nav-link" to="/settings">Contacto</Link> */}
-                          <a href="http://freewaves.live/contacto/" className="nav-link">
+                          <a href="http://freewaves.live/contacto/" target="_blank" className="nav-link">
                           Contacto
                           </a>
                       </li>

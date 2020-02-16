@@ -9,7 +9,7 @@ import './App.scss'
 //const baseUrl = config.baseUrl
 
 import axios from 'axios'
-import { set } from 'mongoose';
+//import { set } from 'mongoose';
 
 //import Header from '../Header/Header'
 const UserProfile = loadable(()=>import('../../pages/User'))
@@ -35,7 +35,7 @@ const NotFound = loadable(()=> import('../../pages/NotFound'))
 
 //import Loading from '../Loading'
 
-const StatusMsg = ({noti}) => {
+/* const StatusMsg = ({noti}) => {
 	return(
 		noti.show ?
 		<div class={`alert alert-${noti.kind} alert-dismissible fade show`} role="alert">
@@ -46,7 +46,7 @@ const StatusMsg = ({noti}) => {
 		</div>
 		: ''
 	)
-}
+} */
 
 async function getUser() {
 	try {
@@ -95,7 +95,7 @@ const App = () =>{
 	const [loggedIn, setLoggedIn] = useState(false)
 	//const [splash, setSplash] = useState(true)
 	const [user, setUser] = useState(null)
-	const [notiStatus, setNotiStatus] = useState({show:true,kind:'',msg:'este es un mensaje de prueba'})
+/* 	const [notiStatus, setNotiStatus] = useState({show:true,kind:'',msg:'este es un mensaje de prueba'}) */
 
 	useEffect(()=>{
 		async function loadUser () {//first load of app

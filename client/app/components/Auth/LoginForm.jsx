@@ -113,7 +113,7 @@ const LoginForm = (props) =>{
 					</div> */}
 				<form onSubmit={handleSubmit} className="card-body">
 					<div className="form-group w-100">
-						<label class="sr-only" for="inlineFormInputGroup">Username</label>
+						<label class="sr-only" for="inlineFormInputGroup">Usuario</label>
 						<div class="input-group mb-2">
 							<div class="input-group-prepend">
 							  <div class="input-group-text">@</div>

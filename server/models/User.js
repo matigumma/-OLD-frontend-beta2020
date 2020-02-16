@@ -7,6 +7,9 @@ mongoose.promise = Promise
 const userSchema = new Schema({
 	firstName: { type: String, unique: false },
 	lastName: { type: String, unique: false },
+	email: { type: String, unique: true },
+	avatar: { type: String, },
+	gustos: { type: Object },
 	local: {
 		username: { type: String, unique: false, required: false },
 		password: { type: String, unique: false, required: false }
@@ -14,7 +17,9 @@ const userSchema = new Schema({
 	google: {
 		googleId: { type: String, required: false }
 	},
-	photos: []
+	photos: [],
+	active: { type: Boolean, default: false },
+	creationDate: {type: Date, default: Date.now}
 })
 
 // Define schema methods
