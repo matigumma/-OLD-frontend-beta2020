@@ -46,15 +46,15 @@ router.get('/validate', (req, res, next) => {
 		if(err){
 			return res.status(404).json({ user: null })
 		}
-		if(idMatch.active!=undefined){
+/* 		if(idMatch.active!=undefined){
 			if(idMatch.active){
 				return res.status(200).json({ user: idMatch })
 			}else{
 				return res.status(401).json({ msg: 'user not active', username: idMatch.local.username })
 			}
-		}else{
+		}else{ */
 			return res.status(200).json({ user: idMatch })			
-		}
+		/* } */
 	})
 })
 
