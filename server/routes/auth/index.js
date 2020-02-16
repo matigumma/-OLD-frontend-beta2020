@@ -42,7 +42,7 @@ router.get('/user', (req, res, next) => {
 
 router.get('/validate', (req, res, next) => {
 	const { id } = req.body
-	User.findOne({ '_id': id }, (err, idMatch) => {
+	User.findById({ id }, (err, idMatch) => {
 		if(err){
 			return res.status(404).json({ user: null })
 		}
