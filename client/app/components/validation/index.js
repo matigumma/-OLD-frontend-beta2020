@@ -17,15 +17,31 @@ async function prevalidationUser(id) {
 		return prevalidationUser_error
     }
 }
+async function validationUser(id) {
+	try {
+		let validationUser_response = await axios({
+            url: '/auth/validate',
+            data:{
+                id
+            },
+            method: 'POST'
+        })
+		console.log('validationUser(): ',validationUser_response)
+        
+        return validationUser_response
+    } catch (validationUser_error) {
+		return validationUser_error
+    }
+}
 const Validation = (props) => {
     const [redirectTo, setRedirectTo] = useState(null)
     const [username, setUsername] = useState(null)
     const warning = useRef()
+    const id = props.match.params.id
 
     useEffect(()=>{
-        const id = props.match.params.id
         async function prevalidation () {//first load of app
-			let prevalidationUser_res = await prevalidationUser()
+			let prevalidationUser_res = await prevalidationUser(id)
 			if (prevalidationUser_res.data!=null) {
                 if (prevalidationUser_res.status === 200) {
                     console.log(`validando ${id} obtuvo status 200:`)
@@ -38,23 +54,22 @@ const Validation = (props) => {
         }
 		prevalidation()
     },[])
-    
+
     function handleSubmit(event){
-        axios
-        .post('/auth/validate', {
-            id
-        })
-        .then(response => {
-            if(response.status === 200){
-                setRedirectTo('/login')
-            }
-            if(response.status === 500){
-                warning.current.classList.remove('d-none')
-				warning.current.classList.add('alert-warning')
-                warning.current.innerText='Hubo un error en el servidor al validar, intenta mas tarde'
-                console.log('error 500 del handlesubmit: ',response.data.error)
-            }
-        })
+        async function validation () {//first load of app
+			let validationUser_res = await validationUser(id)
+			if (validationUser_res.data!=null) {
+                if (validationUser_res.status === 200) {
+                    setRedirectTo('/login')
+                }else{
+                    warning.current.classList.remove('d-none')
+                    warning.current.classList.add('alert-warning')
+                    warning.current.innerText='Hubo un error en el servidor al validar, intenta mas tarde'
+                    console.log('error 500 del handlesubmit: ',response.data.error)
+                }
+			}
+        }
+		validation()
         event.preventDefault()
     }
 

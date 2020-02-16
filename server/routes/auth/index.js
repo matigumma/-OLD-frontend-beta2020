@@ -60,7 +60,7 @@ router.get('/validate', (req, res, next) => {
 
 router.post('/validate', (req, res) => {
 	const { id } = req.body
-	User.findByIdAndUpdate(id, { active: true},(error, res) =>{
+	User.findByIdAndUpdate(id, { active: true },(error, res) =>{
 		if(error){
 			return res.status(500).json({error: error})
 		}
