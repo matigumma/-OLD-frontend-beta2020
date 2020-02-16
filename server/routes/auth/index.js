@@ -42,13 +42,14 @@ router.get('/user', (req, res, next) => {
 
 router.get('/validate', (req, res, next) => {
 	const { id } = req.body
-	User.findById( id , (findErr, findResponse) => {
+	console.log('id recibido a get/validate: ',id)
+	User.findById( {_id: id} , (findErr, findResponse) => {
 		if(findErr){
 			console.log('get validate: findeErr',findErr)
 			return res.status(404)
 		}
 		console.log('get validate response: ', findResponse)
-		return res.status(200).json({findResponse})			
+		return res.status(200).json(findResponse)			
 /* 		if(idMatch.active!=undefined){
 			if(idMatch.active){
 				return res.status(200).json({ user: idMatch })
