@@ -6,7 +6,7 @@ async function prevalidationUser(preid) {
         console.log('preid: ',preid)
 		let prevalidationUser_response = await axios({
             url: '/auth/validate',
-            data:{preid},
+            data:{id:preid},
             method: 'POST'
         })
 		console.log('prevalidationUser(): ',prevalidationUser_response)
