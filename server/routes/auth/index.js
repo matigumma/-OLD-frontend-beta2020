@@ -49,6 +49,10 @@ router.post('/prevalidate', (req, res, next) => {
 			return res.status(404)
 		}
 		console.log('get validate response: ', findResponse)
+		let checkActive = findResponse.active
+		if(checkActive===true){
+			return res.status(201)
+		}
 		return res.status(200).json(findResponse.local.username)			
 /* 		if(idMatch.active!=undefined){
 			if(idMatch.active){
