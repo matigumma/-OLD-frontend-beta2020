@@ -101,6 +101,12 @@ const LoginForm = (props) =>{
 				buttonEl.current.classList.remove('btn-primary')
 				buttonEl.current.classList.remove('btn-success')
 				buttonEl.current.classList.add('btn-danger')
+				if(res.status === 401){
+					warning.current.innerText=res.data.error
+					warning.current.classList.remove('d-none')
+					warning.current.classList.remove('alert-success')
+					warning.current.classList.add('alert-danger')
+				}
 				buttonEl.current.innerText = 'Login FAIL!'
 			}
 		} )
@@ -124,6 +130,7 @@ const LoginForm = (props) =>{
 					</div> */}
 				<form onSubmit={handleSubmit} className="card-body">
 					<div className="form-group w-100">
+						<div ref={warning} className="alert alert-warning d-none" role="alert"></div>
 						<label class="sr-only" for="inlineFormInputGroup">Usuario</label>
 						<div class="input-group mb-2">
 							<div class="input-group-prepend">

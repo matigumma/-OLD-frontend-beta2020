@@ -105,7 +105,6 @@ router.post(
 )
 
 router.post('/logout', (req, res) => {
-	console.log(req)
 	if (req.user) {
 		req.session.destroy()
 		res.clearCookie('connect.sid') // clean up!
