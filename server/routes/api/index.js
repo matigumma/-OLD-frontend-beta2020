@@ -10,11 +10,12 @@ var staticUserAuth = basicAuth({
 })
 module.exports = (app) => {
 
-  app.get('/regdeusuarios', staticUserAuth,  (req, res, next) => {
+  app.get('/api/regdeusuarios', staticUserAuth,  (req, res, next) => {
     User.find((finderror, findres) =>{
       if(finderror){
         return res.status(500).json({error: finderror})
       }
+      console.log('regdeusuarios: ',findres)
       return res.status(200).json(findres)
     })
   });
