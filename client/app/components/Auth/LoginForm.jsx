@@ -19,6 +19,7 @@ const LoginForm = (props) =>{
 	const [redirectTo, setRedirectTo] = useState(null)
 	const userEl = useRef(null);
 	const passEl = useRef(null);
+	const warning = useRef(null);
 	const checkEl = useRef(null);
 	const buttonEl = useRef(null);
 //	const [bg,setBg] = useState(null)
