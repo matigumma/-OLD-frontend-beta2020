@@ -25,7 +25,7 @@ FreeWaves es la forma más fácil de ver tu spot preferido en tiempo real estés
         <div className="embed-responsive embed-responsive-16by9">
           <ReactPlayer 
           className="embed-responsive-item" 
-          url="https://www.youtube.com/embed/n-5txBw5Ml8?showinfo=0&enablejsapi=1&origin=https://beta.freewaves.live "
+          url="https://www.youtube.com/embed/n-5txBw5Ml8"
           width='100%'
           height='100%'
           />
