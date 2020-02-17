@@ -3,17 +3,17 @@ import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 async function prevalidationUser(preid) {
 	try {
-        console.log('preid: ',preid)
+        //console.log('preid: ',preid)
 		let prevalidationUser_response = await axios({
             url: '/auth/prevalidate',
             data:{id:preid},
             method: 'POST'
         })
-		console.log('prevalidationUser(): ',prevalidationUser_response)
+		//console.log('prevalidationUser(): ',prevalidationUser_response)
         
         return prevalidationUser_response
     } catch (prevalidationUser_error) {
-		console.log('prevalidationUser_error: ',prevalidationUser_error)
+		//console.log('prevalidationUser_error: ',prevalidationUser_error)
         return prevalidationUser_error
     }
 }
@@ -24,7 +24,7 @@ async function validationUser(valid) {
             data:{id:valid},
             method: 'POST'
         })
-		console.log('validationUser(): ',validationUser_response)
+		//console.log('validationUser(): ',validationUser_response)
         
         return validationUser_response
     } catch (validationUser_error) {
@@ -40,13 +40,13 @@ const Validation = (props) => {
         if(props.user!=null){
             setRedirectTo('/')
         }
-        console.log('props de validation: ',props)
+        //console.log('props de validation: ',props)
         async function prevalidation () {//first load of app
             const prevalidationId = props.match.params.id
 			let prevalidationUser_res = await prevalidationUser(prevalidationId)
 			if (prevalidationUser_res.data!=null) {
                 if (prevalidationUser_res.status === 200) {
-                    console.log(`prevalidando ${props.match.params.id} obtuvo status 200:`)
+                    //console.log(`prevalidando ${props.match.params.id} obtuvo status 200:`)
                     setUsername(prevalidationUser_res.data)
                 } 
                 if(prevalidationUser_res.status === 201){
@@ -60,17 +60,17 @@ const Validation = (props) => {
     },[])
 
     function handleSubmit(event){
-        console.log('handleSubmit')
+        //console.log('handleSubmit')
         validationUser(props.match.params.id).then(respuesta =>{
-            console.log('handleSubmit then')
+            //console.log('handleSubmit then')
             if (respuesta.status === 200) {
                 setRedirectTo('/login')
             }else{
-                console.log('handleSubmit then != 200')
+                //console.log('handleSubmit then != 200')
                 warning.current.classList.remove('d-none')
                 warning.current.classList.add('alert-warning')
                 warning.current.innerText='Hubo un error en el servidor al validar, intenta mas tarde'
-                console.log('error 500 del handlesubmit: ',response.data.error)
+                //console.log('error 500 del handlesubmit: ',response.data.error)
             }
         })
         event.preventDefault()

@@ -56,7 +56,7 @@ async function getUser() {
 			url: '/auth/user',
             method: 'GET'
         })
-		console.log('getUser(): ',getUser_response)
+		//console.log('getUser(): ',getUser_response)
         
         return getUser_response
     } catch (getUser_error) {
@@ -112,7 +112,7 @@ const App = () =>{
 
 	async function _logout(event) {
 		event.preventDefault()
-		//console.log('logging out')
+		////console.log('logging out')
 		let logout_res = await getLogout()
 		if (logout_res.status === 200) {
 			setLoggedIn(false)
