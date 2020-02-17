@@ -37,6 +37,7 @@ const Validation = (props) => {
     const warning = useRef()
     
     useEffect(()=>{
+        console.log('props de validation: ',props)
         async function prevalidation () {//first load of app
             const prevalidationId = props.match.params.id
 			let prevalidationUser_res = await prevalidationUser(prevalidationId)
