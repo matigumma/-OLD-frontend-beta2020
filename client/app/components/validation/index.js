@@ -48,7 +48,8 @@ const Validation = (props) => {
                 if (prevalidationUser_res.status === 200) {
                     console.log(`prevalidando ${props.match.params.id} obtuvo status 200:`)
                     setUsername(prevalidationUser_res.data)
-                }else if(prevalidationUser_res.status === 201){
+                } 
+                if(prevalidationUser_res.status === 201){
                     setRedirectTo('/login')
                 }
 			}else{
