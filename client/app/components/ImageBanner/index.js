@@ -17,10 +17,10 @@ const ImageBanner = ({imagen, name, slug}) => {
     if(imagen){
         return (
         <div>
-            <Link to={slug}>
+{/*             <Link to={slug}> */}
                 <i className="fas fa-4x m-2 fa-sync fa-spin" style={{outerHeight:'90px'}}></i>
                 <img className="m-0 cimg d-none" src={ imageSrcUrl + imagen } onLoad={loaded} onError={addDefaultSrc} alt={name}/>
-            </Link>
+{/*             </Link> */}
         </div>)
     }else{
         return (

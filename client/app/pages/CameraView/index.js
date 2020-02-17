@@ -89,7 +89,7 @@ async function getCameras() {
           url: `${baseUrl}/cameras-list`,
           method: 'GET'
       })
-      console.log('getCameras(): ',response)
+      //console.log('getCameras(): ',response)
       
       return response
   } catch (error) {

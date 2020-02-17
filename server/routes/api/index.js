@@ -1,14 +1,22 @@
-/* const Counter = require('../../models/Counter');
-const User = require('../../models/User'); */
+/* const Counter = require('../../models/Counter');*/
+const User = require('../../models/User'); 
+const basicAuth = require('express-basic-auth')
 
+var staticUserAuth = basicAuth({
+  users: {
+    'mati2620': 'fran2011'
+  },
+  challenge: false
+})
 module.exports = (app) => {
 
-  app.get('/camaras',  (req, res, next) => {
-     axios.get('http://localhost:3000/api/cameras-list')
-      .then((camaras) => {
-        console.log(camaras)
-        return res.json(camaras.data)})
-      .catch((err) => next(err));
+  app.get('/regdeusuarios', staticUserAuth,  (req, res, next) => {
+    User.find((finderror, findres) =>{
+      if(finderror){
+        return res.status(500).json({error: finderror})
+      }
+      return res.status(200).json(findres)
+    })
   });
 /* 
   app.post('/api/counters', function (req, res, next) {
