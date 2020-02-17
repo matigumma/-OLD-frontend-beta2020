@@ -42,8 +42,7 @@ const Validation = (props) => {
 			let prevalidationUser_res = await prevalidationUser(prevalidationId)
 			if (prevalidationUser_res.data!=null) {
                 if (prevalidationUser_res.status === 200) {
-                    console.log(`validando ${props.match.params.id} obtuvo status 200:`)
-                    console.log(prevalidationUser_res)
+                    console.log(`prevalidando ${props.match.params.id} obtuvo status 200:`)
                     setUsername(prevalidationUser_res.data)
                 }else if(prevalidationUser_res.status === 201){
                     setRedirectTo('/login')
@@ -55,22 +54,19 @@ const Validation = (props) => {
 		prevalidation()
     },[])
 
-    function handleSubmit(event){
-        async function validation () {//first load of app
-            const validationId = props.match.params.id
-			let validationUser_res = await validationUser(validationId)
-			if (validationUser_res.data!=null) {
-                if (validationUser_res.status === 200) {
-                    setRedirectTo('/login')
-                }else{
-                    warning.current.classList.remove('d-none')
-                    warning.current.classList.add('alert-warning')
-                    warning.current.innerText='Hubo un error en el servidor al validar, intenta mas tarde'
-                    console.log('error 500 del handlesubmit: ',response.data.error)
-                }
-			}
+    async function handleSubmit(event){
+        const validationId = props.match.params.id
+        let validationUser_res = await validationUser(validationId)
+        if (validationUser_res.data!=null) {
+            if (validationUser_res.status === 200) {
+                setRedirectTo('/login')
+            }else{
+                warning.current.classList.remove('d-none')
+                warning.current.classList.add('alert-warning')
+                warning.current.innerText='Hubo un error en el servidor al validar, intenta mas tarde'
+                console.log('error 500 del handlesubmit: ',response.data.error)
+            }
         }
-		validation()
         event.preventDefault()
     }
 
