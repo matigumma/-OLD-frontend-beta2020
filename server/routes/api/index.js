@@ -1,4 +1,6 @@
-/* const Counter = require('../../models/Counter');*/
+const express = require('express')
+const app = express.Router()
+
 const User = require('../../models/User'); 
 const basicAuth = require('express-basic-auth')
 
@@ -8,7 +10,7 @@ var staticUserAuth = basicAuth({
   },
   challenge: false
 })
-module.exports = (app) => {
+
 
   app.get('/regdeusuarios', staticUserAuth,  (req, res, next) => {
     User.find((finderror, findres) =>{
@@ -60,4 +62,5 @@ module.exports = (app) => {
       })
       .catch((err) => next(err));
   }); */
-};
+
+module.exports = app
