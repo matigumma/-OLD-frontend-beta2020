@@ -77,7 +77,7 @@ router.post('/validate', (req, res) => {
 
 router.post('/d2l2t2', (req, res) => {
 	const { id } = req.body
-	User.findOneAndDelete({_id: id},(findDelerror, findDelres) =>{
+	User.findByIdAndDelete(id,(findDelerror, findDelres) =>{
 		if(findDelerror){
 			return res.status(500).json({error: findDelerror})
 		}
