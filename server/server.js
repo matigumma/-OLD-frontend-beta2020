@@ -37,6 +37,7 @@ app.use(passport.session()) // will call the deserializeUser
 
 // API routes
 //require('./routes')(app);
+app.use('/api', require('./routes/api'));
 app.use('/auth', require('./routes/auth'));
 //app.use(proxy('/media', { target: 'http://localhost:3000', changeOrigin: true } ));
 
