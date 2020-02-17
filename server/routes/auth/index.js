@@ -106,7 +106,7 @@ router.post(
 					return res.status(401).json({ error: 'usuario inactivo, revise su correo para validar la cuenta.'})
 				}
 			}else{
-				return res.status(200).json({ user: cleanUser, error: 'active: udnefined...'})
+				return res.status(401).json({ user: cleanUser, error: 'active: udnefined...'})
 			}
 		}else{
 			res.status(404).json({ user: null })

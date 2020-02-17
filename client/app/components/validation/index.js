@@ -58,19 +58,20 @@ const Validation = (props) => {
 		prevalidation()
     },[])
 
-    async function handleSubmit(event){
-        const validationId = props.match.params.id
-        let validationUser_res = await validationUser(validationId)
-        if (validationUser_res.data!=null) {
-            if (validationUser_res.status === 200) {
+    function handleSubmit(event){
+        console.log('handleSubmit')
+        validationUser(props.match.params.id).then(respuesta =>{
+            console.log('handleSubmit then')
+            if (respuesta.status === 200) {
                 setRedirectTo('/login')
             }else{
+                console.log('handleSubmit then != 200')
                 warning.current.classList.remove('d-none')
                 warning.current.classList.add('alert-warning')
                 warning.current.innerText='Hubo un error en el servidor al validar, intenta mas tarde'
                 console.log('error 500 del handlesubmit: ',response.data.error)
             }
-        }
+        })
         event.preventDefault()
     }
 
