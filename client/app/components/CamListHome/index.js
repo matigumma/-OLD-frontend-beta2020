@@ -105,15 +105,16 @@ const CamListHome = () => {
                                     {an[cam_key]}
                                     <div className="card" key={cam_key}>
                                         <div className="card-body p-0">
-                                        <Link to={{
-                                            pathname: 'cam/'+cam.slug,
-                                            state: {
-                                                thiscam: cam
-                                            }
-                                        }} >
-                                            <ImageBanner imagen={cam.banner} name={cam.name} slug={cam.slug}/>
+                                            <ImageBanner cam={cam}/>
                                             <div className="ml-2 my-auto">
+                                                <Link to={{
+                                                    pathname: 'cam/'+cam.slug,
+                                                    state: {
+                                                        thiscam: cam
+                                                    }
+                                                }} >
                                                     <h5 className="card-title mb-0 list-title">{cam.title}</h5>
+                                                </Link>
                                                 <p className="card-text mb-0">
                                                     <small> </small>
                                                 </p>
@@ -121,7 +122,6 @@ const CamListHome = () => {
                                                     <small><i className="fas fa-map-marker-alt"></i> {cam.ciudad} · {cam.pais}</small>
                                                 </p>
                                             </div>
-                                        </Link>
                                         </div>
                                     </div>
                                 </div>)
