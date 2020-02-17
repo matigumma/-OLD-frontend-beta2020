@@ -81,7 +81,7 @@ const Validation = (props) => {
     :
     <div id="bg" className="position-absolute w-100 h-100">
     <div className="mt-5 card col-sm-12 col-md-8 col-lg-4 p-0 mx-auto">
-        <from onSubmit={handleSubmit} className="form-group w-100">
+        <from className="form-group w-100">
             <div className="card-header">
                 <h1 className="h2">Validacion de {username}!</h1>	
             </div>
@@ -90,7 +90,7 @@ const Validation = (props) => {
                 <p>Hace click en el boton para validar la cuenta</p>
             </div>
             <div className="card-footer">
-                <button type="submit" className="mt-2 btn btn-primary btn-lg btn-block" >Validar</button>
+                <button onClick={handleSubmit} type="submit" className="mt-2 btn btn-primary btn-lg btn-block" >Validar</button>
             </div>
         </from>
     </div>
