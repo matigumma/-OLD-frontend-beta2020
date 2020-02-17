@@ -19,7 +19,7 @@ const userSchema = new Schema({
 	},
 	photos: [],
 	active: { type: Boolean, default: false },
-	creationDate: {type: Date, default: Date().toUTCString()}
+	creationDate: {type: Date, default: Date.UTC}
 })
 
 // Define schema methods
