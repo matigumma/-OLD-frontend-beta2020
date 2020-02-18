@@ -1,12 +1,15 @@
 import React from 'react';
 import {render} from 'react-dom';
-import loadable from '@loadable/component'
+import ReactGA from 'react-ga';
+ReactGA.initialize('UA-123642441-1');
+ReactGA.pageview(window.location.pathname + window.location.search);
+//import loadable from '@loadable/component'
 //import * as serviceWorker from './serviceWorker';
 //import './styles/main.scss';
 //const App = lazy(() => import('./components/App/App.jsx'))
-//import App from './components/App/App.jsx'
+import App from './components/App/App.jsx'
 //import Splash from './pages/Splash/Splash'
-const App = loadable(()=>import('./components/App/App'))
+//const App = loadable(()=>import('./components/App/App'))
 render((
     <App/>
   ), 

@@ -64,11 +64,11 @@ const UserNavMenu = React.memo(function UserNavMenu(props){
             <i className="fa fa-home fa-fw" aria-hidden="true"></i>&nbsp;{'Hola ' + props.userState.local.username }
           </span>
         </li>
-          <Link className="nav-link" to={'/user/' + props.userState._id} >
+{/*           <Link className="nav-link" to={'/user/' + props.userState._id} >
             <li className="nav-item">
                 User profile
             </li>
-            </Link>
+            </Link> */}
           <Link to="#" className="nav-link" onClick={props._logout}>
             <li className="nav-item">
               LogOut
