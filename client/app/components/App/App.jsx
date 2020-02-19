@@ -1,41 +1,27 @@
 import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import loadable from '@loadable/component'
+import axios from 'axios'
+import withTracker from '../../HOC/withTracker'
 import '../../styles/main.scss';
 import './App.scss'
 
-//import config from '../../../config'
 
-//const baseUrl = config.baseUrl
-
-import axios from 'axios'
-//import { set } from 'mongoose';
-
-//import Header from '../Header/Header'
 const UserProfile = loadable(()=>import('../../pages/User'))
 
 const Header = loadable(()=>import('../Header/Header'))
 
 const Validation = loadable(()=>import('../validation'))
-/* , {
-	fallback: <div>Loading Header...</div>,
-  } */
-//import Home from '../../pages/Home/Home'
+
 const Home = loadable(()=> import('../../pages/Home/Home'))
 
-//import LoginForm from '../Auth/LoginForm.jsx'
 const LoginForm = loadable(()=> import('../Auth/LoginForm.jsx'))
 
-//import SignupForm from '../Auth/SignupForm.jsx'
 const SignupForm = loadable(()=> import('../Auth/SignupForm.jsx'))
 
-//import CameraView from '../../pages/CameraView'
 const CameraView = loadable(()=> import ('../../pages/CameraView'))
 
-//import NotFound from '../../pages/NotFound'
 const NotFound = loadable(()=> import('../../pages/NotFound'))
-
-//import Loading from '../Loading'
 
 /* const StatusMsg = ({noti}) => {
 	return(
@@ -145,11 +131,14 @@ const App = () =>{
 				<Header state={user} _logout={_logout} />
 				<main className="h-100">
 					{/* <Route exact path="/" render={() => <Home ads={ads} cameras={cameras} userState={user} />} /> */}
-					<Route exact path="/" render={() => <Home userState={user} />} />
+					{/* <Route exact path="/" render={() => <Home userState={user} />} /> */}
+					<Route exact path="/" component={(state)=>withTracker(Home,{})({...state}) } />
 					<Route exact path="/login" render={() => <LoginForm loggedin={loggedIn} user={user} _login={_login} />}/>
-					<Route exact path="/user/:id" render={() => <UserProfile userState={user} />}/>
+					{/* <Route exact path="/user/:id" render={() => <UserProfile userState={user} />}/> */}
+					<Route exact path="/user/:any" component={(state) => withTracker(UserProfile,{})(...state)}/>
 					{/* <Route exact path="/cam/:any" render={(state) => <CameraView  cameras={cameras} userState={user} />}/> */}
-					<Route exact path="/cam/:any" render={(state) => <CameraView {...state} userState={user} />}/>
+					{/* <Route exact path="/cam/:any" render={(state) => <CameraView {...state} />}/> */}
+					<Route exact path="/cam/:any" component={(state) => withTracker(CameraView,{})({...state})}/>
 					<Route exact path="/signup" render={() => <SignupForm />} />
 					<Route exact path="/validation/:id" render={(state) => <Validation {...state} user={user}/>} />
 					<Route path="/404" render={(state) => <NotFound {...state}/>} />

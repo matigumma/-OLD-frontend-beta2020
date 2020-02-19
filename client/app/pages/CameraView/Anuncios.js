@@ -2,6 +2,7 @@ import React from 'react';
 import config from '../../../config'
 const contentBaseUrl = config.imageBannerSrcUrl
 const Anuncios = ({listadoAnuncios}) => {
+    console.log('calling Anuncios')
         function loaded(ev){
             ev.target.previousSibling.className="d-none"
             ev.target.className="img-responsive m-0 adimg w-100 d-block"

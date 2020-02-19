@@ -7,7 +7,7 @@ import Anuncios from './Anuncios'
 import Iframe from 'iframe-resizer-react'
 import ReactPlayer from 'react-player'
 import axios from 'axios'
-
+import ReactGA from "react-ga";
 import config from '../../../config'
 const baseUrl = config.baseUrl
 const videoBaseUrl = config.videoBaseUrl
@@ -40,10 +40,18 @@ function getAdsList(tc) {//podria reemplazar esto por el dato traido por props
       console.log(error)
   }
 }
-const Sponsor = React.memo(function Sponsor({sponsor}){
+const Sponsor = React.memo(function Sponsor({sponsor, desdeCam}){
+  function handleSponsorClick(){
+    ReactGA.event({
+      category: `Sponsor ${desdeCam}`,
+      action: 'Click en sponsor',
+      label: sponsor.name? sponsor.name : sponsor.link? sponsor.link : sponsor.file? sponsor.file : '',
+      nonInteraction: false
+    })
+  }
   if(sponsor && sponsor.file){
     return (
-    <a href={sponsor.link} rel="external" target="_blank" >
+    <a href={sponsor.link} onClick={handleSponsorClick} rel="external" target="_blank" >
       <img  src={`${contentBaseUrl}${sponsor.file}`} 
             className="d-inline-block align-top m-2" 
             style={{maxWidth:'171px'}} 
@@ -122,11 +130,17 @@ const CameraView = (props) => {
     skipBtn.current.classList.add('d-none')
     setSkiped(true)
     setPlayed(1)
+    ReactGA.event({
+      category: `Preroll ${camara.name}`,
+      action: 'Skip video',
+      label: camara.preroll.name? camara.preroll.name : camara.preroll.link? camara.preroll.link : camara.preroll.file? camara.preroll.file : '',
+      nonInteraction: false
+    })
     load(`${videoBaseUrl}${camara.name}.m3u8`)
   }
   
   const handleProgress = state => {
-    if (withPreroll) { //si hay un prerroll video
+    //if (withPreroll) { //si hay un prerroll video
       if (state.playedSeconds > 3 && !skiped) { //si pasaron 3 segundos
         skipBtn.current.classList.remove('d-none') //muestro el boton de skip
       }
@@ -138,13 +152,19 @@ const CameraView = (props) => {
         load(`${videoBaseUrl}${camara.name}.m3u8`)
       }
       setPlayed(state.played) //estado de la reproduccion (si es preroll termina en algun momento, si es stream no..)
-    }
+    //}
   }
 
   const showPoster = () =>{
     setTimeout(() => {
       setPlaying(true)
     }, 4000)
+    ReactGA.event({
+      category: `Poster ${camara.name}`,
+      action: 'Show poster',
+      label: camara.poster.name? camara.poster.name : camara.poster.link? camara.poster.link : camara.poster.file? camara.poster.file : '',
+      nonInteraction: true
+    })
   }
   
 
@@ -164,8 +184,14 @@ const CameraView = (props) => {
       (
         setWithPreroll(true),
         await load(`${contentBaseUrl}${c.preroll.file}`),
+        ReactGA.event({
+          category: `Preroll ${c.name}`,
+          action: 'Carga video',
+          label: c.preroll.name? c.preroll.name : c.preroll.link? c.preroll.link : c.preroll.file? c.preroll.file : '',
+          nonInteraction: true
+        }),
         setIsLoading(false),
-        showPoster()
+        (c.poster && c.poster.file) && showPoster()
       )
       :
       ( 
@@ -193,12 +219,6 @@ const CameraView = (props) => {
       }
     }
     loadCams().then((cameras)=>loadCam(cameras))
-    /* thiscam.status ? 
-      setError(true)
-    :
-    ( */
-
-    /* ) */
   },[])
 
   
@@ -216,7 +236,7 @@ const CameraView = (props) => {
               <br/>
               <span className="text-warning h4 my-3">Hubo un error en la transmision</span>
             </div>
-            <Sponsor sponsor={camara.sponsor} />
+            <Sponsor sponsor={camara.sponsor} desdeCam={camara.name} />
           </div>
           <section className="container mx-auto">
             <h2 className="caption mx-auto text-left text-primary my-1 py-1 h1">{camara.title}</h2>
@@ -249,10 +269,8 @@ const CameraView = (props) => {
           }}
           volume={null}
           loop={false}
-          onProgress={ handleProgress }
-          onError={ (e) => {
-            console.log('hubo un error',e)
-          } }
+          onProgress={ withPreroll? handleProgress: !handleProgress }
+          onError={ (e) => console.log('hubo un error',e) }
           muted
           playing={playing}
           playsinline
@@ -262,7 +280,7 @@ const CameraView = (props) => {
           height='100%'
           />
         <button ref={skipBtn} className="d-none skip btn btn-sm btn-outline-warning position-absolute" onClick={ handleSkip }>Skip Ad</button>
-        <Sponsor sponsor={camara.sponsor} />
+        <Sponsor sponsor={camara.sponsor} desdeCam={camara.name} />
       </div>
       <section className="container mx-auto">
         <div className="clearfix text-right text-secondary my-1">

@@ -9,11 +9,11 @@ import Slider from '../../components/Slider/Slider';
 import Footer from '../../components/Footer/Footer';
 //import MediumHome from '../../components/MediumHome'
 
-const Home = (props) => {
+const Home = () => {
     return (
       <div>
           <Slider />
-          <CamListHome ads={props.ads} cameras={props.cameras} userState={props.userState}/>
+          <CamListHome />
         {/* <MediumHome userState={props.userState}/> */}
           <Footer />
       </div>
